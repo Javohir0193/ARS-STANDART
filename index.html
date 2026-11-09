@@ -111,12 +111,13 @@ button{font-family:inherit}
 </div>
 <div style="width: 2px; flex: 1 1 auto; min-height: 12px; background: {{s.lineColor}}; margin: 4px 0"></div>
 </div>
-<button type="button" onClick="{{s.open}}" style="flex: 1 1 auto; min-width: 0; text-align: left; background: #FFFFFF; border: 1.5px solid {{s.cardBorder}}; box-shadow: {{s.cardShadow}}; border-radius: 16px; padding: 12px 14px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 4px; cursor: pointer; color: #14213D">
+<button type="button" onClick="{{s.open}}" style="flex: 1 1 auto; min-width: 0; text-align: left; background: #FFFFFF; border: 1.5px solid {{s.cardBorder}}; box-shadow: {{s.cardShadow}}; border-radius: 16px; padding: 12px 14px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 4px; cursor: pointer; color: #14213D; opacity: {{s.cardOpacity}}">
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
 <span style="font-size: 12px; font-weight: 600; color: #5B6475">{{s.time}}</span>
 <sc-if value="{{s.done}}"><span style="font-size: 11px; font-weight: 700; background: #E6EBF5; color: #14213D; padding: 3px 8px; border-radius: 999px">Bajarildi</span></sc-if>
 <sc-if value="{{s.current}}"><span style="font-size: 11px; font-weight: 700; background: #FDEBD0; color: #7A4A00; padding: 3px 8px; border-radius: 999px">Hozir</span></sc-if>
 <sc-if value="{{s.todo}}"><span style="font-size: 11px; font-weight: 700; background: #EEF0F4; color: #5B6475; padding: 3px 8px; border-radius: 999px">Kutilmoqda</span></sc-if>
+<sc-if value="{{s.locked}}"><span style="font-size: 11px; font-weight: 700; background: #EEF0F4; color: #5B6475; padding: 3px 8px; border-radius: 999px; display: inline-flex; align-items: center; gap: 4px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>Yopiq</span></sc-if>
 </div>
 <span style="font-size: 16px; font-weight: 700">{{s.title}}</span>
 <span style="font-size: 13px; color: #5B6475">{{s.sub}}</span>
@@ -124,6 +125,7 @@ button{font-family:inherit}
 <div style="flex: 1 1 auto; height: 6px; background: #EEF0F4; border-radius: 999px; overflow: hidden"><div style="height: 6px; width: {{s.barPct}}%; background: {{s.barColor}}; border-radius: 999px"></div></div>
 <span style="font-size: 12px; font-weight: 600; color: #5B6475">{{s.count}}</span>
 </div>
+<sc-if value="{{s.showLock}}"><span style="font-size: 12px; font-weight: 600; color: #B42318; background: #FEF3F2; border-radius: 8px; padding: 6px 8px; margin-top: 4px">{{s.lockMsg}}</span></sc-if>
 </button>
 </div>
 </sc-for>
@@ -543,7 +545,7 @@ button{font-family:inherit}
 </div>
 </div>
 <button type="button" onClick="{{resetAll}}" style="min-height: 48px; border-radius: 14px; border: 1px solid #E3E7EE; background: #FFFFFF; color: #9A3F06; font-size: 14px; font-weight: 600; cursor: pointer">Natijalarni nolga tushirish</button>
-<span style="font-size: 12px; color: #8A93A6; text-align: center">АРС Стандарты · versiya 1.0 · internetsiz ishlaydi</span>
+<span style="font-size: 12px; color: #8A93A6; text-align: center">АРС Стандарты · versiya 1.1 · internetsiz ishlaydi</span>
 </div>
 </sc-if>
 
@@ -944,10 +946,11 @@ class Component extends DCLogic {
     var stages = STAGES.map(function (s, idx) {
       var done = !!st.done[s.id];
       var current = idx === nextIdx;
+      var locked = nextIdx >= 0 && idx > nextIdx;
       var cnt = s.checks.filter(function (c, i) { return isOn(s.id, i); }).length;
       return Object.assign({}, iconFlags(s.icon), {
         n: idx + 1, time: s.time, title: s.title, sub: s.sub,
-        done: done, current: current, todo: !done && !current,
+        done: done, current: current, todo: !done && !current && !locked, locked: locked, showLock: locked && st.lockAt === idx, lockMsg: nextIdx >= 0 ? 'Avval ' + (nextIdx + 1) + '-bosqich “' + STAGES[nextIdx].title + '”ni yakunlang.' : '', cardOpacity: locked ? 0.62 : 1,
         nodeBg: done ? '#14213D' : (current ? accent : '#FFFFFF'),
         nodeFg: done ? '#FFFFFF' : (current ? '#14213D' : '#8A93A6'),
         nodeBorder: done ? '#14213D' : (current ? accent : '#D5DAE3'),
@@ -958,7 +961,7 @@ class Component extends DCLogic {
         barColor: done ? '#14213D' : accent,
         count: cnt + '/' + s.checks.length,
         rulesLabel: s.checks.length + ' ta qoida · ' + s.time,
-        open: function () { self.setState({ screen: 'stage', stage: s.id }); }
+        open: function () { if (locked) self.setState({ lockAt: idx }); else self.setState({ screen: 'stage', stage: s.id, lockAt: null }); }
       });
     });
 
