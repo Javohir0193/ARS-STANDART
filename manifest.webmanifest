@@ -1,0 +1,29 @@
+{
+ "name": "АРС Стандарты",
+ "short_name": "АРС Стандарты",
+ "lang": "uz",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "background_color": "#14213D",
+ "theme_color": "#14213D",
+ "orientation": "portrait",
+ "icons": [
+  {
+   "src": "icons/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "icons/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  },
+  {
+   "src": "icons/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}

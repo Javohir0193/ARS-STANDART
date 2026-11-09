@@ -1,0 +1,1201 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>АРС Стандарты</title>
+<meta name="theme-color" content="#14213D">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="АРС Стандарты">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<style>
+@font-face{font-family:'Inter';font-style:normal;font-display:swap;font-weight:100 900;src:url(fonts/inter-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Inter';font-style:normal;font-display:swap;font-weight:100 900;src:url(fonts/inter-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Inter';font-style:normal;font-display:swap;font-weight:100 900;src:url(fonts/inter-cyrillic-wght-normal.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+
+html,body{height:100%;margin:0;background:#14213D;overscroll-behavior:none;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
+#shell{position:fixed;inset:0;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top);background:#14213D}
+#app{flex:1 1 auto;min-height:0;background:#F5F6F8;max-width:560px;width:100%;margin:0 auto}
+#app nav{padding-bottom:calc(14px + env(safe-area-inset-bottom)) !important}
+
+body{margin:0}
+a{color:#14213D}a:hover{color:#2457C5}
+.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.vfx-swipe{touch-action:none}
+@keyframes vfxUp{0%{transform:translateY(24px);opacity:0}25%{opacity:1}80%{opacity:1}100%{transform:translateY(-60px);opacity:0}}
+.vfx-up{animation:vfxUp 1.6s ease-in-out infinite}
+@keyframes vfxPulse{0%{box-shadow:0 0 0 0 rgba(242,163,58,0.85)}100%{box-shadow:0 0 0 14px rgba(242,163,58,0)}}
+.vfx-pulse{animation:vfxPulse 1.3s ease-out infinite}
+button{font-family:inherit}
+
+</style>
+</head>
+<body>
+<div id="shell"><div id="app"></div></div>
+<template id="tpl">
+
+<div style="width: 100%; height: 100%; position: relative; overflow: hidden; background: #F5F6F8; font-family: Inter, system-ui, sans-serif; color: #14213D; display: flex; flex-direction: column">
+
+<div style="flex: 1 1 auto; min-height: 0; overflow-y: auto; border-style: none; border-width: 1px; border-color: #141413">
+
+<!-- ============ BUGUN (HOME) ============ -->
+<sc-if value="{{isHome}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column">
+<header style="background: #14213D; color: #FFFFFF; padding: 22px 20px 24px; border-radius: 0 0 28px 28px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.08em; color: #C9D1E3">АРС СТАНДАРТЫ</span>
+<h1 style="margin: 0; font-size: 22px; font-weight: 700">{{greet}}</h1>
+<span style="font-size: 13px; color: #C9D1E3">{{today}}</span>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px">
+<div style="display: flex; align-items: center; gap: 6px; background: {{accent}}; color: #14213D; padding: 7px 12px; border-radius: 999px; font-size: 14px; font-weight: 700">
+<svg class="ic" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"></path></svg>
+<span>{{points}} ball</span>
+</div>
+<div style="display: flex; align-items: center; gap: 5px; font-size: 12px; color: #C9D1E3">
+<svg class="ic" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3-1-5 1-8.5z"></path></svg>
+<span>{{streak}} kun ketma-ket</span>
+</div>
+</div>
+</div>
+<div style="display: flex; align-items: center; gap: 16px; background: rgba(255,255,255,0.08); border-radius: 20px; padding: 14px 16px">
+<div style="position: relative; width: 84px; height: 84px; flex: none">
+<svg width="84" height="84" viewBox="0 0 84 84" aria-hidden="true">
+<circle cx="42" cy="42" r="36" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="8"></circle>
+<circle cx="42" cy="42" r="36" fill="none" stroke="{{accent}}" stroke-width="8" stroke-linecap="round" stroke-dasharray="226.2" stroke-dashoffset="{{ringOffset}}" transform="rotate(-90 42 42)"></circle>
+</svg>
+<div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center">
+<span style="font-size: 20px; font-weight: 800">{{doneCount}}/{{stageTotal}}</span>
+<span style="font-size: 10px; color: #C9D1E3">bosqich</span>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+<span style="font-size: 13px; color: #C9D1E3">Bugungi standart</span>
+<span style="font-size: 20px; font-weight: 700">{{percent}}% bajarildi</span>
+<sc-if value="{{notAllDone}}" hint-placeholder-val="{{true}}">
+<span style="font-size: 13px; color: #FFFFFF">Keyingi: <b>{{nextTitle}}</b> · {{nextTime}}</span>
+</sc-if>
+<sc-if value="{{allDone}}" hint-placeholder-val="{{false}}">
+<span style="font-size: 13px; color: #FFFFFF"><b>Barakalla!</b> Bugungi kun namunali oʻtdi.</span>
+</sc-if>
+</div>
+</div>
+</header>
+
+<section style="padding: 20px 20px 24px; display: flex; flex-direction: column">
+<div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px">
+<h2 style="margin: 0; font-size: 18px; font-weight: 700">Mening ish kunim</h2>
+<span style="font-size: 13px; color: #5B6475">Bosqichni bosing</span>
+</div>
+<sc-for list="{{stages}}" as="s" hint-placeholder-count="8">
+<div style="display: flex; gap: 12px">
+<div style="display: flex; flex-direction: column; align-items: center; width: 44px; flex: none">
+<div style="width: 44px; height: 44px; box-sizing: border-box; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: {{s.nodeBg}}; color: {{s.nodeFg}}; border: 2px solid {{s.nodeBorder}}; flex: none">
+<sc-if value="{{s.icShirt}}"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3 4 6l2 4 2-1v12h8V9l2 1 2-4-5-3a3 3 0 0 1-6 0z"></path></svg></sc-if>
+<sc-if value="{{s.icCar}}"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17v-4l2-5h14l2 5v4z"></path><path d="M6 17v2M18 17v2"></path><circle cx="7.5" cy="13.5" r="1"></circle><circle cx="16.5" cy="13.5" r="1"></circle></svg></sc-if>
+<sc-if value="{{s.icClock}}"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></sc-if>
+<sc-if value="{{s.icDesk}}"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1.5"></rect><path d="M2 19h20"></path></svg></sc-if>
+<sc-if value="{{s.icChat}}"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"></path><path d="M8 10h8M8 13h5"></path></svg></sc-if>
+<sc-if value="{{s.icPin}}"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></sc-if>
+<sc-if value="{{s.icCup}}"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h12v4a6 6 0 0 1-12 0z"></path><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17"></path><path d="M8 3v3M12 3v3"></path></svg></sc-if>
+<sc-if value="{{s.icShield}}"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg></sc-if>
+<sc-if value="{{s.icAlert}}"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 20h20z"></path><path d="M12 10v4M12 17h.01"></path></svg></sc-if>
+<sc-if value="{{s.icFire}}"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3-1-5 1-8.5z"></path></svg></sc-if>
+<sc-if value="{{s.icRoad}}"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3 4 21M16 3l4 18"></path><path d="M12 4v2M12 10v3M12 17v3"></path></svg></sc-if>
+<sc-if value="{{s.icFlag}}"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4h11l-2 4 2 4H5"></path></svg></sc-if>
+</div>
+<div style="width: 2px; flex: 1 1 auto; min-height: 12px; background: {{s.lineColor}}; margin: 4px 0"></div>
+</div>
+<button type="button" onClick="{{s.open}}" style="flex: 1 1 auto; min-width: 0; text-align: left; background: #FFFFFF; border: 1.5px solid {{s.cardBorder}}; box-shadow: {{s.cardShadow}}; border-radius: 16px; padding: 12px 14px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 4px; cursor: pointer; color: #14213D">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+<span style="font-size: 12px; font-weight: 600; color: #5B6475">{{s.time}}</span>
+<sc-if value="{{s.done}}"><span style="font-size: 11px; font-weight: 700; background: #E6EBF5; color: #14213D; padding: 3px 8px; border-radius: 999px">Bajarildi</span></sc-if>
+<sc-if value="{{s.current}}"><span style="font-size: 11px; font-weight: 700; background: #FDEBD0; color: #7A4A00; padding: 3px 8px; border-radius: 999px">Hozir</span></sc-if>
+<sc-if value="{{s.todo}}"><span style="font-size: 11px; font-weight: 700; background: #EEF0F4; color: #5B6475; padding: 3px 8px; border-radius: 999px">Kutilmoqda</span></sc-if>
+</div>
+<span style="font-size: 16px; font-weight: 700">{{s.title}}</span>
+<span style="font-size: 13px; color: #5B6475">{{s.sub}}</span>
+<div style="display: flex; align-items: center; gap: 8px; margin-top: 4px">
+<div style="flex: 1 1 auto; height: 6px; background: #EEF0F4; border-radius: 999px; overflow: hidden"><div style="height: 6px; width: {{s.barPct}}%; background: {{s.barColor}}; border-radius: 999px"></div></div>
+<span style="font-size: 12px; font-weight: 600; color: #5B6475">{{s.count}}</span>
+</div>
+</button>
+</div>
+</sc-for>
+</section>
+</div>
+</sc-if>
+
+<!-- ============ BOSQICH (STAGE DETAIL) ============ -->
+<sc-if value="{{isStage}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 16px; padding: 16px 20px 28px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<button type="button" onClick="{{goHome}}" aria-label="Orqaga" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #E3E7EE; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #14213D">
+<svg class="ic" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg>
+</button>
+<span style="font-size: 13px; font-weight: 600; color: #5B6475">Bosqich {{cur.n}} / {{stageTotal}}</span>
+<div style="width: 44px; height: 44px"></div>
+</div>
+
+<sc-if value="{{cur.isForma}}" hint-placeholder-val="{{false}}">
+<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 24px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<h2 style="margin: 0; font-size: 17px; font-weight: 700">Korporativ forma</h2>
+<span style="font-size: 13px; color: #5B6475">Nuqtani bosing: har bir detal haqida</span>
+</div>
+<span style="font-size: 12px; font-weight: 700; background: #FDEBD0; color: #7A4A00; padding: 5px 10px; border-radius: 999px; white-space: nowrap">{{seenCount}}/{{spotTotal}} koʻrildi</span>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 18px; display: flex; justify-content: center; padding: 12px 0">
+<div style="position: relative; width: 210px; height: 467px">
+<img src="img/bdac99dac657118ae37f668fdb635fc7.jpg" alt="Safia korporativ formasidagi xodim, old tomondan" style="width: 210px; height: 467px; display: block; mix-blend-mode: multiply">
+<sc-for list="{{spots}}" as="p" hint-placeholder-count="9">
+<button type="button" onClick="{{p.open}}" aria-label="{{p.name}}" style="position: absolute; left: {{p.x}}%; top: {{p.y}}%; width: 44px; height: 44px; margin: -22px 0 0 -22px; padding: 0; border: none; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer">
+<span style="width: 26px; height: 26px; box-sizing: border-box; border-radius: 50%; background: {{p.bg}}; color: {{p.fg}}; border: 3px solid #FFFFFF; box-shadow: 0 2px 8px rgba(20,33,61,0.4); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800">{{p.n}}</span>
+</button>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; gap: 16px; justify-content: center; font-size: 12px; color: #5B6475">
+<div style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 50%; background: {{accent}}"></span><span>Koʻrilmagan</span></div>
+<div style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 50%; background: #14213D"></span><span>Koʻrildi</span></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{cur.isCar}}" hint-placeholder-val="{{false}}">
+<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 24px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<h2 style="margin: 0; font-size: 17px; font-weight: 700">Xizmat avtomobili</h2>
+<span style="font-size: 13px; color: #5B6475">Nuqtani bosing: nimani tekshirish kerak</span>
+</div>
+<span style="font-size: 12px; font-weight: 700; background: #FDEBD0; color: #7A4A00; padding: 5px 10px; border-radius: 999px; white-space: nowrap">{{carSeenCount}}/{{carTotal}} koʻrildi</span>
+</div>
+<div style="border: 1px solid #E3E7EE; border-radius: 18px; display: flex; justify-content: center; padding: 10px 0; background: #FFFFFF">
+<div style="position: relative; width: 300px; height: 183px">
+<img src="img/d40f6f4bba51664e7d8a7fac30616c8c.jpg" alt="Safia xizmat avtomobili Damas" style="width: 300px; height: 183px; display: block">
+<sc-for list="{{carSpots}}" as="p" hint-placeholder-count="5">
+<button type="button" onClick="{{p.open}}" aria-label="{{p.name}}" style="position: absolute; left: {{p.x}}%; top: {{p.y}}%; width: 44px; height: 44px; margin: -22px 0 0 -22px; padding: 0; border: none; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer">
+<span style="width: 26px; height: 26px; box-sizing: border-box; border-radius: 50%; background: {{p.bg}}; color: {{p.fg}}; border: 3px solid #FFFFFF; box-shadow: 0 2px 8px rgba(20,33,61,0.4); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800">{{p.n}}</span>
+</button>
+</sc-for>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{cur.isVerifix}}" hint-placeholder-val="{{false}}">
+<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 24px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<h2 style="margin: 0; font-size: 17px; font-weight: 700">{{vfxTitle}}</h2>
+<span style="font-size: 13px; color: #5B6475">Planshetda oʻzingiz mashq qiling</span>
+</div>
+<span style="font-size: 12px; font-weight: 700; background: {{vfxChipBg}}; color: {{vfxChipFg}}; padding: 5px 10px; border-radius: 999px; white-space: nowrap">{{vfxStep}}</span>
+</div>
+<div style="display: flex; gap: 10px; align-items: flex-start; background: {{vfxTipBg}}; border-radius: 14px; padding: 12px">
+<svg class="ic" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="flex: none; color: #14213D; margin-top: 1px"><circle cx="12" cy="12" r="9"></circle><path d="M12 8h.01M11 12h1v4h1"></path></svg>
+<span style="font-size: 14px; line-height: 1.45; color: #14213D; font-weight: 500">{{vfxTip}}</span>
+</div>
+<sc-if value="{{vfxWarn}}" hint-placeholder-val="{{false}}">
+<div role="alert" style="display: flex; gap: 10px; align-items: flex-start; background: #FDECE0; border: 1.5px solid #C2570C; border-radius: 14px; padding: 12px">
+<svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="flex: none; color: #9A3F06"><path d="M12 3 2 20h20z"></path><path d="M12 10v4M12 17h.01"></path></svg>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 15px; font-weight: 800; color: #9A3F06">{{vfxWarnTitle}}</span>
+<span style="font-size: 13px; line-height: 1.45; color: #14213D">{{vfxWarnText}}</span>
+</div>
+</div>
+</sc-if>
+<div style="display: flex; justify-content: center">
+<div style="position: relative; width: 300px; height: 500px; border-radius: 18px; overflow: hidden; background: #FFFFFF">
+
+<sc-if value="{{vfx0}}" hint-placeholder-val="{{true}}">
+<img src="img/d4dbee60e05f3e94cdac5a59b43eba60.jpg" alt="Verifix planshet, qulflangan ekran" style="width: 300px; height: 500px; display: block">
+<button type="button" class="vfx-swipe" aria-label="Ekranni tepaga suring" onPointerDown="{{vfxDown}}" onPointerUp="{{vfxUp}}" onClick="{{vfxKey}}" style="position: absolute; left: 8.33%; top: 8.4%; width: 83.33%; height: 80.1%; background: transparent; border: none; padding: 0; cursor: grab; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6px; padding-bottom: 22px">
+<span class="vfx-up" style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.92); color: #14213D; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0,0,0,0.3)">
+<svg class="ic" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width: 2.6"><path d="M12 19V5M6 11l6-6 6 6"></path></svg>
+</span>
+<span style="font-size: 12px; font-weight: 700; color: #FFFFFF; background: rgba(20,33,61,0.75); padding: 4px 10px; border-radius: 999px">Tepaga suring</span>
+</button>
+</sc-if>
+
+<sc-if value="{{vfx1}}" hint-placeholder-val="{{false}}">
+<img src="img/e05753aa0ea84d978972a219ae1e39cc.jpg" alt="Verifix planshet, yuzni aniqlash ekrani" style="width: 300px; height: 500px; display: block">
+<button type="button" onClick="{{vfxNext}}" aria-label="Yuzni aniqlash" style="position: absolute; left: 48.6%; top: 33%; width: 44px; height: 44px; margin: -22px 0 0 -22px; padding: 0; border: none; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer">
+<span class="vfx-pulse" style="width: 28px; height: 28px; box-sizing: border-box; border-radius: 50%; background: {{accent}}; color: #14213D; border: 3px solid #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800">2</span>
+</button>
+</sc-if>
+
+<sc-if value="{{vfx2}}" hint-placeholder-val="{{false}}">
+<img src="img/1e91397963e9541cb010aeae5d0484e7.jpg" alt="Verifix planshet, ПРИХОД va УХОД tugmalari" style="width: 300px; height: 500px; display: block">
+<button type="button" onClick="{{vfxPrihod}}" aria-label="ПРИХОД (kelish)" style="position: absolute; left: 38.35%; top: 46.8%; width: 62px; height: 44px; margin: -22px 0 0 -31px; padding: 0; border: none; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer">
+<sc-if value="{{vfxIn}}"><span class="vfx-pulse" style="width: 60px; height: 24px; border-radius: 5px; border: 2px solid {{accent}}"></span></sc-if>
+</button>
+<button type="button" onClick="{{vfxUhod}}" aria-label="УХОД (ketish)" style="position: absolute; left: 61.7%; top: 46.8%; width: 60px; height: 44px; margin: -22px 0 0 -30px; padding: 0; border: none; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer">
+<sc-if value="{{vfxOut}}"><span class="vfx-pulse" style="width: 60px; height: 24px; border-radius: 5px; border: 2px solid {{accent}}"></span></sc-if>
+</button>
+<div style="position: absolute; left: {{vfxLabelX}}%; top: 51.8%; transform: translateX(-50%); font-size: 11px; font-weight: 800; color: #14213D; background: {{accent}}; padding: 2px 8px; border-radius: 999px; white-space: nowrap">3 · bosing</div>
+</sc-if>
+
+<sc-if value="{{vfx3}}" hint-placeholder-val="{{false}}">
+<img src="img/1e91397963e9541cb010aeae5d0484e7.jpg" alt="Verifix planshet" style="width: 300px; height: 500px; display: block">
+<div style="position: absolute; left: 8.33%; top: 8.4%; width: 83.33%; height: 60.7%; background: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center; padding: 10px; box-sizing: border-box">
+<span style="width: 52px; height: 52px; border-radius: 50%; background: #2E7D5B; color: #FFFFFF; display: flex; align-items: center; justify-content: center">
+<svg class="ic" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width: 3"><path d="M5 12l4 4 10-10"></path></svg>
+</span>
+<span style="font-size: 15px; font-weight: 800; color: #14213D">{{vfxDoneTitle}}</span>
+<span style="font-size: 12px; color: #3D465A">{{vfxDoneSub}}</span>
+</div>
+</sc-if>
+
+</div>
+</div>
+<sc-if value="{{vfxNudge}}" hint-placeholder-val="{{false}}">
+<span style="font-size: 13px; color: #7A4A00; text-align: center">Bosish emas: barmoqni ekranda pastdan tepaga suring.</span>
+</sc-if>
+<sc-if value="{{vfx3}}" hint-placeholder-val="{{false}}">
+<button type="button" onClick="{{vfxReset}}" style="min-height: 46px; border-radius: 14px; border: 1.5px solid #14213D; background: #FFFFFF; color: #14213D; font-size: 15px; font-weight: 700; cursor: pointer">Qaytadan mashq qilish</button>
+</sc-if>
+</div>
+</sc-if>
+
+<div style="background: #14213D; color: #FFFFFF; border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; gap: 14px">
+<div style="width: 64px; height: 64px; border-radius: 20px; background: {{accent}}; color: #14213D; display: flex; align-items: center; justify-content: center; flex: none">
+<sc-if value="{{cur.icShirt}}"><svg class="ic" width="32" height="32" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3 4 6l2 4 2-1v12h8V9l2 1 2-4-5-3a3 3 0 0 1-6 0z"></path></svg></sc-if>
+<sc-if value="{{cur.icCar}}"><svg class="ic" width="32" height="32" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17v-4l2-5h14l2 5v4z"></path><path d="M6 17v2M18 17v2"></path><circle cx="7.5" cy="13.5" r="1"></circle><circle cx="16.5" cy="13.5" r="1"></circle></svg></sc-if>
+<sc-if value="{{cur.icClock}}"><svg class="ic" width="32" height="32" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></sc-if>
+<sc-if value="{{cur.icDesk}}"><svg class="ic" width="32" height="32" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="11" rx="1.5"></rect><path d="M2 19h20"></path></svg></sc-if>
+<sc-if value="{{cur.icChat}}"><svg class="ic" width="32" height="32" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"></path><path d="M8 10h8M8 13h5"></path></svg></sc-if>
+<sc-if value="{{cur.icPin}}"><svg class="ic" width="32" height="32" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></sc-if>
+<sc-if value="{{cur.icCup}}"><svg class="ic" width="32" height="32" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h12v4a6 6 0 0 1-12 0z"></path><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17"></path><path d="M8 3v3M12 3v3"></path></svg></sc-if>
+<sc-if value="{{cur.icShield}}"><svg class="ic" width="32" height="32" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg></sc-if>
+<sc-if value="{{cur.icAlert}}"><svg class="ic" width="32" height="32" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 20h20z"></path><path d="M12 10v4M12 17h.01"></path></svg></sc-if>
+<sc-if value="{{cur.icFire}}"><svg class="ic" width="32" height="32" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3-1-5 1-8.5z"></path></svg></sc-if>
+<sc-if value="{{cur.icRoad}}"><svg class="ic" width="32" height="32" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3 4 21M16 3l4 18"></path><path d="M12 4v2M12 10v3M12 17v3"></path></svg></sc-if>
+<sc-if value="{{cur.icFlag}}"><svg class="ic" width="32" height="32" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4h11l-2 4 2 4H5"></path></svg></sc-if>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+<div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"><span style="font-size: 13px; font-weight: 600; color: #C9D1E3">{{cur.time}}</span><sc-if value="{{cur.isSample}}"><span style="font-size: 11px; font-weight: 700; background: #FDEBD0; color: #7A4A00; padding: 2px 8px; border-radius: 999px">Namuna</span></sc-if></div>
+<h1 style="margin: 0; font-size: 22px; font-weight: 700; line-height: 1.2">{{cur.title}}</h1>
+</div>
+</div>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: #E4E8F1">{{cur.sub}}</p>
+</div>
+
+<div style="background: #FFFFFF; border-radius: 20px; padding: 16px; display: flex; gap: 12px; align-items: flex-start; border: 1px solid #E3E7EE">
+<div style="width: 36px; height: 36px; border-radius: 12px; background: #FDEBD0; color: #7A4A00; display: flex; align-items: center; justify-content: center; flex: none">
+<svg class="ic" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3z"></path></svg>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 14px; font-weight: 700">Nega muhim?</span>
+<span style="font-size: 14px; line-height: 1.5; color: #3D465A">{{cur.why}}</span>
+</div>
+</div>
+
+<div style="background: #FFFFFF; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 12px; border: 1px solid #E3E7EE">
+<div style="display: flex; justify-content: space-between; align-items: center">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">Tekshiruv roʻyxati</h2>
+<span style="font-size: 13px; font-weight: 700; color: #14213D">{{cur.count}}</span>
+</div>
+<div style="height: 8px; background: #EEF0F4; border-radius: 999px; overflow: hidden"><div style="height: 8px; width: {{cur.barPct}}%; background: {{accent}}; border-radius: 999px"></div></div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{cur.items}}" as="c" hint-placeholder-count="4">
+<button type="button" onClick="{{c.toggle}}" aria-pressed="{{c.on}}" style="display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 10px 12px; border-radius: 14px; border: 1px solid {{c.border}}; background: {{c.bg}}; text-align: left; cursor: pointer; color: #14213D">
+<div style="width: 26px; height: 26px; box-sizing: border-box; border-radius: 8px; flex: none; display: flex; align-items: center; justify-content: center; background: {{c.boxBg}}; border: 2px solid {{c.boxBorder}}; color: #FFFFFF">
+<sc-if value="{{c.on}}"><svg class="ic" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width: 3"><path d="M5 12l4 4 10-10"></path></svg></sc-if>
+</div>
+<span style="font-size: 14px; line-height: 1.4; font-weight: 500">{{c.text}}</span>
+</button>
+</sc-for>
+</div>
+</div>
+
+<sc-if value="{{cur.hasSteps}}" hint-placeholder-val="{{false}}">
+<div style="background: #FFFFFF; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 10px; border: 1px solid #E3E7EE">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">{{cur.stepsTitle}}</h2>
+<sc-for list="{{cur.steps}}" as="k" hint-placeholder-count="5">
+<div style="display: flex; gap: 12px; align-items: flex-start">
+<span style="width: 28px; height: 28px; border-radius: 50%; background: #14213D; color: #FFFFFF; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex: none">{{k.n}}</span>
+<span style="font-size: 14px; line-height: 1.45; padding-top: 4px">{{k.t}}</span>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div style="background: #E6EEFB; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; align-items: center; gap: 6px; color: #1D4AAE; font-weight: 700; font-size: 14px">
+<svg class="ic" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width: 2.5"><path d="M5 12l4 4 10-10"></path></svg>
+<span>Toʻgʻri</span>
+</div>
+<sc-for list="{{cur.dos}}" as="d" hint-placeholder-count="2">
+<span style="font-size: 13px; line-height: 1.45; color: #14213D">{{d}}</span>
+</sc-for>
+</div>
+<div style="background: #FDECE0; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; align-items: center; gap: 6px; color: #9A3F06; font-weight: 700; font-size: 14px">
+<svg class="ic" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width: 2.5"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+<span>Notoʻgʻri</span>
+</div>
+<sc-for list="{{cur.donts}}" as="d" hint-placeholder-count="2">
+<span style="font-size: 13px; line-height: 1.45; color: #14213D">{{d}}</span>
+</sc-for>
+</div>
+</div>
+
+<sc-if value="{{cur.canFinish}}" hint-placeholder-val="{{false}}">
+<button type="button" onClick="{{cur.finish}}" style="min-height: 54px; border-radius: 16px; border: none; background: {{accent}}; color: #14213D; font-size: 16px; font-weight: 700; cursor: pointer">Bosqichni yakunlash · +20 ball</button>
+</sc-if>
+<sc-if value="{{cur.notReady}}" hint-placeholder-val="{{true}}">
+<button type="button" disabled="{{true}}" style="min-height: 54px; border-radius: 16px; border: none; background: #E3E7EE; color: #5B6475; font-size: 15px; font-weight: 600">Avval barcha bandlarni belgilang</button>
+</sc-if>
+<sc-if value="{{cur.isDone}}" hint-placeholder-val="{{false}}">
+<div style="min-height: 54px; border-radius: 16px; background: #E6EBF5; color: #14213D; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px">
+<svg class="ic" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>
+<span>Bu bosqich bajarildi</span>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<!-- ============ QOIDALAR (LIBRARY) ============ -->
+<sc-if value="{{isRules}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px; padding: 22px 20px 28px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 style="margin: 0; font-size: 24px; font-weight: 800">Qoidalar</h1>
+<span style="font-size: 14px; color: #5B6475">Xodimning xizmat standarti: avariya taʼmirlash brigadasi</span>
+</div>
+<label style="display: flex; align-items: center; gap: 10px; background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 14px; padding: 0 14px; min-height: 48px; color: #5B6475">
+<svg class="ic" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
+<span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Qoidalarni qidirish</span>
+<input type="search" placeholder="Qoida yoki vaziyatni qidiring" style="flex: 1 1 auto; border: none; outline: none; font-size: 15px; background: transparent; color: #14213D; font-family: inherit; min-width: 0">
+</label>
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">Tezkor eslatmalar</h2>
+<div style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px">
+<div style="flex: none; width: 150px; background: #14213D; color: #FFFFFF; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 24px; font-weight: 800; color: {{accent}}">Verifix</span>
+<span style="font-size: 13px; line-height: 1.4; color: #E4E8F1">09:00 · 12:00 · 21:00 smena boshida qayd eting</span>
+</div>
+<div style="flex: none; width: 150px; background: #14213D; color: #FFFFFF; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 24px; font-weight: 800; color: {{accent}}">6 nazorat</span>
+<span style="font-size: 13px; line-height: 1.4; color: #E4E8F1">yoʻlga chiqishdan oldin transport va hujjatlar</span>
+</div>
+<div style="flex: none; width: 150px; background: #14213D; color: #FFFFFF; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 24px; font-weight: 800; color: {{accent}}">Video</span>
+<span style="font-size: 13px; line-height: 1.4; color: #E4E8F1">ish yakunini masʼul xodimdan tasdiqlating</span>
+</div>
+<div style="flex: none; width: 150px; background: #14213D; color: #FFFFFF; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 24px; font-weight: 800; color: {{accent}}">Dispetcher</span>
+<span style="font-size: 13px; line-height: 1.4; color: #E4E8F1">kamchilik va ish yakuni haqida xabar bering</span>
+</div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">Kun tartibi boʻyicha</h2>
+<sc-for list="{{stages}}" as="s" hint-placeholder-count="8">
+<button type="button" onClick="{{s.open}}" style="display: flex; align-items: center; gap: 12px; background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 12px 14px; min-height: 60px; text-align: left; cursor: pointer; color: #14213D">
+<div style="width: 36px; height: 36px; border-radius: 12px; background: #E6EBF5; color: #14213D; font-weight: 800; font-size: 15px; display: flex; align-items: center; justify-content: center; flex: none">{{s.n}}</div>
+<div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 15px; font-weight: 700">{{s.title}}</span>
+<span style="font-size: 12px; color: #5B6475">{{s.rulesLabel}}</span>
+</div>
+<svg class="ic" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="color: #8A93A6"><path d="M9 5l7 7-7 7"></path></svg>
+</button>
+</sc-for>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">Xodim majburiyati</h2>
+<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; overflow: hidden">
+<sc-for list="{{hrRules}}" as="h" hint-placeholder-count="5">
+<div style="display: flex; gap: 12px; padding: 12px 14px; border-top: 1px solid {{h.line}}">
+<span style="font-size: 14px; font-weight: 700; min-width: 92px">{{h.k}}</span>
+<span style="font-size: 13px; line-height: 1.45; color: #3D465A">{{h.v}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</sc-if>
+
+<!-- ============ TEST (QUIZ) ============ -->
+<sc-if value="{{isQuiz}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px; padding: 22px 20px 28px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 style="margin: 0; font-size: 24px; font-weight: 800">Bilimingizni sinang</h1>
+<span style="font-size: 14px; color: #5B6475">Har bir toʻgʻri javob uchun +10 ball</span>
+</div>
+
+<sc-if value="{{quizRunning}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; gap: 10px">
+<span style="font-size: 13px; font-weight: 700; color: #14213D">Savol {{qNum}} / {{qTotal}}</span>
+<div style="flex: 1 1 auto; height: 6px; background: #E3E7EE; border-radius: 999px; overflow: hidden"><div style="height: 6px; width: {{qPct}}%; background: #14213D; border-radius: 999px"></div></div>
+</div>
+<div style="background: #14213D; color: #FFFFFF; border-radius: 22px; padding: 20px; display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: {{accent}}">VAZIYAT</span>
+<p style="margin: 0; font-size: 17px; line-height: 1.45; font-weight: 600">{{qText}}</p>
+</div>
+<sc-for list="{{options}}" as="o" hint-placeholder-count="3">
+<button type="button" onClick="{{o.pick}}" style="display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 12px 14px; border-radius: 16px; border: 2px solid {{o.border}}; background: {{o.bg}}; text-align: left; cursor: pointer; color: #14213D">
+<span style="width: 30px; height: 30px; border-radius: 10px; background: #EEF0F4; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex: none">{{o.letter}}</span>
+<span style="flex: 1 1 auto; font-size: 14px; line-height: 1.4; font-weight: 500">{{o.text}}</span>
+<sc-if value="{{o.showOk}}"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="color: #1D4AAE; stroke-width: 2.5"><path d="M5 12l4 4 10-10"></path></svg></sc-if>
+<sc-if value="{{o.showBad}}"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="color: #9A3F06; stroke-width: 2.5"><path d="M6 6l12 12M18 6 6 18"></path></svg></sc-if>
+</button>
+</sc-for>
+<sc-if value="{{answered}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="border-radius: 16px; padding: 14px; background: {{fbBg}}; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 15px; font-weight: 700; color: {{fbColor}}">{{fbTitle}}</span>
+<span style="font-size: 14px; line-height: 1.45; color: #14213D">{{qWhy}}</span>
+</div>
+<button type="button" onClick="{{nextQ}}" style="min-height: 52px; border-radius: 16px; border: none; background: {{accent}}; color: #14213D; font-size: 16px; font-weight: 700; cursor: pointer">{{nextLabel}}</button>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{quizEnd}}" hint-placeholder-val="{{false}}">
+<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 24px; padding: 28px 20px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center">
+<div style="width: 84px; height: 84px; border-radius: 50%; background: {{accent}}; color: #14213D; display: flex; align-items: center; justify-content: center">
+<svg class="ic" width="40" height="40" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0z"></path><path d="M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M9 21h6M10 17h4"></path></svg>
+</div>
+<span style="font-size: 30px; font-weight: 800">{{score}} / {{qTotal}}</span>
+<span style="font-size: 15px; color: #3D465A">{{scoreText}}</span>
+<button type="button" onClick="{{restartQuiz}}" style="min-height: 48px; padding: 0 22px; border-radius: 14px; border: 1.5px solid #14213D; background: #FFFFFF; color: #14213D; font-size: 15px; font-weight: 700; cursor: pointer">Qaytadan boshlash</button>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<!-- ============ PROFIL ============ -->
+<sc-if value="{{isProfile}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 16px; padding: 22px 20px 28px">
+<div style="display: flex; align-items: center; gap: 14px">
+<div style="width: 64px; height: 64px; border-radius: 50%; background: #14213D; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; flex: none">{{initials}}</div>
+<div style="display: flex; flex-direction: column; gap: 3px">
+<h1 style="margin: 0; font-size: 20px; font-weight: 800">{{userName}}</h1>
+<span style="font-size: 13px; color: #5B6475">{{userRole}}</span>
+<button type="button" onClick="{{editProfile}}" style="align-self: flex-start; margin-top: 4px; min-height: 32px; padding: 0 12px; border-radius: 10px; border: 1px solid #C9D3EA; background: #FFFFFF; color: #2457C5; font-size: 13px; font-weight: 600; cursor: pointer">Ismni oʻzgartirish</button>
+</div>
+</div>
+
+<div style="background: #14213D; color: #FFFFFF; border-radius: 22px; padding: 18px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; justify-content: space-between; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 12px; color: #C9D1E3">Daraja {{levelNum}}</span>
+<span style="font-size: 18px; font-weight: 800">{{levelName}}</span>
+</div>
+<span style="font-size: 14px; font-weight: 700; color: {{accent}}">{{points}} / 300 ball</span>
+</div>
+<div style="height: 10px; background: rgba(255,255,255,0.15); border-radius: 999px; overflow: hidden"><div style="height: 10px; width: {{levelPct}}%; background: {{accent}}; border-radius: 999px"></div></div>
+<span style="font-size: 12px; color: #C9D1E3">{{levelNext}}</span>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 20px; font-weight: 800">{{percent}}%</span>
+<span style="font-size: 12px; color: #5B6475">Bugun</span>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 20px; font-weight: 800">{{streak}}</span>
+<span style="font-size: 12px; color: #5B6475">Kun ketma-ket</span>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 20px; font-weight: 800">{{bestQuiz}}</span>
+<span style="font-size: 12px; color: #5B6475">Eng yaxshi test</span>
+</div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">Shu hafta</h2>
+<div style="display: flex; align-items: flex-end; justify-content: space-between; height: 110px; gap: 8px">
+<sc-for list="{{week}}" as="w" hint-placeholder-count="6">
+<div style="flex: 1 1 0; display: flex; flex-direction: column; align-items: center; gap: 6px">
+<div style="width: 100%; max-width: 28px; height: {{w.h}}px; background: {{w.color}}; border-radius: 8px"></div>
+<span style="font-size: 12px; font-weight: 600; color: #5B6475">{{w.d}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">Nishonlar</h2>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+<sc-for list="{{badges}}" as="b" hint-placeholder-count="6">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center">
+<div style="width: 56px; height: 56px; border-radius: 50%; background: {{b.bg}}; color: {{b.fg}}; display: flex; align-items: center; justify-content: center">
+<svg class="ic" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"></circle><path d="M9 14.5 8 22l4-2 4 2-1-7.5"></path></svg>
+</div>
+<span style="font-size: 12px; line-height: 1.3; font-weight: 600; color: {{b.text}}">{{b.name}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+<button type="button" onClick="{{resetAll}}" style="min-height: 48px; border-radius: 14px; border: 1px solid #E3E7EE; background: #FFFFFF; color: #9A3F06; font-size: 14px; font-weight: 600; cursor: pointer">Natijalarni nolga tushirish</button>
+<span style="font-size: 12px; color: #8A93A6; text-align: center">АРС Стандарты · versiya 1.0 · internetsiz ishlaydi</span>
+</div>
+</sc-if>
+
+</div>
+
+<!-- ============ PASTKI MENYU ============ -->
+<nav aria-label="Asosiy menyu" style="flex: none; background: #FFFFFF; border-top: 1px solid #E3E7EE; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 8px 8px 14px">
+<button type="button" onClick="{{goHome}}" style="display: flex; flex-direction: column; align-items: center; gap: 4px; background: transparent; border: none; min-height: 52px; cursor: pointer; color: {{navHome.c}}">
+<div style="width: 56px; height: 30px; border-radius: 999px; background: {{navHome.bg}}; display: flex; align-items: center; justify-content: center">
+<svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+</div>
+<span style="font-size: 12px; font-weight: 600">Bugun</span>
+</button>
+<button type="button" onClick="{{goRules}}" style="display: flex; flex-direction: column; align-items: center; gap: 4px; background: transparent; border: none; min-height: 52px; cursor: pointer; color: {{navRules.c}}">
+<div style="width: 56px; height: 30px; border-radius: 999px; background: {{navRules.bg}}; display: flex; align-items: center; justify-content: center">
+<svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"></path><path d="M4 19V5M9 8h6"></path></svg>
+</div>
+<span style="font-size: 12px; font-weight: 600">Qoidalar</span>
+</button>
+<button type="button" onClick="{{goQuiz}}" style="display: flex; flex-direction: column; align-items: center; gap: 4px; background: transparent; border: none; min-height: 52px; cursor: pointer; color: {{navQuiz.c}}">
+<div style="width: 56px; height: 30px; border-radius: 999px; background: {{navQuiz.bg}}; display: flex; align-items: center; justify-content: center">
+<svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17h.01"></path></svg>
+</div>
+<span style="font-size: 12px; font-weight: 600">Test</span>
+</button>
+<button type="button" onClick="{{goProfile}}" style="display: flex; flex-direction: column; align-items: center; gap: 4px; background: transparent; border: none; min-height: 52px; cursor: pointer; color: {{navProfile.c}}">
+<div style="width: 56px; height: 30px; border-radius: 999px; background: {{navProfile.bg}}; display: flex; align-items: center; justify-content: center">
+<svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>
+</div>
+<span style="font-size: 12px; font-weight: 600">Profil</span>
+</button>
+</nav>
+
+<!-- ============ FORMA DETALI (PASTKI OYNA) ============ -->
+<sc-if value="{{sheetOpen}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; inset: 0; background: rgba(20,33,61,0.55); display: flex; flex-direction: column; justify-content: flex-end; z-index: 10">
+<div role="dialog" aria-label="{{sp.name}}" style="background: #FFFFFF; border-radius: 28px 28px 0 0; max-height: 92%; overflow-y: auto; padding: 10px 20px 22px; display: flex; flex-direction: column; gap: 14px">
+<div style="align-self: center; width: 40px; height: 5px; border-radius: 999px; background: #D5DAE3"></div>
+<div style="display: flex; justify-content: space-between; align-items: center">
+<span style="font-size: 13px; font-weight: 600; color: #5B6475">Detal {{sp.n}} / {{sheetTotal}}</span>
+<button type="button" onClick="{{closeSpot}}" aria-label="Yopish" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #E3E7EE; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #14213D">
+<svg class="ic" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+</button>
+</div>
+<sc-if value="{{sp.imCap}}"><img src="img/d7df8835c9e8fe0c7c1a944a79eb76f9.jpg" alt="Kepka yaqindan" style="width: 100%; height: 190px; object-fit: cover; border-radius: 18px; display: block"></sc-if>
+<sc-if value="{{sp.imCollar}}"><img src="img/769e36fe6e56fd9cabaf1c0ae79f481a.jpg" alt="Yoqa, futbolka va zamok yaqindan" style="width: 100%; height: 190px; object-fit: cover; border-radius: 18px; display: block"></sc-if>
+<sc-if value="{{sp.imPocket}}"><img src="img/164dca05a7cbdf60e2d87742a86c3820.jpg" alt="Logotipli choʻntak yaqindan" style="width: 100%; height: 190px; object-fit: cover; border-radius: 18px; display: block"></sc-if>
+<sc-if value="{{sp.imTshirt}}"><img src="img/472a1cffb88850668e17311783a7bf42.jpg" alt="Yoqa va kulrang futbolka yaqindan" style="width: 100%; height: 190px; object-fit: cover; border-radius: 18px; display: block"></sc-if>
+<sc-if value="{{sp.imStripe}}"><img src="img/ea01b54c55acef02ee3ce380de222df2.jpg" alt="Nur qaytaruvchi kulrang chiziq yaqindan" style="width: 100%; height: 190px; object-fit: cover; border-radius: 18px; display: block"></sc-if>
+<sc-if value="{{sp.imCuff}}"><img src="img/58560d0400749043a8c4665be00603ce.jpg" alt="Rezinkali manjet yaqindan" style="width: 100%; height: 190px; object-fit: cover; border-radius: 18px; display: block"></sc-if>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap">
+<h2 style="margin: 0; font-size: 22px; font-weight: 800">{{sp.name}}</h2>
+<span style="font-size: 12px; font-weight: 700; background: {{sp.chipBg}}; color: {{sp.chipFg}}; padding: 4px 10px; border-radius: 999px">{{sp.chip}}</span>
+</div>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: #3D465A">{{sp.desc}}</p>
+</div>
+<div style="background: #E6EEFB; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 14px; font-weight: 700; color: #1D4AAE">{{sp.okLabel}}</span>
+<sc-for list="{{sp.ok}}" as="t" hint-placeholder-count="2">
+<div style="display: flex; gap: 8px; align-items: flex-start">
+<svg class="ic" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="color: #1D4AAE; stroke-width: 2.5; flex: none; margin-top: 1px"><path d="M5 12l4 4 10-10"></path></svg>
+<span style="font-size: 14px; line-height: 1.4; color: #14213D">{{t}}</span>
+</div>
+</sc-for>
+</div>
+<div style="background: #FDECE0; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 14px; font-weight: 700; color: #9A3F06">{{sp.badLabel}}</span>
+<sc-for list="{{sp.bad}}" as="t" hint-placeholder-count="2">
+<div style="display: flex; gap: 8px; align-items: flex-start">
+<svg class="ic" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="color: #9A3F06; stroke-width: 2.5; flex: none; margin-top: 1px"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+<span style="font-size: 14px; line-height: 1.4; color: #14213D">{{t}}</span>
+</div>
+</sc-for>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<button type="button" onClick="{{prevSpot}}" style="min-height: 50px; border-radius: 14px; border: 1.5px solid #14213D; background: #FFFFFF; color: #14213D; font-size: 15px; font-weight: 700; cursor: pointer">Oldingi</button>
+<button type="button" onClick="{{nextSpot}}" style="min-height: 50px; border-radius: 14px; border: none; background: {{accent}}; color: #14213D; font-size: 15px; font-weight: 700; cursor: pointer">Keyingi detal</button>
+</div>
+</div>
+</div>
+</sc-if>
+
+</div>
+</template>
+<script>
+/* Minimal offline runtime for the АРС Стандарты screen template.
+   Supports: {{dotted.path}} holes in text and attributes, <sc-if value>,
+   <sc-for list as>, on<Event>="{{fn}}" handlers, DCLogic with state/setState.
+   State is saved in localStorage so progress survives app restarts. */
+(function () {
+  var STORE_KEY = 'ars-standart-state-v1';
+  var HOLE = /\{\{\s*([^}]+?)\s*\}\}/g;
+
+  function lookup(scope, path) {
+    if (path === 'true') return true;
+    if (path === 'false') return false;
+    var parts = path.split('.');
+    var v = scope;
+    for (var i = 0; i < parts.length; i++) {
+      if (v == null) return undefined;
+      v = v[parts[i]];
+    }
+    return v;
+  }
+  function single(str) {
+    var m = /^\s*\{\{\s*([^}]+?)\s*\}\}\s*$/.exec(str);
+    return m ? m[1] : null;
+  }
+  function interp(str, scope) {
+    return str.replace(HOLE, function (_, p) {
+      var v = lookup(scope, p);
+      return v == null ? '' : String(v);
+    });
+  }
+
+  function loadState() {
+    try { var s = localStorage.getItem(STORE_KEY); return s ? JSON.parse(s) : {}; } catch (e) { return {}; }
+  }
+  function saveState(st) {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(st)); } catch (e) {}
+  }
+
+  window.DCLogic = function DCLogic(props) {
+    this.props = props || {};
+    this.state = loadState();
+  };
+  window.DCLogic.prototype.setState = function (upd) {
+    var patch = typeof upd === 'function' ? upd(this.state) : upd;
+    this.state = Object.assign({}, this.state, patch || {});
+    saveState(this.state);
+    scheduleRender();
+  };
+
+  // Build a virtual list of real DOM nodes from template nodes + scope.
+  function build(tnode, scope, out) {
+    if (tnode.nodeType === 3) {
+      out.push(document.createTextNode(interp(tnode.nodeValue, scope)));
+      return;
+    }
+    if (tnode.nodeType !== 1) return;
+    var tag = tnode.localName;
+    if (tag === 'sc-if') {
+      var p = single(tnode.getAttribute('value') || '');
+      if (p && lookup(scope, p)) buildChildren(tnode, scope, out);
+      return;
+    }
+    if (tag === 'sc-for') {
+      var lp = single(tnode.getAttribute('list') || '');
+      var as = tnode.getAttribute('as') || 'item';
+      var list = lp ? lookup(scope, lp) : null;
+      if (list && list.length) {
+        for (var i = 0; i < list.length; i++) {
+          var s = Object.create(scope);
+          s[as] = list[i];
+          buildChildren(tnode, s, out);
+        }
+      }
+      return;
+    }
+    var el = tnode.namespaceURI && tnode.namespaceURI !== 'http://www.w3.org/1999/xhtml'
+      ? document.createElementNS(tnode.namespaceURI, tag)
+      : document.createElement(tag);
+    var handlers = {};
+    for (var a = 0; a < tnode.attributes.length; a++) {
+      var at = tnode.attributes[a];
+      if (/^on[A-Z]/.test(at.name) || /^on[a-z]+$/.test(at.name) && single(at.value)) {
+        var fp = single(at.value);
+        var fn = fp ? lookup(scope, fp) : null;
+        if (typeof fn === 'function') handlers[at.name.slice(2).toLowerCase()] = fn;
+        continue;
+      }
+      if (at.name.indexOf('hint-') === 0) continue;
+      el.setAttribute(at.name, interp(at.value, scope));
+    }
+    el.__h = handlers;
+    var kids = [];
+    buildChildren(tnode, scope, kids);
+    for (var k = 0; k < kids.length; k++) el.appendChild(kids[k]);
+    out.push(el);
+  }
+  function buildChildren(tnode, scope, out) {
+    var c = tnode.childNodes;
+    for (var i = 0; i < c.length; i++) build(c[i], scope, out);
+  }
+
+  function dispatch(e) {
+    var h = e.currentTarget.__h;
+    var fn = h && h[e.type];
+    if (fn) fn(e);
+  }
+  var EVENTS = ['click', 'pointerdown', 'pointerup', 'pointermove', 'pointercancel', 'input', 'change', 'touchstart', 'touchend'];
+  function bindEvents(el) {
+    if (el.__bound) return;
+    el.__bound = true;
+    for (var i = 0; i < EVENTS.length; i++) el.addEventListener(EVENTS[i], dispatch);
+  }
+
+  // Patch live DOM `cur` to match freshly built `nxt` (same position).
+  function patch(parent, curList, nxtList) {
+    var i;
+    for (i = 0; i < nxtList.length; i++) {
+      var cur = curList[i], nxt = nxtList[i];
+      if (!cur) { parent.appendChild(prepare(nxt)); continue; }
+      if (cur.nodeType !== nxt.nodeType || cur.nodeName !== nxt.nodeName) {
+        parent.replaceChild(prepare(nxt), cur);
+        continue;
+      }
+      if (cur.nodeType === 3) {
+        if (cur.nodeValue !== nxt.nodeValue) cur.nodeValue = nxt.nodeValue;
+        continue;
+      }
+      // attributes
+      var na = nxt.attributes, ca = cur.attributes, j;
+      for (j = ca.length - 1; j >= 0; j--) if (!nxt.hasAttribute(ca[j].name)) cur.removeAttribute(ca[j].name);
+      for (j = 0; j < na.length; j++) if (cur.getAttribute(na[j].name) !== na[j].value) cur.setAttribute(na[j].name, na[j].value);
+      cur.__h = nxt.__h;
+      bindEvents(cur);
+      patch(cur, Array.prototype.slice.call(cur.childNodes), Array.prototype.slice.call(nxt.childNodes));
+    }
+    for (var r = curList.length - 1; r >= nxtList.length; r--) parent.removeChild(curList[r]);
+  }
+  function prepare(node) {
+    if (node.nodeType === 1) {
+      bindEvents(node);
+      var all = node.querySelectorAll('*');
+      for (var i = 0; i < all.length; i++) if (all[i].__h) bindEvents(all[i]);
+    }
+    return node;
+  }
+
+  var root, tpl, comp, pending = false;
+  function render() {
+    pending = false;
+    var vals = comp.renderVals();
+    var out = [];
+    buildChildren(tpl, vals, out);
+    patch(root, Array.prototype.slice.call(root.childNodes), out);
+  }
+  function scheduleRender() {
+    if (pending) return;
+    pending = true;
+    (window.requestAnimationFrame || setTimeout)(render);
+  }
+
+  window.startApp = function (Component, props) {
+    root = document.getElementById('app');
+    tpl = document.getElementById('tpl').content;
+    comp = new Component(props);
+    render();
+  };
+})();
+
+</script>
+<script>
+
+var STAGES = [
+  { id: 'kelish', time: 'Smena boshida', icon: 'clock', title: 'Ishni boshlash', sub: 'Vaqtida kelish va Verifix',
+    why: 'Ishni tartibli boshlash kun davomida vaqtni tejaydi. Harakatlar ketma-ket bajariladi, vaqt behuda sarflanmaydi.',
+    checks: ['Belgilangan vaqtda ish joyiga kelish', 'Kelganini Verifix’da qayd etish', 'Ishni tartibli boshlash', 'Harakatlarni ketma-ket bajarish'],
+    stepsTitle: 'Verifix: ishga kelish vaqti',
+    steps: ['1-smena: 09:00', '2-smena: 12:00', '3-smena: 21:00'],
+    dos: ['Kunni rejaga qarab boshlang'], donts: ['Vaqtni behuda sarflash', 'Verifix’da qayd etmaslik'] },
+  { id: 'kiyim', time: 'Ishdan oldin', icon: 'shirt', title: 'Xizmat formasi', sub: 'Belgilangan forma va tartibli koʻrinish',
+    why: 'Xodim filialda kompaniyaning yuzi. Belgilangan forma va tartibli koʻrinish majburiy.',
+    checks: ['Belgilangan xizmat formasini kiyish', 'Tashqi koʻrinishni tartibga keltirish', 'Forma toza va butun'],
+    dos: ['Rasmdagi nuqtalarni bosib, har bir detalni oʻrganing'], donts: ['Formasiz yoki tartibsiz koʻrinishda ishlash'] },
+  { id: 'transport', time: 'Yoʻlga chiqishdan oldin', icon: 'car', title: 'Transportni tekshirish', sub: 'Texnik holat, tozalik, hujjatlar',
+    why: 'Yoʻlga chiqishdan oldin barcha kamchiliklar bartaraf etiladi. Hujjatlar toʻgʻri va amal qilish muddati oʻtmagan boʻlishi shart.',
+    checks: ['Xizmat transportining texnik holatini tekshirish', 'Transport tozaligini nazorat qilish', 'Kamchiliklarni yoʻlga chiqishdan oldin bartaraf etish', 'Transport hujjatlari borligini tekshirish', 'Shaxsiy va xizmat hujjatlarini tekshirish', 'Hujjatlarning amal qilish muddatini nazorat qilish'],
+    dos: ['Kamchilikni darhol tuzating yoki xabar bering'], donts: ['Nosoz transportda yoʻlga chiqish', 'Muddati oʻtgan hujjat bilan yurish'] },
+  { id: 'kamchilik', time: 'Kamchilik topilsa', icon: 'alert', title: 'Kamchilik holatida', sub: 'Dispetcherga xabar, koʻrsatmasiz boshlamaslik',
+    why: 'Hujjatlardagi kamchilik bilan ishlash xodimni ham, kompaniyani ham xavf ostiga qoʻyadi.',
+    checks: ['Hujjatda kamchilik boʻlsa, darhol dispetcherga xabar berish', 'Rahbar koʻrsatmasisiz xizmatni boshlamaslik'],
+    dos: ['Rahbar koʻrsatmasini kuting'], donts: ['Kamchilikni yashirish', 'Oʻzboshimchalik bilan ishni boshlash'] },
+  { id: 'tayyor', time: 'Ariza kelganda', icon: 'desk', title: 'Tayyorgarlik', sub: 'Arizadan yoʻlga chiqishgacha',
+    why: 'Toʻgʻri tayyorgarlik filialga bir marta borib, muammoni bir martada hal qilish imkonini beradi.',
+    checks: ['Telefon orqali tushgan arizalarni tekshirish', 'Har bir ariza bilan tanishish', 'Muammo turini aniqlash', 'Arizaga mos asbob-uskunani tanlash', 'Uskunalar toʻliq va sozligini tekshirish', 'Yetishmayotgan materiallarni yuk-xati (nakladnoy) asosida toʻldirish', 'Arizaga asosan filialga yoʻlga chiqish'],
+    dos: ['Har bir arizani oxirigacha oʻqing'], donts: ['Arizani oʻqimay yoʻlga chiqish', 'Nakladnoysiz material olish'] },
+  { id: 'yol', time: 'Yoʻlda', icon: 'road', sample: true, title: 'Haydovchilik madaniyati', sub: 'Xavfsiz va namunali haydash',
+    why: 'Safia logotipli avtomobil — kompaniya reklamasi. Yoʻldagi har bir harakatingizni mijozlar koʻradi.',
+    checks: ['Haydovchi va yoʻlovchilar xavfsizlik kamarini taqqan', 'Yoʻl harakati qoidalari va tezlik chegarasiga rioya qilish', 'Haydash paytida telefondan foydalanmaslik', 'Yoʻlda boshqa haydovchilarga hurmat bilan munosabat', 'Filial oldida toʻgʻri va xavfsiz joyga toʻxtash'],
+    dos: ['Marshrutni oldindan rejalashtiring', 'Shoshilmang: xavfsizlik birinchi'],
+    donts: ['Keskin manevr va tezlikni oshirish', 'Signal chalish, janjallashish', 'Avtomobilni shaxsiy ishlarda ishlatish'] },
+  { id: 'filial', time: 'Filialda', icon: 'pin', title: 'Filialda ishlash tartibi', sub: 'Salomlashuvdan video tasdiqgacha',
+    why: 'Filialda xodim faqat xizmat vazifasi doirasida ishlaydi va natijani masʼul shaxsga tasdiqlatadi.',
+    checks: ['Salomlashib, masʼul shaxsga oʻzini tanishtirish', 'Tashrif maqsadini aniq va qisqa aytish', 'Ichki tartib-qoidalarga rioya qilish', 'Ish jarayonida tartib va tozalikni saqlash', 'Filial mulkiga ehtiyotkor boʻlish', 'Natija haqida masʼul shaxsga maʼlumot berish', 'Ish joyini tartibga keltirish', 'Masʼul xodimdan ish yakunini tasdiqlovchi video olish'],
+    dos: ['Filial xodimlariga xushmuomala boʻling', 'Faqat xizmat vazifasi doirasida harakat qiling'],
+    donts: ['Video tasdiqsiz ishni yopish'] },
+  { id: 'muomala', time: 'Filialda', icon: 'chat', title: 'Fors-major: taqiqlar', sub: 'Filialda nima qilish mumkin emas',
+    why: 'Har bir soʻz va harakat kompaniya obroʻsiga taʼsir qiladi. Quyidagilar qatʼiyan taqiqlanadi.',
+    checks: ['Hurmat bilan, sokin ovozda gapirish', 'Suhbatdoshni oxirigacha tinglash, bahslashmaslik', 'Telefonni faqat ish uchun ishlatish', 'Filial jihozlarida oʻtirmaslik, suyanmaslik', 'Asbob-uskunani nazoratda saqlash'],
+    dos: ['Odobli soʻzlardan foydalaning'],
+    donts: ['Qoʻpol, asabiy yoki baland ovozda gapirish', 'Soʻzni boʻlish, bahslashish, nomaqbul soʻzlar', 'Jihozlarni qoʻpol surish yoki shikastlash', 'Telefonda shaxsiy yumushlar', 'Ish yakunini aytmasdan ketish'] },
+  { id: 'yakun', time: 'Smena oxirida', icon: 'flag', title: 'Ish kunini yakunlash', sub: 'Mashina, hisobot, ruxsat, Verifix',
+    why: 'Keyingi smena mashina va asboblarni tayyor holda qabul qilishi kerak. Ish joyi faqat ruxsat bilan tark etiladi.',
+    checks: ['Mashinani tartibga keltirish va tozalash', 'Asbob-uskunalar holatini tekshirish', 'Bajarilgan ishlar boʻyicha hisobot berish', 'Dispetcherni ish yakuni haqida xabardor qilish', 'Ish joyini ruxsat bilan tark etish', 'Ish tugaganini Verifix’da qayd etish'],
+    stepsTitle: 'Verifix: ishdan ketish vaqti',
+    steps: ['1-smena: 18:00', '2-smena: 21:00', '3-smena: 06:00'],
+    dos: ['Hisobotni aniq va qisqa bering'], donts: ['Ruxsatsiz ketish', 'Mashinani iflos qoldirish'] }
+];
+var QUIZ = [
+  { q: '2-smenada ishlaysiz. Verifix’da kelishni qachon qayd etasiz?', a: ['09:00', '12:00', '21:00'], c: 1,
+    why: '1-smena 09:00, 2-smena 12:00, 3-smena 21:00.' },
+  { q: 'Hujjatlarda kamchilik aniqlandi. Nima qilasiz?', a: ['Ishni boshlab, keyin aytaman', 'Darhol dispetcherga xabar beraman, koʻrsatmasiz boshlamayman', 'Eʼtibor bermayman'], c: 1,
+    why: 'Darhol dispetcherga xabar beriladi va rahbar koʻrsatmasisiz xizmat boshlanmaydi.' },
+  { q: 'Yetishmayotgan materiallar qanday toʻldiriladi?', a: ['Ogʻzaki soʻrab olinadi', 'Yuk-xati (nakladnoy) asosida', 'Filialdan olinadi'], c: 1,
+    why: 'Yetishmayotgan jihoz va materiallar faqat yuk-xati (nakladnoy) asosida toʻldiriladi.' },
+  { q: 'Filialda ish tugadi. Ishni qanday tasdiqlaysiz?', a: ['Indamay ketaman', 'Masʼul xodimdan ish yakunini tasdiqlovchi video olaman', 'Ertaga qoʻngʻiroq qilaman'], c: 1,
+    why: 'Natija masʼul shaxsga aytiladi va undan tasdiqlovchi video rolik olinadi.' },
+  { q: 'Filial xodimi norozi boʻlib gapiryapti. Qanday harakat qilasiz?', a: ['Bahslashib, haqligimni isbotlayman', 'Sokin tinglayman, soʻzini boʻlmayman', 'Baland ovozda tushuntiraman'], c: 1,
+    why: 'Soʻzni boʻlish, bahslashish va baland ovozda gapirish taqiqlanadi.' },
+  { q: '3-smena ishini qachon Verifix’da yakunlaysiz?', a: ['18:00', '21:00', '06:00'], c: 2,
+    why: 'Ketish: 1-smena 18:00, 2-smena 21:00, 3-smena 06:00.' }
+];
+var BADGES = [
+  { name: 'Vaqtli keluvchi', on: true }, { name: 'Namunali forma', on: true }, { name: 'Transport nazoratchisi', on: true },
+  { name: 'Tayyor brigada', on: false }, { name: 'Test ustasi', on: false }, { name: 'Oy xodimi', on: false }
+];
+var HR = [
+  ['Vazifa', 'Yuklatilgan vazifalarni aniq va oʻz vaqtida bajarish.'],
+  ['Xavfsizlik', 'Xavfsizlik talablariga rioya qilish.'],
+  ['Mulk', 'Biriktirilgan asbob-uskuna, texnika va mulkning sozligi va saqlanishi.'],
+  ['Holat', 'Tinchlik va favqulodda holatlarda birdek javobgar.'],
+  ['Boʻysunish', 'Bevosita boʻlim boshligʻi va dispetcherga.'],
+  ['Smenalar', '1-smena 09:00–18:00, 2-smena 12:00–21:00, 3-smena 21:00–06:00 (Verifix).']
+];
+var SPOTS = [
+  { name: 'Kepka', x: 48.3, y: 3, req: true, im: 'cap',
+    desc: 'Safia logotipli korporativ kepka. Bino tashqarisida va ishlab chiqarish hududida doim kiyiladi.',
+    ok: ['Kozirek oldinga qaragan', 'Logotip peshona markazida', 'Toza, dogʻsiz, shakli buzilmagan'],
+    bad: ['Kozirekni orqaga yoki yonga burish', 'Boshqa kepka yoki bosh kiyim', 'Kepkani choʻntakda olib yurish'] },
+  { name: 'Yoqa va futbolka', x: 49, y: 18.4, req: true, im: 'tshirt',
+    desc: 'Kurtka ostidan faqat kulrang, yozuvsiz futbolka kiyiladi. Yoqa ikki tomonda tekis yotadi.',
+    ok: ['Kulrang, bir rangli futbolka', 'Yoqa tekis, qayrilmagan'],
+    bad: ['Rangli yoki yozuvli futbolka', 'Yoqa ichkariga qayrilgan', 'Sharf yoki taqinchoq osilib turishi'] },
+  { name: 'Nur qaytaruvchi chiziq', x: 36, y: 24.1, req: true, im: 'stripe',
+    desc: 'Koʻkrak va orqadagi kulrang nur qaytaruvchi tasma qorongʻida va transport yonida xodimni uzoqdan koʻrinadigan qiladi.',
+    ok: ['Toza, kulrang rangi aniq koʻrinadi', 'Ustidan hech narsa yopilmagan'],
+    bad: ['Ustidan sumka tasmasi yoki boshqa kiyim yopish', 'Yirtilgan yoki koʻchgan chiziq'] },
+  { name: 'Logotipli choʻntak', x: 63.3, y: 27.6, req: true, im: 'pocket',
+    desc: 'Chap koʻkrak choʻntagida Safia logotipi tikilgan. Logotip doim toza va ochiq koʻrinib turishi kerak.',
+    ok: ['Qopqogʻi yopiq, logotip koʻrinadi', 'Choʻntak tekis, boʻrtmagan'],
+    bad: ['Choʻntakni telefon, ruchka bilan boʻrttirish', 'Logotip ustiga boshqa nishon taqish'] },
+  { name: 'Zamok', x: 49.5, y: 37.5, req: true, im: 'collar',
+    desc: 'Ish vaqtida kurtka zamogi yopiq boʻladi: ozoda koʻrinish va uskunaga ilinib qolmaslik uchun.',
+    ok: ['Zamok koʻkrakkacha yoki yuqorigacha yopiq', 'Zamok soz, tishlari butun'],
+    bad: ['Kurtkani ochiq, hilpiratib yurish', 'Buzilgan zamok bilan kiyish'] },
+  { name: 'Yon choʻntaklar', x: 27.5, y: 61.4, req: false, im: '',
+    desc: 'Shimning yon choʻntaklari kichik ish buyumlari uchun. Ortiqcha yuk bilan toʻldirilmaydi.',
+    ok: ['Qopqogʻi yopiq', 'Faqat yengil, kerakli buyumlar'],
+    bad: ['Boʻrtib turgan, toʻldirilgan choʻntak', 'Choʻntakdan narsalar chiqib turishi'] }
+];
+var CAR_SPOTS = [
+  { name: 'Tashqi koʻrinish', x: 71.7, y: 15.1, req: true,
+    desc: 'Yoʻlga chiqishdan oldin avtomobilni aylanib chiqib, kuzov, oynalar, chiroqlar va koʻzgularni koʻzdan kechiring.',
+    ok: ['Kuzov va oynalar toza', 'Chiroqlar va koʻzgular butun, ishlaydi', 'Yangi shikast yoʻq'],
+    bad: ['Iflos avtomobilda filialga borish', 'Shikastni yashirish, xabar bermaslik'] },
+  { name: 'Balonlar bosimi', x: 49.2, y: 83.6, req: true,
+    desc: 'Toʻrttala balon bosimini tekshiring. Bosim avtomobil meʼyoriga mos boʻlishi kerak.',
+    ok: ['Bosim meʼyorda, balonlar bir xil', 'Zaxira balon joyida'],
+    bad: ['Yumshoq balon bilan yoʻlga chiqish'] },
+  { name: 'Yoqilgʻi', x: 90, y: 64.4, req: true,
+    desc: 'Yoqilgʻi kunlik marshrut uchun yetarli ekanini tekshiring.',
+    ok: ['Yoqilgʻi yetarli', 'Bak qopqogʻi mahkam yopiq'],
+    bad: ['Yoqilgʻi tugay deb turganda yoʻlga chiqish'] },
+  { name: 'Motor moyi', x: 18.3, y: 49.3, req: true,
+    desc: 'Moy darajasini dvigatel sovuq holatda shchup bilan tekshiring.',
+    ok: ['Moy MIN va MAX belgilari orasida', 'Moy oqishi yoʻq'],
+    bad: ['Moy kam holda yoʻlga chiqish', 'Qizigan dvigatelda tekshirish'] },
+  { name: 'Hujjatlar', x: 50, y: 26, req: true,
+    desc: 'Quyidagi 4 hujjat yoningizda va amal qilish muddati oʻtmagan boʻlishi shart.',
+    ok: ['a) Haydovchilik guvohnomasi', 'b) Texnik pasport', 'c) Ishonchnoma', 'd) Sugʻurta polisi'],
+    bad: ['Muddati oʻtgan hujjat bilan yurish', 'Kamchilikni dispetcherga aytmaslik'] }
+];
+var DEFAULT_DONE = {};
+var ICONS = ['shirt', 'car', 'clock', 'desk', 'chat', 'pin', 'cup', 'flag'];
+function iconFlags(name) {
+  return { icShirt: name === 'shirt', icCar: name === 'car', icClock: name === 'clock', icDesk: name === 'desk',
+    icChat: name === 'chat', icPin: name === 'pin', icCup: name === 'cup', icFlag: name === 'flag',
+    icShield: name === 'shield', icAlert: name === 'alert', icFire: name === 'fire', icRoad: name === 'road' };
+}
+
+class Component extends DCLogic {
+  renderVals() {
+    var self = this;
+    var accent = this.props.accent ?? '#F2A33A';
+    var st = Object.assign({ screen: 'home', stage: 'kelish', checks: {}, done: DEFAULT_DONE, qi: 0, picked: null, score: 0, quizEnd: false }, this.state || {});
+    var isOn = function (id, i) { return !!(st.done[id] || st.checks[id + ':' + i]); };
+    var go = function (screen) { return function () { self.setState({ screen: screen }); }; };
+
+    var doneCount = STAGES.filter(function (s) { return st.done[s.id]; }).length;
+    var nextIdx = STAGES.findIndex(function (s) { return !st.done[s.id]; });
+    var checkedAll = 0;
+    STAGES.forEach(function (s) { s.checks.forEach(function (c, i) { if (isOn(s.id, i)) checkedAll++; }); });
+    var points = doneCount * 20 + checkedAll * 2 + st.score * 10;
+
+    var stages = STAGES.map(function (s, idx) {
+      var done = !!st.done[s.id];
+      var current = idx === nextIdx;
+      var cnt = s.checks.filter(function (c, i) { return isOn(s.id, i); }).length;
+      return Object.assign({}, iconFlags(s.icon), {
+        n: idx + 1, time: s.time, title: s.title, sub: s.sub,
+        done: done, current: current, todo: !done && !current,
+        nodeBg: done ? '#14213D' : (current ? accent : '#FFFFFF'),
+        nodeFg: done ? '#FFFFFF' : (current ? '#14213D' : '#8A93A6'),
+        nodeBorder: done ? '#14213D' : (current ? accent : '#D5DAE3'),
+        cardBorder: current ? accent : '#E3E7EE',
+        cardShadow: current ? '0 6px 18px rgba(20,33,61,0.12)' : 'none',
+        lineColor: idx === STAGES.length - 1 ? 'transparent' : (done ? '#14213D' : '#D5DAE3'),
+        barPct: Math.round(cnt / s.checks.length * 100),
+        barColor: done ? '#14213D' : accent,
+        count: cnt + '/' + s.checks.length,
+        rulesLabel: s.checks.length + ' ta qoida · ' + s.time,
+        open: function () { self.setState({ screen: 'stage', stage: s.id }); }
+      });
+    });
+
+    var ci = Math.max(0, STAGES.findIndex(function (s) { return s.id === st.stage; }));
+    var cs = STAGES[ci];
+    var curDone = !!st.done[cs.id];
+    var curCnt = cs.checks.filter(function (c, i) { return isOn(cs.id, i); }).length;
+    var allChecked = curCnt === cs.checks.length;
+    var cur = Object.assign({}, iconFlags(cs.icon), {
+      n: ci + 1, time: cs.time, title: cs.title, sub: cs.sub, why: cs.why, dos: cs.dos, donts: cs.donts,
+      isForma: cs.id === 'kiyim', isVerifix: cs.id === 'kelish' || cs.id === 'yakun', isCar: cs.id === 'transport', isSample: !!cs.sample,
+      hasSteps: !!cs.steps, stepsTitle: cs.stepsTitle || '', steps: (cs.steps || []).map(function (t, i) { return { n: i + 1, t: t }; }),
+      count: curCnt + '/' + cs.checks.length,
+      barPct: Math.round(curCnt / cs.checks.length * 100),
+      isDone: curDone, canFinish: !curDone && allChecked, notReady: !curDone && !allChecked,
+      items: cs.checks.map(function (t, i) {
+        var on = isOn(cs.id, i);
+        return {
+          text: t, on: on,
+          bg: on ? '#F3F6FC' : '#FFFFFF', border: on ? '#C9D3EA' : '#E3E7EE',
+          boxBg: on ? '#14213D' : '#FFFFFF', boxBorder: on ? '#14213D' : '#B8C0CF',
+          toggle: function () {
+            if (curDone) return;
+            self.setState(function (p) {
+              var c = Object.assign({}, (p && p.checks) || {});
+              var k = cs.id + ':' + i;
+              c[k] = !c[k];
+              return { checks: c };
+            });
+          }
+        };
+      }),
+      finish: function () {
+        self.setState(function (p) {
+          var d = Object.assign({}, (p && p.done) || DEFAULT_DONE);
+          d[cs.id] = true;
+          return { done: d, screen: 'home' };
+        });
+      }
+    });
+
+    var q = QUIZ[st.qi];
+    var answered = st.picked !== null;
+    var wasRight = answered && st.picked === q.c;
+    var options = q.a.map(function (t, i) {
+      var correct = i === q.c, picked = st.picked === i;
+      return {
+        text: t, letter: 'ABC'.charAt(i),
+        bg: answered && correct ? '#E6EEFB' : (answered && picked ? '#FDECE0' : '#FFFFFF'),
+        border: answered && correct ? '#2457C5' : (answered && picked ? '#C2570C' : '#E3E7EE'),
+        showOk: answered && correct, showBad: answered && picked && !correct,
+        pick: function () { if (st.picked !== null) return; self.setState({ picked: i, score: st.score + (correct ? 1 : 0) }); }
+      };
+    });
+    var last = st.qi === QUIZ.length - 1;
+
+    var nav = function (k) {
+      var active = st.screen === k || (k === 'home' && st.screen === 'stage');
+      return { c: active ? '#14213D' : '#5B6475', bg: active ? '#FDEBD0' : 'transparent' };
+    };
+
+    var weekH = [92, 100, 78, 100, 64];
+    var week = ['Du', 'Se', 'Ch', 'Pa', 'Ju'].map(function (d, i) { return { d: d, h: weekH[i], color: '#C9D3EA' }; });
+    week.push({ d: 'Sh', h: Math.max(8, Math.round(doneCount / STAGES.length * 100)), color: accent });
+
+    var pct = Math.round(doneCount / STAGES.length * 100);
+    var seen = st.seen || {};
+    var SETS = { forma: SPOTS, car: CAR_SPOTS };
+    var openSpot = function (set, i) {
+      var L = SETS[set]; var n = (i + L.length) % L.length;
+      self.setState(function (p) { var s = Object.assign({}, (p && p.seen) || {}); s[set + ':' + n] = true; return { spot: n, spotSet: set, seen: s }; });
+    };
+    var mkSpots = function (set) {
+      return SETS[set].map(function (p, i) {
+        var v = !!seen[set + ':' + i];
+        return { name: p.name, x: p.x, y: p.y, n: i + 1, bg: v ? '#14213D' : accent, fg: v ? '#FFFFFF' : '#14213D', open: function () { openSpot(set, i); } };
+      });
+    };
+    var countSeen = function (set) { return Object.keys(seen).filter(function (k) { return k.indexOf(set + ':') === 0; }).length; };
+    var spots = mkSpots('forma'), carSpots = mkSpots('car');
+    var curSet = st.spotSet || 'forma';
+    var spi = (typeof st.spot === 'number') ? st.spot : -1;
+    var sd = SETS[curSet][spi >= 0 ? spi : 0];
+    var sp = {
+      n: (spi >= 0 ? spi : 0) + 1, name: sd.name, desc: sd.desc, ok: sd.ok, bad: sd.bad,
+      okLabel: curSet === 'car' ? 'Toʻgʻri' : 'Toʻgʻri kiyish', badLabel: curSet === 'car' ? 'Notoʻgʻri' : 'Notoʻgʻri kiyish',
+      chip: sd.req ? 'Majburiy' : 'Tavsiya', chipBg: sd.req ? '#14213D' : '#EEF0F4', chipFg: sd.req ? '#FFFFFF' : '#3D465A',
+      imCap: sd.im === 'cap', imCollar: sd.im === 'collar', imPocket: sd.im === 'pocket', imCuff: sd.im === 'cuff', imStripe: sd.im === 'stripe', imTshirt: sd.im === 'tshirt'
+    };
+    var vOut = st.stage === 'yakun';
+    var VK = vOut ? 'vfxO' : 'vfxI';
+    var vs = st[VK] || 0;
+    var vset = function (o) { var r = {}; Object.keys(o).forEach(function (k) { r[VK + k] = o[k]; }); return r; };
+    var vfxNext = function () { self.setState(function (p) { var r = vset({ W: false, N: false }); r[VK] = Math.min(3, ((p && p[VK]) || 0) + 1); return r; }); };
+    var VTIPS = vOut ? ['1-qadam. Planshet ekranini barmoq bilan pastdan tepaga suring.',
+      '2-qadam. Kameraga yuzingizni qarating va kepka ustidagi nuqtani bosing.',
+      '3-qadam. “УХОД” (ketish) tugmasini bosing. Diqqat: “ПРИХОД” ni bossangiz, ketishingiz qayd etilmaydi!',
+      'Barakalla! Ketishingiz qayd etildi. Smena yakuni: 18:00 · 21:00 · 06:00.']
+      : ['1-qadam. Planshet ekranini barmoq bilan pastdan tepaga suring.',
+      '2-qadam. Kameraga yuzingizni qarating va kepka ustidagi nuqtani bosing.',
+      '3-qadam. “ПРИХОД” (kelish) tugmasini bosing. Diqqat: “УХОД” ni bossangiz, kelgan kuningiz ish vaqti hisoblanmaydi!',
+      'Barakalla! Kelishingiz qayd etildi. Smena boshlanishi: 09:00 · 12:00 · 21:00.'];
+    var vWarn = function () { self.setState(vset({ W: true })); };
+    return {
+      vfx0: vs === 0, vfx1: vs === 1, vfx2: vs === 2, vfx3: vs === 3,
+      vfxStep: vs < 3 ? 'Qadam ' + (vs + 1) + '/3' : 'Bajarildi',
+      vfxChipBg: vs < 3 ? '#FDEBD0' : '#E3F1EA', vfxChipFg: vs < 3 ? '#7A4A00' : '#1E5C42',
+      vfxTip: VTIPS[vs], vfxTipBg: vs === 3 ? '#E3F1EA' : (vs === 2 ? '#FDEBD0' : '#EEF2FA'),
+      vfxNext: vfxNext,
+      vfxDown: function (e) { self._vy = e.clientY; },
+      vfxUp: function (e) { var y0 = self._vy; self._vy = null; if (y0 != null && y0 - e.clientY > 30) vfxNext(); else self.setState(vset({ N: true })); },
+      vfxKey: function (e) { if (e && e.detail === 0) vfxNext(); },
+      vfxNudge: !!st[VK + 'N'] && vs === 0,
+      vfxUhod: vOut ? vfxNext : vWarn, vfxPrihod: vOut ? vWarn : vfxNext,
+      vfxIn: !vOut, vfxOut: vOut, vfxLabelX: vOut ? 61.7 : 38.35,
+      vfxTitle: vOut ? 'Verifix’da ketishni qayd etish' : 'Verifix’da kelishni qayd etish',
+      vfxWarnTitle: vOut ? 'Xato! Siz ПРИХОД ni bosdingiz' : 'Xato! Siz УХОД ni bosdingiz',
+      vfxWarnText: vOut ? 'ПРИХОД — ishga kelish. Ish oxirida uni bossangiz, ketishingiz qayd etilmaydi va ish kuningiz yopilmaydi. УХОД tugmasini bosing.' : 'УХОД — ishdan ketish. Ishga kelganda uni bossangiz, kelgan kuningiz ish vaqti hisoblanmaydi. ПРИХОД tugmasini bosing.',
+      vfxDoneTitle: vOut ? 'УХОД qayd etildi' : 'ПРИХОД qayd etildi',
+      vfxDoneSub: vOut ? 'Ish kuningiz yakunlandi' : 'Ish vaqtingiz hisoblanmoqda',
+      vfxWarn: !!st[VK + 'W'] && vs === 2,
+      vfxReset: function () { var r = vset({ W: false, N: false }); r[VK] = 0; self.setState(r); },
+      spots: spots, sp: sp, spotTotal: SPOTS.length, hrRules: HR.map(function (h, i) { return { k: h[0], v: h[1], line: i ? '#EEF0F4' : 'transparent' }; }),
+      seenCount: countSeen('forma'), carSpots: carSpots, carSeenCount: countSeen('car'), carTotal: CAR_SPOTS.length, sheetTotal: SETS[curSet].length,
+      sheetOpen: spi >= 0 && st.screen === 'stage',
+      closeSpot: function () { self.setState({ spot: null }); },
+      nextSpot: function () { openSpot(curSet, spi + 1); },
+      prevSpot: function () { openSpot(curSet, spi - 1); },
+      accent: accent,
+      isHome: st.screen === 'home', isStage: st.screen === 'stage', isRules: st.screen === 'rules',
+      isQuiz: st.screen === 'quiz', isProfile: st.screen === 'profile',
+      goHome: go('home'), goRules: go('rules'), goQuiz: go('quiz'), goProfile: go('profile'),
+      navHome: nav('home'), navRules: nav('rules'), navQuiz: nav('quiz'), navProfile: nav('profile'),
+      points: points, doneCount: doneCount, percent: pct,
+      ringOffset: (226.2 * (1 - doneCount / STAGES.length)).toFixed(1),
+      allDone: doneCount === STAGES.length, notAllDone: doneCount < STAGES.length, stageTotal: STAGES.length,
+      nextTitle: nextIdx >= 0 ? STAGES[nextIdx].title : '', nextTime: nextIdx >= 0 ? STAGES[nextIdx].time : '',
+      stages: stages, cur: cur,
+      quizRunning: !st.quizEnd, quizEnd: st.quizEnd,
+      qNum: st.qi + 1, qTotal: QUIZ.length, qPct: Math.round((st.qi + (answered ? 1 : 0)) / QUIZ.length * 100),
+      qText: q.q, qWhy: q.why, options: options, answered: answered,
+      fbTitle: wasRight ? 'Toʻgʻri! +10 ball' : 'Unchalik emas', fbColor: wasRight ? '#1D4AAE' : '#9A3F06', fbBg: wasRight ? '#E6EEFB' : '#FDECE0',
+      nextLabel: last ? 'Natijani koʻrish' : 'Keyingi savol',
+      nextQ: function () { if (last) self.setState({ quizEnd: true }); else self.setState({ qi: st.qi + 1, picked: null }); },
+      score: st.score,
+      scoreText: st.score === QUIZ.length ? 'Aʼlo! Siz standartlarni mukammal bilasiz.' : 'Yaxshi! Qoidalar boʻlimini yana bir bor koʻrib chiqing.',
+      restartQuiz: function () { self.setState({ qi: 0, picked: null, score: 0, quizEnd: false }); },
+      levelPct: Math.min(100, Math.round(points / 300 * 100)),
+      week: week,
+      badges: BADGES.map(function (b) { return { name: b.name, bg: b.on ? accent : '#EEF0F4', fg: b.on ? '#14213D' : '#9AA2B2', text: b.on ? '#14213D' : '#5B6475' }; })
+    };
+  }
+}
+
+/* Real-device additions: date, streak, week, badges, profile name, reset. */
+var UZ_DAYS = ['Yakshanba', 'Dushanba', 'Seshanba', 'Chorshanba', 'Payshanba', 'Juma', 'Shanba'];
+var UZ_MONTHS = ['yanvar', 'fevral', 'mart', 'aprel', 'may', 'iyun', 'iyul', 'avgust', 'sentabr', 'oktabr', 'noyabr', 'dekabr'];
+function dayKey(d) { return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); }
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    var days = Object.assign({}, this.state.days || {});
+    days[dayKey(new Date())] = true;
+    this.state = Object.assign({}, this.state, { days: days, spot: null });
+    try { localStorage.setItem('ars-standart-state-v1', JSON.stringify(this.state)); } catch (e) {}
+  }
+  renderVals() {
+    var self = this;
+    var v = super.renderVals();
+    var st = this.state || {};
+    var now = new Date();
+    var h = now.getHours();
+    v.greet = h < 5 ? 'Xayrli tun!' : h < 12 ? 'Xayrli tong!' : h < 18 ? 'Xayrli kun!' : 'Xayrli kech!';
+    v.today = UZ_DAYS[now.getDay()] + ', ' + now.getDate() + '-' + UZ_MONTHS[now.getMonth()];
+
+    var days = st.days || {};
+    var streak = 0, d = new Date(now);
+    while (days[dayKey(d)]) { streak++; d.setDate(d.getDate() - 1); }
+    v.streak = streak;
+
+    // week bars: Monday..Saturday of this week, filled on days the app was used
+    var monday = new Date(now); monday.setDate(now.getDate() - ((now.getDay() + 6) % 7));
+    v.week = ['Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh'].map(function (name, i) {
+      var day = new Date(monday); day.setDate(monday.getDate() + i);
+      var isToday = dayKey(day) === dayKey(now);
+      var used = !!days[dayKey(day)];
+      return { d: name, h: isToday ? Math.max(8, v.percent) : (used ? 100 : 8), color: isToday ? v.accent : (used ? '#C9D3EA' : '#EEF0F4') };
+    });
+
+    // best quiz result
+    var best = st.best || 0;
+    if (st.quizEnd && st.score > best) { best = st.score; this.state.best = best; try { localStorage.setItem('ars-standart-state-v1', JSON.stringify(this.state)); } catch (e) {} }
+    v.bestQuiz = best + '/' + QUIZ.length;
+
+    var done = st.done || {};
+    var earned = [
+      !!done.kelish, !!done.kiyim, !!done.transport,
+      v.allDone, best === QUIZ.length, streak >= 20
+    ];
+    v.badges = BADGES.map(function (b, i) {
+      var on = !!earned[i];
+      return { name: b.name, bg: on ? v.accent : '#EEF0F4', fg: on ? '#14213D' : '#9AA2B2', text: on ? '#14213D' : '#5B6475' };
+    });
+
+    var p = v.points;
+    var levels = [[0, 'Yangi xodim'], [60, 'Oʻrganuvchi'], [140, 'Standart ustasi'], [220, 'Oltin standart']];
+    var li = 0; for (var i = 0; i < levels.length; i++) if (p >= levels[i][0]) li = i;
+    v.levelNum = li + 1; v.levelName = levels[li][1];
+    v.levelNext = li < levels.length - 1 ? 'Keyingi daraja: “' + levels[li + 1][1] + '” · ' + levels[li + 1][0] + ' ball' : 'Eng yuqori daraja!';
+
+    v.userName = st.userName || 'Ismingizni kiriting';
+    v.userRole = st.userRole || 'Avariya taʼmirlash brigadasi';
+    var nm = (st.userName || 'АРС').trim().split(/\s+/);
+    v.initials = ((nm[0] || '').charAt(0) + (nm[1] || '').charAt(0)).toUpperCase() || 'А';
+    v.editProfile = function () {
+      var n = window.prompt('Ism va familiyangiz:', st.userName || '');
+      if (n === null) return;
+      var r = window.prompt('Lavozim va filial (masalan: Elektrik · Chilonzor):', st.userRole || '');
+      self.setState({ userName: n.trim(), userRole: r === null ? st.userRole : r.trim() });
+    };
+    v.resetAll = function () {
+      if (!window.confirm('Barcha belgilangan bosqichlar va test natijalari oʻchiriladi. Davom etasizmi?')) return;
+      var keep = { userName: st.userName, userRole: st.userRole, days: st.days };
+      self.state = {};
+      self.setState(Object.assign(keep, { screen: 'home' }));
+    };
+    return v;
+  }
+}
+startApp(App, {});
+
+</script>
+<script>
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  navigator.serviceWorker.register('sw.js');
+}
+</script>
+</body>
+</html>
