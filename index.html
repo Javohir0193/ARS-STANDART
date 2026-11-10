@@ -48,18 +48,21 @@ button{font-family:inherit}
 <header style="background: #14213D; color: #FFFFFF; padding: 22px 20px 24px; border-radius: 0 0 28px 28px; display: flex; flex-direction: column; gap: 18px">
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
 <div style="display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: center; gap: 8px">
 <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.08em; color: #C9D1E3">АРС СТАНДАРТЫ</span>
-<h1 style="margin: 0; font-size: 22px; font-weight: 700">{{greet}}</h1>
-<span style="font-size: 13px; color: #C9D1E3">{{today}}</span>
+<button type="button" onClick="{{cycleLang}}" aria-label="{{tx.lang}}" style="display: inline-flex; align-items: center; gap: 4px; min-height: 28px; padding: 0 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.08); color: #FFFFFF; font-size: 11px; font-weight: 700; cursor: pointer"><svg class="ic" width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"></path></svg>{{langShort}}</button>
+</div>
+<h1 style="margin: 0; font-size: 22px; font-weight: 700">{{tx.k0}}</h1>
+<span style="font-size: 13px; color: #C9D1E3">{{tx.k1}}</span>
 </div>
 <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px">
 <div style="display: flex; align-items: center; gap: 6px; background: {{accent}}; color: #14213D; padding: 7px 12px; border-radius: 999px; font-size: 14px; font-weight: 700">
 <svg class="ic" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"></path></svg>
-<span>{{points}} ball</span>
+<span>{{points}} {{tx.k2}}</span>
 </div>
 <div style="display: flex; align-items: center; gap: 5px; font-size: 12px; color: #C9D1E3">
 <svg class="ic" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3-1-5 1-8.5z"></path></svg>
-<span>{{streak}} kun ketma-ket</span>
+<span>{{tx.k3}}</span>
 </div>
 </div>
 </div>
@@ -71,17 +74,17 @@ button{font-family:inherit}
 </svg>
 <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center">
 <span style="font-size: 20px; font-weight: 800">{{doneCount}}/{{stageTotal}}</span>
-<span style="font-size: 10px; color: #C9D1E3">bosqich</span>
+<span style="font-size: 10px; color: #C9D1E3">{{tx.k4}}</span>
 </div>
 </div>
 <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
-<span style="font-size: 13px; color: #C9D1E3">Bugungi standart</span>
-<span style="font-size: 20px; font-weight: 700">{{percent}}% bajarildi</span>
+<span style="font-size: 13px; color: #C9D1E3">{{tx.k5}}</span>
+<span style="font-size: 20px; font-weight: 700">{{percent}}{{tx.k6}}</span>
 <sc-if value="{{notAllDone}}" hint-placeholder-val="{{true}}">
-<span style="font-size: 13px; color: #FFFFFF">Keyingi: <b>{{nextTitle}}</b> · {{nextTime}}</span>
+<span style="font-size: 13px; color: #FFFFFF">{{tx.k7}} <b>{{nextTitle}}</b> · {{nextTime}}</span>
 </sc-if>
 <sc-if value="{{allDone}}" hint-placeholder-val="{{false}}">
-<span style="font-size: 13px; color: #FFFFFF"><b>Barakalla!</b> Bugungi kun namunali oʻtdi.</span>
+<span style="font-size: 13px; color: #FFFFFF"><b>{{tx.k8}}</b> {{tx.k9}}</span>
 </sc-if>
 </div>
 </div>
@@ -89,8 +92,8 @@ button{font-family:inherit}
 
 <section style="padding: 20px 20px 24px; display: flex; flex-direction: column">
 <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px">
-<h2 style="margin: 0; font-size: 18px; font-weight: 700">Mening ish kunim</h2>
-<span style="font-size: 13px; color: #5B6475">Bosqichni bosing</span>
+<h2 style="margin: 0; font-size: 18px; font-weight: 700">{{tx.k10}}</h2>
+<span style="font-size: 13px; color: #5B6475">{{tx.k11}}</span>
 </div>
 <sc-for list="{{stages}}" as="s" hint-placeholder-count="8">
 <div style="display: flex; gap: 12px">
@@ -114,10 +117,10 @@ button{font-family:inherit}
 <button type="button" onClick="{{s.open}}" style="flex: 1 1 auto; min-width: 0; text-align: left; background: #FFFFFF; border: 1.5px solid {{s.cardBorder}}; box-shadow: {{s.cardShadow}}; border-radius: 16px; padding: 12px 14px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 4px; cursor: pointer; color: #14213D; opacity: {{s.cardOpacity}}">
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
 <span style="font-size: 12px; font-weight: 600; color: #5B6475">{{s.time}}</span>
-<sc-if value="{{s.done}}"><span style="font-size: 11px; font-weight: 700; background: #E6EBF5; color: #14213D; padding: 3px 8px; border-radius: 999px">Bajarildi</span></sc-if>
-<sc-if value="{{s.current}}"><span style="font-size: 11px; font-weight: 700; background: #FDEBD0; color: #7A4A00; padding: 3px 8px; border-radius: 999px">Hozir</span></sc-if>
-<sc-if value="{{s.todo}}"><span style="font-size: 11px; font-weight: 700; background: #EEF0F4; color: #5B6475; padding: 3px 8px; border-radius: 999px">Kutilmoqda</span></sc-if>
-<sc-if value="{{s.locked}}"><span style="font-size: 11px; font-weight: 700; background: #EEF0F4; color: #5B6475; padding: 3px 8px; border-radius: 999px; display: inline-flex; align-items: center; gap: 4px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>Yopiq</span></sc-if>
+<sc-if value="{{s.done}}"><span style="font-size: 11px; font-weight: 700; background: #E6EBF5; color: #14213D; padding: 3px 8px; border-radius: 999px">{{tx.k12}}</span></sc-if>
+<sc-if value="{{s.current}}"><span style="font-size: 11px; font-weight: 700; background: #FDEBD0; color: #7A4A00; padding: 3px 8px; border-radius: 999px">{{tx.k13}}</span></sc-if>
+<sc-if value="{{s.todo}}"><span style="font-size: 11px; font-weight: 700; background: #EEF0F4; color: #5B6475; padding: 3px 8px; border-radius: 999px">{{tx.k14}}</span></sc-if>
+<sc-if value="{{s.locked}}"><span style="font-size: 11px; font-weight: 700; background: #EEF0F4; color: #5B6475; padding: 3px 8px; border-radius: 999px; display: inline-flex; align-items: center; gap: 4px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>{{tx.yopiq}}</span></sc-if>
 </div>
 <span style="font-size: 16px; font-weight: 700">{{s.title}}</span>
 <span style="font-size: 13px; color: #5B6475">{{s.sub}}</span>
@@ -137,10 +140,10 @@ button{font-family:inherit}
 <sc-if value="{{isStage}}" hint-placeholder-val="{{false}}">
 <div style="display: flex; flex-direction: column; gap: 16px; padding: 16px 20px 28px">
 <div style="display: flex; align-items: center; justify-content: space-between">
-<button type="button" onClick="{{goHome}}" aria-label="Orqaga" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #E3E7EE; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #14213D">
+<button type="button" onClick="{{goHome}}" aria-label="{{tx.k15}}" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #E3E7EE; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #14213D">
 <svg class="ic" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg>
 </button>
-<span style="font-size: 13px; font-weight: 600; color: #5B6475">Bosqich {{cur.n}} / {{stageTotal}}</span>
+<span style="font-size: 13px; font-weight: 600; color: #5B6475">{{tx.k16}} {{cur.n}} / {{stageTotal}}</span>
 <div style="width: 44px; height: 44px"></div>
 </div>
 
@@ -148,14 +151,14 @@ button{font-family:inherit}
 <div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 24px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
 <div style="display: flex; flex-direction: column; gap: 2px">
-<h2 style="margin: 0; font-size: 17px; font-weight: 700">Korporativ forma</h2>
-<span style="font-size: 13px; color: #5B6475">Nuqtani bosing: har bir detal haqida</span>
+<h2 style="margin: 0; font-size: 17px; font-weight: 700">{{tx.k17}}</h2>
+<span style="font-size: 13px; color: #5B6475">{{tx.k18}}</span>
 </div>
-<span style="font-size: 12px; font-weight: 700; background: #FDEBD0; color: #7A4A00; padding: 5px 10px; border-radius: 999px; white-space: nowrap">{{seenCount}}/{{spotTotal}} koʻrildi</span>
+<span style="font-size: 12px; font-weight: 700; background: #FDEBD0; color: #7A4A00; padding: 5px 10px; border-radius: 999px; white-space: nowrap">{{seenCount}}/{{spotTotal}} {{tx.k19}}</span>
 </div>
 <div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 18px; display: flex; justify-content: center; padding: 12px 0">
 <div style="position: relative; width: 210px; height: 467px">
-<img src="img/bdac99dac657118ae37f668fdb635fc7.jpg" alt="Safia korporativ formasidagi xodim, old tomondan" style="width: 210px; height: 467px; display: block; mix-blend-mode: multiply">
+<img src="img/bdac99dac657118ae37f668fdb635fc7.jpg" alt="{{tx.k25}}" style="width: 210px; height: 467px; display: block; mix-blend-mode: multiply">
 <sc-for list="{{spots}}" as="p" hint-placeholder-count="9">
 <button type="button" onClick="{{p.open}}" aria-label="{{p.name}}" style="position: absolute; left: {{p.x}}%; top: {{p.y}}%; width: 44px; height: 44px; margin: -22px 0 0 -22px; padding: 0; border: none; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer">
 <span style="width: 26px; height: 26px; box-sizing: border-box; border-radius: 50%; background: {{p.bg}}; color: {{p.fg}}; border: 3px solid #FFFFFF; box-shadow: 0 2px 8px rgba(20,33,61,0.4); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800">{{p.n}}</span>
@@ -164,8 +167,8 @@ button{font-family:inherit}
 </div>
 </div>
 <div style="display: flex; gap: 16px; justify-content: center; font-size: 12px; color: #5B6475">
-<div style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 50%; background: {{accent}}"></span><span>Koʻrilmagan</span></div>
-<div style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 50%; background: #14213D"></span><span>Koʻrildi</span></div>
+<div style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 50%; background: {{accent}}"></span><span>{{tx.k20}}</span></div>
+<div style="display: flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; border-radius: 50%; background: #14213D"></span><span>{{tx.k21}}</span></div>
 </div>
 </div>
 </sc-if>
@@ -174,14 +177,14 @@ button{font-family:inherit}
 <div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 24px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
 <div style="display: flex; flex-direction: column; gap: 2px">
-<h2 style="margin: 0; font-size: 17px; font-weight: 700">Xizmat avtomobili</h2>
-<span style="font-size: 13px; color: #5B6475">Nuqtani bosing: nimani tekshirish kerak</span>
+<h2 style="margin: 0; font-size: 17px; font-weight: 700">{{tx.k22}}</h2>
+<span style="font-size: 13px; color: #5B6475">{{tx.k23}}</span>
 </div>
-<span style="font-size: 12px; font-weight: 700; background: #FDEBD0; color: #7A4A00; padding: 5px 10px; border-radius: 999px; white-space: nowrap">{{carSeenCount}}/{{carTotal}} koʻrildi</span>
+<span style="font-size: 12px; font-weight: 700; background: #FDEBD0; color: #7A4A00; padding: 5px 10px; border-radius: 999px; white-space: nowrap">{{carSeenCount}}/{{carTotal}} {{tx.k19}}</span>
 </div>
 <div style="border: 1px solid #E3E7EE; border-radius: 18px; display: flex; justify-content: center; padding: 10px 0; background: #FFFFFF">
 <div style="position: relative; width: 300px; height: 183px">
-<img src="img/d40f6f4bba51664e7d8a7fac30616c8c.jpg" alt="Safia xizmat avtomobili Damas" style="width: 300px; height: 183px; display: block">
+<img src="img/d40f6f4bba51664e7d8a7fac30616c8c.jpg" alt="{{tx.k26}}" style="width: 300px; height: 183px; display: block">
 <sc-for list="{{carSpots}}" as="p" hint-placeholder-count="5">
 <button type="button" onClick="{{p.open}}" aria-label="{{p.name}}" style="position: absolute; left: {{p.x}}%; top: {{p.y}}%; width: 44px; height: 44px; margin: -22px 0 0 -22px; padding: 0; border: none; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer">
 <span style="width: 26px; height: 26px; box-sizing: border-box; border-radius: 50%; background: {{p.bg}}; color: {{p.fg}}; border: 3px solid #FFFFFF; box-shadow: 0 2px 8px rgba(20,33,61,0.4); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800">{{p.n}}</span>
@@ -197,7 +200,7 @@ button{font-family:inherit}
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
 <div style="display: flex; flex-direction: column; gap: 2px">
 <h2 style="margin: 0; font-size: 17px; font-weight: 700">{{vfxTitle}}</h2>
-<span style="font-size: 13px; color: #5B6475">Planshetda oʻzingiz mashq qiling</span>
+<span style="font-size: 13px; color: #5B6475">{{tx.k24}}</span>
 </div>
 <span style="font-size: 12px; font-weight: 700; background: {{vfxChipBg}}; color: {{vfxChipFg}}; padding: 5px 10px; border-radius: 999px; white-space: nowrap">{{vfxStep}}</span>
 </div>
@@ -218,35 +221,35 @@ button{font-family:inherit}
 <div style="position: relative; width: 300px; height: 500px; border-radius: 18px; overflow: hidden; background: #FFFFFF">
 
 <sc-if value="{{vfx0}}" hint-placeholder-val="{{true}}">
-<img src="img/d4dbee60e05f3e94cdac5a59b43eba60.jpg" alt="Verifix planshet, qulflangan ekran" style="width: 300px; height: 500px; display: block">
-<button type="button" class="vfx-swipe" aria-label="Ekranni tepaga suring" onPointerDown="{{vfxDown}}" onPointerUp="{{vfxUp}}" onClick="{{vfxKey}}" style="position: absolute; left: 8.33%; top: 8.4%; width: 83.33%; height: 80.1%; background: transparent; border: none; padding: 0; cursor: grab; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6px; padding-bottom: 22px">
+<img src="img/d4dbee60e05f3e94cdac5a59b43eba60.jpg" alt="{{tx.k27}}" style="width: 300px; height: 500px; display: block">
+<button type="button" class="vfx-swipe" aria-label="{{tx.k28}}" onPointerDown="{{vfxDown}}" onPointerUp="{{vfxUp}}" onClick="{{vfxKey}}" style="position: absolute; left: 8.33%; top: 8.4%; width: 83.33%; height: 80.1%; background: transparent; border: none; padding: 0; cursor: grab; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6px; padding-bottom: 22px">
 <span class="vfx-up" style="width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.92); color: #14213D; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0,0,0,0.3)">
 <svg class="ic" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width: 2.6"><path d="M12 19V5M6 11l6-6 6 6"></path></svg>
 </span>
-<span style="font-size: 12px; font-weight: 700; color: #FFFFFF; background: rgba(20,33,61,0.75); padding: 4px 10px; border-radius: 999px">Tepaga suring</span>
+<span style="font-size: 12px; font-weight: 700; color: #FFFFFF; background: rgba(20,33,61,0.75); padding: 4px 10px; border-radius: 999px">{{tx.k29}}</span>
 </button>
 </sc-if>
 
 <sc-if value="{{vfx1}}" hint-placeholder-val="{{false}}">
-<img src="img/e05753aa0ea84d978972a219ae1e39cc.jpg" alt="Verifix planshet, yuzni aniqlash ekrani" style="width: 300px; height: 500px; display: block">
-<button type="button" onClick="{{vfxNext}}" aria-label="Yuzni aniqlash" style="position: absolute; left: 48.6%; top: 33%; width: 44px; height: 44px; margin: -22px 0 0 -22px; padding: 0; border: none; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer">
+<img src="img/e05753aa0ea84d978972a219ae1e39cc.jpg" alt="{{tx.k31}}" style="width: 300px; height: 500px; display: block">
+<button type="button" onClick="{{vfxNext}}" aria-label="{{tx.k32}}" style="position: absolute; left: 48.6%; top: 33%; width: 44px; height: 44px; margin: -22px 0 0 -22px; padding: 0; border: none; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer">
 <span class="vfx-pulse" style="width: 28px; height: 28px; box-sizing: border-box; border-radius: 50%; background: {{accent}}; color: #14213D; border: 3px solid #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800">2</span>
 </button>
 </sc-if>
 
 <sc-if value="{{vfx2}}" hint-placeholder-val="{{false}}">
-<img src="img/1e91397963e9541cb010aeae5d0484e7.jpg" alt="Verifix planshet, ПРИХОД va УХОД tugmalari" style="width: 300px; height: 500px; display: block">
-<button type="button" onClick="{{vfxPrihod}}" aria-label="ПРИХОД (kelish)" style="position: absolute; left: 38.35%; top: 46.8%; width: 62px; height: 44px; margin: -22px 0 0 -31px; padding: 0; border: none; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer">
+<img src="img/1e91397963e9541cb010aeae5d0484e7.jpg" alt="{{tx.k33}}" style="width: 300px; height: 500px; display: block">
+<button type="button" onClick="{{vfxPrihod}}" aria-label="{{tx.k34}}" style="position: absolute; left: 38.35%; top: 46.8%; width: 62px; height: 44px; margin: -22px 0 0 -31px; padding: 0; border: none; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer">
 <sc-if value="{{vfxIn}}"><span class="vfx-pulse" style="width: 60px; height: 24px; border-radius: 5px; border: 2px solid {{accent}}"></span></sc-if>
 </button>
-<button type="button" onClick="{{vfxUhod}}" aria-label="УХОД (ketish)" style="position: absolute; left: 61.7%; top: 46.8%; width: 60px; height: 44px; margin: -22px 0 0 -30px; padding: 0; border: none; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer">
+<button type="button" onClick="{{vfxUhod}}" aria-label="{{tx.k35}}" style="position: absolute; left: 61.7%; top: 46.8%; width: 60px; height: 44px; margin: -22px 0 0 -30px; padding: 0; border: none; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer">
 <sc-if value="{{vfxOut}}"><span class="vfx-pulse" style="width: 60px; height: 24px; border-radius: 5px; border: 2px solid {{accent}}"></span></sc-if>
 </button>
-<div style="position: absolute; left: {{vfxLabelX}}%; top: 51.8%; transform: translateX(-50%); font-size: 11px; font-weight: 800; color: #14213D; background: {{accent}}; padding: 2px 8px; border-radius: 999px; white-space: nowrap">3 · bosing</div>
+<div style="position: absolute; left: {{vfxLabelX}}%; top: 51.8%; transform: translateX(-50%); font-size: 11px; font-weight: 800; color: #14213D; background: {{accent}}; padding: 2px 8px; border-radius: 999px; white-space: nowrap">{{tx.k30}}</div>
 </sc-if>
 
 <sc-if value="{{vfx3}}" hint-placeholder-val="{{false}}">
-<img src="img/1e91397963e9541cb010aeae5d0484e7.jpg" alt="Verifix planshet" style="width: 300px; height: 500px; display: block">
+<img src="img/1e91397963e9541cb010aeae5d0484e7.jpg" alt="{{tx.k36}}" style="width: 300px; height: 500px; display: block">
 <div style="position: absolute; left: 8.33%; top: 8.4%; width: 83.33%; height: 60.7%; background: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center; padding: 10px; box-sizing: border-box">
 <span style="width: 52px; height: 52px; border-radius: 50%; background: #2E7D5B; color: #FFFFFF; display: flex; align-items: center; justify-content: center">
 <svg class="ic" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width: 3"><path d="M5 12l4 4 10-10"></path></svg>
@@ -259,10 +262,10 @@ button{font-family:inherit}
 </div>
 </div>
 <sc-if value="{{vfxNudge}}" hint-placeholder-val="{{false}}">
-<span style="font-size: 13px; color: #7A4A00; text-align: center">Bosish emas: barmoqni ekranda pastdan tepaga suring.</span>
+<span style="font-size: 13px; color: #7A4A00; text-align: center">{{tx.k37}}</span>
 </sc-if>
 <sc-if value="{{vfx3}}" hint-placeholder-val="{{false}}">
-<button type="button" onClick="{{vfxReset}}" style="min-height: 46px; border-radius: 14px; border: 1.5px solid #14213D; background: #FFFFFF; color: #14213D; font-size: 15px; font-weight: 700; cursor: pointer">Qaytadan mashq qilish</button>
+<button type="button" onClick="{{vfxReset}}" style="min-height: 46px; border-radius: 14px; border: 1.5px solid #14213D; background: #FFFFFF; color: #14213D; font-size: 15px; font-weight: 700; cursor: pointer">{{tx.k38}}</button>
 </sc-if>
 </div>
 </sc-if>
@@ -284,7 +287,7 @@ button{font-family:inherit}
 <sc-if value="{{cur.icFlag}}"><svg class="ic" width="32" height="32" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4h11l-2 4 2 4H5"></path></svg></sc-if>
 </div>
 <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
-<div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"><span style="font-size: 13px; font-weight: 600; color: #C9D1E3">{{cur.time}}</span><sc-if value="{{cur.isSample}}"><span style="font-size: 11px; font-weight: 700; background: #FDEBD0; color: #7A4A00; padding: 2px 8px; border-radius: 999px">Namuna</span></sc-if></div>
+<div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"><span style="font-size: 13px; font-weight: 600; color: #C9D1E3">{{cur.time}}</span><sc-if value="{{cur.isSample}}"><span style="font-size: 11px; font-weight: 700; background: #FDEBD0; color: #7A4A00; padding: 2px 8px; border-radius: 999px">{{tx.k39}}</span></sc-if></div>
 <h1 style="margin: 0; font-size: 22px; font-weight: 700; line-height: 1.2">{{cur.title}}</h1>
 </div>
 </div>
@@ -296,14 +299,14 @@ button{font-family:inherit}
 <svg class="ic" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.5 1 2.5h6c0-1 .2-1.7 1-2.5A6 6 0 0 0 12 3z"></path></svg>
 </div>
 <div style="display: flex; flex-direction: column; gap: 4px">
-<span style="font-size: 14px; font-weight: 700">Nega muhim?</span>
+<span style="font-size: 14px; font-weight: 700">{{tx.k40}}</span>
 <span style="font-size: 14px; line-height: 1.5; color: #3D465A">{{cur.why}}</span>
 </div>
 </div>
 
 <div style="background: #FFFFFF; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 12px; border: 1px solid #E3E7EE">
 <div style="display: flex; justify-content: space-between; align-items: center">
-<h2 style="margin: 0; font-size: 16px; font-weight: 700">Tekshiruv roʻyxati</h2>
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">{{tx.k41}}</h2>
 <span style="font-size: 13px; font-weight: 700; color: #14213D">{{cur.count}}</span>
 </div>
 <div style="height: 8px; background: #EEF0F4; border-radius: 999px; overflow: hidden"><div style="height: 8px; width: {{cur.barPct}}%; background: {{accent}}; border-radius: 999px"></div></div>
@@ -335,7 +338,7 @@ button{font-family:inherit}
 <div style="background: #E6EEFB; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 8px">
 <div style="display: flex; align-items: center; gap: 6px; color: #1D4AAE; font-weight: 700; font-size: 14px">
 <svg class="ic" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width: 2.5"><path d="M5 12l4 4 10-10"></path></svg>
-<span>Toʻgʻri</span>
+<span>{{tx.k42}}</span>
 </div>
 <sc-for list="{{cur.dos}}" as="d" hint-placeholder-count="2">
 <span style="font-size: 13px; line-height: 1.45; color: #14213D">{{d}}</span>
@@ -344,7 +347,7 @@ button{font-family:inherit}
 <div style="background: #FDECE0; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 8px">
 <div style="display: flex; align-items: center; gap: 6px; color: #9A3F06; font-weight: 700; font-size: 14px">
 <svg class="ic" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="stroke-width: 2.5"><path d="M6 6l12 12M18 6 6 18"></path></svg>
-<span>Notoʻgʻri</span>
+<span>{{tx.k43}}</span>
 </div>
 <sc-for list="{{cur.donts}}" as="d" hint-placeholder-count="2">
 <span style="font-size: 13px; line-height: 1.45; color: #14213D">{{d}}</span>
@@ -353,15 +356,15 @@ button{font-family:inherit}
 </div>
 
 <sc-if value="{{cur.canFinish}}" hint-placeholder-val="{{false}}">
-<button type="button" onClick="{{cur.startTest}}" style="min-height: 54px; border-radius: 16px; border: none; background: {{accent}}; color: #14213D; font-size: 16px; font-weight: 700; cursor: pointer">Testni topshirish · 5 ta savol</button>
+<button type="button" onClick="{{cur.startTest}}" style="min-height: 54px; border-radius: 16px; border: none; background: {{accent}}; color: #14213D; font-size: 16px; font-weight: 700; cursor: pointer">{{tx.k44}}</button>
 </sc-if>
 <sc-if value="{{cur.notReady}}" hint-placeholder-val="{{true}}">
-<button type="button" disabled="{{true}}" style="min-height: 54px; border-radius: 16px; border: none; background: #E3E7EE; color: #5B6475; font-size: 15px; font-weight: 600">Avval barcha bandlarni belgilang</button>
+<button type="button" disabled="{{true}}" style="min-height: 54px; border-radius: 16px; border: none; background: #E3E7EE; color: #5B6475; font-size: 15px; font-weight: 600">{{tx.k45}}</button>
 </sc-if>
 <sc-if value="{{cur.isDone}}" hint-placeholder-val="{{false}}">
 <div style="min-height: 54px; border-radius: 16px; background: #E6EBF5; color: #14213D; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px">
 <svg class="ic" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M8 12l3 3 5-6"></path></svg>
-<span>Bu bosqich bajarildi</span>
+<span>{{tx.k46}}</span>
 </div>
 </sc-if>
 </div>
@@ -371,39 +374,39 @@ button{font-family:inherit}
 <sc-if value="{{isRules}}" hint-placeholder-val="{{false}}">
 <div style="display: flex; flex-direction: column; gap: 18px; padding: 22px 20px 28px">
 <div style="display: flex; flex-direction: column; gap: 4px">
-<h1 style="margin: 0; font-size: 24px; font-weight: 800">Qoidalar</h1>
-<span style="font-size: 14px; color: #5B6475">Xodimning xizmat standarti: avariya taʼmirlash brigadasi</span>
+<h1 style="margin: 0; font-size: 24px; font-weight: 800">{{tx.k47}}</h1>
+<span style="font-size: 14px; color: #5B6475">{{tx.k48}}</span>
 </div>
 <label style="display: flex; align-items: center; gap: 10px; background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 14px; padding: 0 14px; min-height: 48px; color: #5B6475">
 <svg class="ic" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
-<span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Qoidalarni qidirish</span>
-<input type="search" placeholder="Qoida yoki vaziyatni qidiring" style="flex: 1 1 auto; border: none; outline: none; font-size: 15px; background: transparent; color: #14213D; font-family: inherit; min-width: 0">
+<span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">{{tx.k49}}</span>
+<input type="search" placeholder="{{tx.search}}" style="flex: 1 1 auto; border: none; outline: none; font-size: 15px; background: transparent; color: #14213D; font-family: inherit; min-width: 0">
 </label>
 
 <div style="display: flex; flex-direction: column; gap: 10px">
-<h2 style="margin: 0; font-size: 16px; font-weight: 700">Tezkor eslatmalar</h2>
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">{{tx.k50}}</h2>
 <div style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px">
 <div style="flex: none; width: 150px; background: #14213D; color: #FFFFFF; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 6px">
-<span style="font-size: 24px; font-weight: 800; color: {{accent}}">Verifix</span>
-<span style="font-size: 13px; line-height: 1.4; color: #E4E8F1">09:00 · 12:00 · 21:00 smena boshida qayd eting</span>
+<span style="font-size: 24px; font-weight: 800; color: {{accent}}">{{tx.k51}}</span>
+<span style="font-size: 13px; line-height: 1.4; color: #E4E8F1">{{tx.k52}}</span>
 </div>
 <div style="flex: none; width: 150px; background: #14213D; color: #FFFFFF; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 6px">
-<span style="font-size: 24px; font-weight: 800; color: {{accent}}">6 nazorat</span>
-<span style="font-size: 13px; line-height: 1.4; color: #E4E8F1">yoʻlga chiqishdan oldin transport va hujjatlar</span>
+<span style="font-size: 24px; font-weight: 800; color: {{accent}}">{{tx.k53}}</span>
+<span style="font-size: 13px; line-height: 1.4; color: #E4E8F1">{{tx.k54}}</span>
 </div>
 <div style="flex: none; width: 150px; background: #14213D; color: #FFFFFF; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 6px">
-<span style="font-size: 24px; font-weight: 800; color: {{accent}}">Video</span>
-<span style="font-size: 13px; line-height: 1.4; color: #E4E8F1">ish yakunini masʼul xodimdan tasdiqlating</span>
+<span style="font-size: 24px; font-weight: 800; color: {{accent}}">{{tx.k55}}</span>
+<span style="font-size: 13px; line-height: 1.4; color: #E4E8F1">{{tx.k56}}</span>
 </div>
 <div style="flex: none; width: 150px; background: #14213D; color: #FFFFFF; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 6px">
-<span style="font-size: 24px; font-weight: 800; color: {{accent}}">Dispetcher</span>
-<span style="font-size: 13px; line-height: 1.4; color: #E4E8F1">kamchilik va ish yakuni haqida xabar bering</span>
+<span style="font-size: 24px; font-weight: 800; color: {{accent}}">{{tx.k57}}</span>
+<span style="font-size: 13px; line-height: 1.4; color: #E4E8F1">{{tx.k58}}</span>
 </div>
 </div>
 </div>
 
 <div style="display: flex; flex-direction: column; gap: 10px">
-<h2 style="margin: 0; font-size: 16px; font-weight: 700">Kun tartibi boʻyicha</h2>
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">{{tx.k59}}</h2>
 <sc-for list="{{stages}}" as="s" hint-placeholder-count="8">
 <button type="button" onClick="{{s.open}}" style="display: flex; align-items: center; gap: 12px; background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 12px 14px; min-height: 60px; text-align: left; cursor: pointer; color: #14213D">
 <div style="width: 36px; height: 36px; border-radius: 12px; background: #E6EBF5; color: #14213D; font-weight: 800; font-size: 15px; display: flex; align-items: center; justify-content: center; flex: none">{{s.n}}</div>
@@ -416,7 +419,7 @@ button{font-family:inherit}
 </sc-for>
 </div>
 <div style="display: flex; flex-direction: column; gap: 10px">
-<h2 style="margin: 0; font-size: 16px; font-weight: 700">Xodim majburiyati</h2>
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">{{tx.k60}}</h2>
 <div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; overflow: hidden">
 <sc-for list="{{hrRules}}" as="h" hint-placeholder-count="5">
 <div style="display: flex; gap: 12px; padding: 12px 14px; border-top: 1px solid {{h.line}}">
@@ -433,18 +436,18 @@ button{font-family:inherit}
 <sc-if value="{{isQuiz}}" hint-placeholder-val="{{false}}">
 <div style="display: flex; flex-direction: column; gap: 18px; padding: 22px 20px 28px">
 <div style="display: flex; flex-direction: column; gap: 4px">
-<h1 style="margin: 0; font-size: 24px; font-weight: 800">Bilimingizni sinang</h1>
-<span style="font-size: 14px; color: #5B6475">Har bir toʻgʻri javob uchun +10 ball</span>
+<h1 style="margin: 0; font-size: 24px; font-weight: 800">{{tx.k61}}</h1>
+<span style="font-size: 14px; color: #5B6475">{{tx.k62}}</span>
 </div>
 
 <sc-if value="{{quizRunning}}" hint-placeholder-val="{{true}}">
 <div style="display: flex; flex-direction: column; gap: 14px">
 <div style="display: flex; align-items: center; gap: 10px">
-<span style="font-size: 13px; font-weight: 700; color: #14213D">Savol {{qNum}} / {{qTotal}}</span>
+<span style="font-size: 13px; font-weight: 700; color: #14213D">{{tx.k63}} {{qNum}} / {{qTotal}}</span>
 <div style="flex: 1 1 auto; height: 6px; background: #E3E7EE; border-radius: 999px; overflow: hidden"><div style="height: 6px; width: {{qPct}}%; background: #14213D; border-radius: 999px"></div></div>
 </div>
 <div style="background: #14213D; color: #FFFFFF; border-radius: 22px; padding: 20px; display: flex; flex-direction: column; gap: 8px">
-<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: {{accent}}">VAZIYAT</span>
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: {{accent}}">{{tx.k64}}</span>
 <p style="margin: 0; font-size: 17px; line-height: 1.45; font-weight: 600">{{qText}}</p>
 </div>
 <sc-for list="{{options}}" as="o" hint-placeholder-count="3">
@@ -474,7 +477,7 @@ button{font-family:inherit}
 </div>
 <span style="font-size: 30px; font-weight: 800">{{score}} / {{qTotal}}</span>
 <span style="font-size: 15px; color: #3D465A">{{scoreText}}</span>
-<button type="button" onClick="{{restartQuiz}}" style="min-height: 48px; padding: 0 22px; border-radius: 14px; border: 1.5px solid #14213D; background: #FFFFFF; color: #14213D; font-size: 15px; font-weight: 700; cursor: pointer">Qaytadan boshlash</button>
+<button type="button" onClick="{{restartQuiz}}" style="min-height: 48px; padding: 0 22px; border-radius: 14px; border: 1.5px solid #14213D; background: #FFFFFF; color: #14213D; font-size: 15px; font-weight: 700; cursor: pointer">{{tx.k65}}</button>
 </div>
 </sc-if>
 </div>
@@ -484,7 +487,7 @@ button{font-family:inherit}
 <sc-if value="{{isStest}}" hint-placeholder-val="{{false}}">
 <div style="display: flex; flex-direction: column; gap: 16px; padding: 18px 20px 28px">
 <div style="display: flex; align-items: center; gap: 12px">
-<button type="button" onClick="{{tBack}}" aria-label="Bosqichga qaytish" style="width: 44px; height: 44px; flex: none; border-radius: 14px; border: 1px solid #E3E7EE; background: #FFFFFF; color: #14213D; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg class="ic" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button>
+<button type="button" onClick="{{tBack}}" aria-label="{{tx.k66}}" style="width: 44px; height: 44px; flex: none; border-radius: 14px; border: 1px solid #E3E7EE; background: #FFFFFF; color: #14213D; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg class="ic" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button>
 <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
 <h1 style="margin: 0; font-size: 20px; font-weight: 800">{{tTitle}}</h1>
 <span style="font-size: 13px; color: #5B6475">{{tStage}} · {{tPassRule}}</span>
@@ -494,11 +497,11 @@ button{font-family:inherit}
 <sc-if value="{{tRunning}}" hint-placeholder-val="{{true}}">
 <div style="display: flex; flex-direction: column; gap: 14px">
 <div style="display: flex; align-items: center; gap: 10px">
-<span style="font-size: 13px; font-weight: 700; color: #14213D">Savol {{tNum}} / {{tTotal}}</span>
+<span style="font-size: 13px; font-weight: 700; color: #14213D">{{tx.k63}} {{tNum}} / {{tTotal}}</span>
 <div style="flex: 1 1 auto; height: 6px; background: #E3E7EE; border-radius: 999px; overflow: hidden"><div style="height: 6px; width: {{tPct}}%; background: #14213D; border-radius: 999px"></div></div>
 </div>
 <div style="background: #14213D; color: #FFFFFF; border-radius: 22px; padding: 20px; display: flex; flex-direction: column; gap: 8px">
-<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: {{accent}}">SAVOL</span>
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: {{accent}}">{{tx.k67}}</span>
 <p style="margin: 0; font-size: 17px; line-height: 1.45; font-weight: 600">{{tText}}</p>
 </div>
 <sc-for list="{{tOpts}}" as="o" hint-placeholder-count="3">
@@ -531,11 +534,11 @@ button{font-family:inherit}
 <span style="font-size: 17px; font-weight: 700; color: #14213D">{{tResTitle}}</span>
 <span style="font-size: 14px; line-height: 1.45; color: #3D465A">{{tResText}}</span>
 <sc-if value="{{tPass}}">
-<button type="button" onClick="{{tGoNext}}" style="width: 100%; min-height: 52px; border-radius: 16px; border: none; background: {{accent}}; color: #14213D; font-size: 16px; font-weight: 700; cursor: pointer">Keyingi bosqichga oʻtish</button>
-<button type="button" onClick="{{tHome}}" style="width: 100%; min-height: 48px; border-radius: 14px; border: 1.5px solid #14213D; background: #FFFFFF; color: #14213D; font-size: 15px; font-weight: 700; cursor: pointer">Bosh sahifaga</button>
+<button type="button" onClick="{{tGoNext}}" style="width: 100%; min-height: 52px; border-radius: 16px; border: none; background: {{accent}}; color: #14213D; font-size: 16px; font-weight: 700; cursor: pointer">{{tx.k68}}</button>
+<button type="button" onClick="{{tHome}}" style="width: 100%; min-height: 48px; border-radius: 14px; border: 1.5px solid #14213D; background: #FFFFFF; color: #14213D; font-size: 15px; font-weight: 700; cursor: pointer">{{tx.k69}}</button>
 </sc-if>
 <sc-if value="{{tFail}}">
-<button type="button" onClick="{{tReview}}" style="width: 100%; min-height: 52px; border-radius: 16px; border: none; background: {{accent}}; color: #14213D; font-size: 16px; font-weight: 700; cursor: pointer">Bosqichni qaytadan oʻtish</button>
+<button type="button" onClick="{{tReview}}" style="width: 100%; min-height: 52px; border-radius: 16px; border: none; background: {{accent}}; color: #14213D; font-size: 16px; font-weight: 700; cursor: pointer">{{tx.k70}}</button>
 </sc-if>
 </div>
 </sc-if>
@@ -546,43 +549,52 @@ button{font-family:inherit}
 <sc-if value="{{isProfile}}" hint-placeholder-val="{{false}}">
 <div style="display: flex; flex-direction: column; gap: 16px; padding: 22px 20px 28px">
 <div style="display: flex; align-items: center; gap: 14px">
-<div style="width: 64px; height: 64px; border-radius: 50%; background: #14213D; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; flex: none">{{initials}}</div>
+<div style="width: 64px; height: 64px; border-radius: 50%; background: #14213D; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; flex: none">{{tx.k71}}</div>
 <div style="display: flex; flex-direction: column; gap: 3px">
-<h1 style="margin: 0; font-size: 20px; font-weight: 800">{{userName}}</h1>
-<span style="font-size: 13px; color: #5B6475">{{userRole}}</span>
-<button type="button" onClick="{{editProfile}}" style="align-self: flex-start; margin-top: 4px; min-height: 32px; padding: 0 12px; border-radius: 10px; border: 1px solid #C9D3EA; background: #FFFFFF; color: #2457C5; font-size: 13px; font-weight: 600; cursor: pointer">Ismni oʻzgartirish</button>
+<h1 style="margin: 0; font-size: 20px; font-weight: 800">{{tx.k72}}</h1>
+<span style="font-size: 13px; color: #5B6475">{{tx.k73}}</span>
+<button type="button" onClick="{{editProfile}}" style="align-self: flex-start; margin-top: 4px; min-height: 32px; padding: 0 12px; border-radius: 10px; border: 1px solid #C9D3EA; background: #FFFFFF; color: #2457C5; font-size: 13px; font-weight: 600; cursor: pointer">{{app.edit}}</button>
+</div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 14px; font-weight: 700">{{tx.lang}}</span>
+<div style="display: flex; gap: 8px">
+<sc-for list="{{langs}}" as="l" hint-placeholder-count="3">
+<button type="button" onClick="{{l.pick}}" style="flex: 1 1 0; min-height: 44px; border-radius: 12px; border: 1.5px solid {{l.border}}; background: {{l.bg}}; color: {{l.fg}}; font-size: 14px; font-weight: 700; cursor: pointer">{{l.name}}</button>
+</sc-for>
 </div>
 </div>
 
 <div style="background: #14213D; color: #FFFFFF; border-radius: 22px; padding: 18px; display: flex; flex-direction: column; gap: 10px">
 <div style="display: flex; justify-content: space-between; align-items: center">
 <div style="display: flex; flex-direction: column; gap: 2px">
-<span style="font-size: 12px; color: #C9D1E3">Daraja {{levelNum}}</span>
-<span style="font-size: 18px; font-weight: 800">{{levelName}}</span>
+<span style="font-size: 12px; color: #C9D1E3">{{tx.k74}}</span>
+<span style="font-size: 18px; font-weight: 800">{{tx.k75}}</span>
 </div>
-<span style="font-size: 14px; font-weight: 700; color: {{accent}}">{{points}} / 300 ball</span>
+<span style="font-size: 14px; font-weight: 700; color: {{accent}}">{{points}} {{tx.k76}}</span>
 </div>
 <div style="height: 10px; background: rgba(255,255,255,0.15); border-radius: 999px; overflow: hidden"><div style="height: 10px; width: {{levelPct}}%; background: {{accent}}; border-radius: 999px"></div></div>
-<span style="font-size: 12px; color: #C9D1E3">{{levelNext}}</span>
+<span style="font-size: 12px; color: #C9D1E3">{{tx.k77}}</span>
 </div>
 
 <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
 <div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 2px">
 <span style="font-size: 20px; font-weight: 800">{{percent}}%</span>
-<span style="font-size: 12px; color: #5B6475">Bugun</span>
+<span style="font-size: 12px; color: #5B6475">{{tx.k78}}</span>
 </div>
 <div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 2px">
 <span style="font-size: 20px; font-weight: 800">{{streak}}</span>
-<span style="font-size: 12px; color: #5B6475">Kun ketma-ket</span>
+<span style="font-size: 12px; color: #5B6475">{{tx.k79}}</span>
 </div>
 <div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 2px">
 <span style="font-size: 20px; font-weight: 800">{{bestQuiz}}</span>
-<span style="font-size: 12px; color: #5B6475">Eng yaxshi test</span>
+<span style="font-size: 12px; color: #5B6475">{{tx.k80}}</span>
 </div>
 </div>
 
 <div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
-<h2 style="margin: 0; font-size: 16px; font-weight: 700">Shu hafta</h2>
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">{{tx.k81}}</h2>
 <div style="display: flex; align-items: flex-end; justify-content: space-between; height: 110px; gap: 8px">
 <sc-for list="{{week}}" as="w" hint-placeholder-count="6">
 <div style="flex: 1 1 0; display: flex; flex-direction: column; align-items: center; gap: 6px">
@@ -594,7 +606,7 @@ button{font-family:inherit}
 </div>
 
 <div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
-<h2 style="margin: 0; font-size: 16px; font-weight: 700">Nishonlar</h2>
+<h2 style="margin: 0; font-size: 16px; font-weight: 700">{{tx.k82}}</h2>
 <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
 <sc-for list="{{badges}}" as="b" hint-placeholder-count="6">
 <div style="display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center">
@@ -606,38 +618,38 @@ button{font-family:inherit}
 </sc-for>
 </div>
 </div>
-<button type="button" onClick="{{resetAll}}" style="min-height: 48px; border-radius: 14px; border: 1px solid #E3E7EE; background: #FFFFFF; color: #9A3F06; font-size: 14px; font-weight: 600; cursor: pointer">Natijalarni nolga tushirish</button>
-<span style="font-size: 12px; color: #8A93A6; text-align: center">АРС Стандарты · versiya 1.4 · internetsiz ishlaydi</span>
+<button type="button" onClick="{{resetAll}}" style="min-height: 48px; border-radius: 14px; border: 1px solid #E3E7EE; background: #FFFFFF; color: #9A3F06; font-size: 14px; font-weight: 600; cursor: pointer">{{app.reset}}</button>
+<span style="font-size: 12px; color: #8A93A6; text-align: center">АРС Стандарты · v1.5 · {{app.offline}}</span>
 </div>
 </sc-if>
 
 </div>
 
 <!-- ============ PASTKI MENYU ============ -->
-<nav aria-label="Asosiy menyu" style="flex: none; background: #FFFFFF; border-top: 1px solid #E3E7EE; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 8px 8px 14px">
+<nav aria-label="{{tx.k83}}" style="flex: none; background: #FFFFFF; border-top: 1px solid #E3E7EE; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 8px 8px 14px">
 <button type="button" onClick="{{goHome}}" style="display: flex; flex-direction: column; align-items: center; gap: 4px; background: transparent; border: none; min-height: 52px; cursor: pointer; color: {{navHome.c}}">
 <div style="width: 56px; height: 30px; border-radius: 999px; background: {{navHome.bg}}; display: flex; align-items: center; justify-content: center">
 <svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
 </div>
-<span style="font-size: 12px; font-weight: 600">Bugun</span>
+<span style="font-size: 12px; font-weight: 600">{{tx.k78}}</span>
 </button>
 <button type="button" onClick="{{goRules}}" style="display: flex; flex-direction: column; align-items: center; gap: 4px; background: transparent; border: none; min-height: 52px; cursor: pointer; color: {{navRules.c}}">
 <div style="width: 56px; height: 30px; border-radius: 999px; background: {{navRules.bg}}; display: flex; align-items: center; justify-content: center">
 <svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"></path><path d="M4 19V5M9 8h6"></path></svg>
 </div>
-<span style="font-size: 12px; font-weight: 600">Qoidalar</span>
+<span style="font-size: 12px; font-weight: 600">{{tx.k47}}</span>
 </button>
 <button type="button" onClick="{{goQuiz}}" style="display: flex; flex-direction: column; align-items: center; gap: 4px; background: transparent; border: none; min-height: 52px; cursor: pointer; color: {{navQuiz.c}}">
 <div style="width: 56px; height: 30px; border-radius: 999px; background: {{navQuiz.bg}}; display: flex; align-items: center; justify-content: center">
 <svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17h.01"></path></svg>
 </div>
-<span style="font-size: 12px; font-weight: 600">Test</span>
+<span style="font-size: 12px; font-weight: 600">{{tx.k84}}</span>
 </button>
 <button type="button" onClick="{{goProfile}}" style="display: flex; flex-direction: column; align-items: center; gap: 4px; background: transparent; border: none; min-height: 52px; cursor: pointer; color: {{navProfile.c}}">
 <div style="width: 56px; height: 30px; border-radius: 999px; background: {{navProfile.bg}}; display: flex; align-items: center; justify-content: center">
 <svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>
 </div>
-<span style="font-size: 12px; font-weight: 600">Profil</span>
+<span style="font-size: 12px; font-weight: 600">{{tx.k85}}</span>
 </button>
 </nav>
 
@@ -647,17 +659,17 @@ button{font-family:inherit}
 <div role="dialog" aria-label="{{sp.name}}" style="background: #FFFFFF; border-radius: 28px 28px 0 0; max-height: 92%; overflow-y: auto; padding: 10px 20px 22px; display: flex; flex-direction: column; gap: 14px">
 <div style="align-self: center; width: 40px; height: 5px; border-radius: 999px; background: #D5DAE3"></div>
 <div style="display: flex; justify-content: space-between; align-items: center">
-<span style="font-size: 13px; font-weight: 600; color: #5B6475">Detal {{sp.n}} / {{sheetTotal}}</span>
-<button type="button" onClick="{{closeSpot}}" aria-label="Yopish" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #E3E7EE; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #14213D">
+<span style="font-size: 13px; font-weight: 600; color: #5B6475">{{tx.k86}} {{sp.n}} / {{sheetTotal}}</span>
+<button type="button" onClick="{{closeSpot}}" aria-label="{{tx.k87}}" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #E3E7EE; background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #14213D">
 <svg class="ic" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
 </button>
 </div>
-<sc-if value="{{sp.imCap}}"><img src="img/d7df8835c9e8fe0c7c1a944a79eb76f9.jpg" alt="Kepka yaqindan" style="width: 100%; height: 190px; object-fit: cover; border-radius: 18px; display: block"></sc-if>
-<sc-if value="{{sp.imCollar}}"><img src="img/769e36fe6e56fd9cabaf1c0ae79f481a.jpg" alt="Yoqa, futbolka va zamok yaqindan" style="width: 100%; height: 190px; object-fit: cover; border-radius: 18px; display: block"></sc-if>
-<sc-if value="{{sp.imPocket}}"><img src="img/164dca05a7cbdf60e2d87742a86c3820.jpg" alt="Logotipli choʻntak yaqindan" style="width: 100%; height: 190px; object-fit: cover; border-radius: 18px; display: block"></sc-if>
-<sc-if value="{{sp.imTshirt}}"><img src="img/472a1cffb88850668e17311783a7bf42.jpg" alt="Yoqa va kulrang futbolka yaqindan" style="width: 100%; height: 190px; object-fit: cover; border-radius: 18px; display: block"></sc-if>
-<sc-if value="{{sp.imStripe}}"><img src="img/ea01b54c55acef02ee3ce380de222df2.jpg" alt="Nur qaytaruvchi kulrang chiziq yaqindan" style="width: 100%; height: 190px; object-fit: cover; border-radius: 18px; display: block"></sc-if>
-<sc-if value="{{sp.imCuff}}"><img src="img/58560d0400749043a8c4665be00603ce.jpg" alt="Rezinkali manjet yaqindan" style="width: 100%; height: 190px; object-fit: cover; border-radius: 18px; display: block"></sc-if>
+<sc-if value="{{sp.imCap}}"><img src="img/d7df8835c9e8fe0c7c1a944a79eb76f9.jpg" alt="{{tx.k88}}" style="width: 100%; height: 190px; object-fit: cover; border-radius: 18px; display: block"></sc-if>
+<sc-if value="{{sp.imCollar}}"><img src="img/769e36fe6e56fd9cabaf1c0ae79f481a.jpg" alt="{{tx.k89}}" style="width: 100%; height: 190px; object-fit: cover; border-radius: 18px; display: block"></sc-if>
+<sc-if value="{{sp.imPocket}}"><img src="img/164dca05a7cbdf60e2d87742a86c3820.jpg" alt="{{tx.k90}}" style="width: 100%; height: 190px; object-fit: cover; border-radius: 18px; display: block"></sc-if>
+<sc-if value="{{sp.imTshirt}}"><img src="img/472a1cffb88850668e17311783a7bf42.jpg" alt="{{tx.k91}}" style="width: 100%; height: 190px; object-fit: cover; border-radius: 18px; display: block"></sc-if>
+<sc-if value="{{sp.imStripe}}"><img src="img/ea01b54c55acef02ee3ce380de222df2.jpg" alt="{{tx.k92}}" style="width: 100%; height: 190px; object-fit: cover; border-radius: 18px; display: block"></sc-if>
+<sc-if value="{{sp.imCuff}}"><img src="img/58560d0400749043a8c4665be00603ce.jpg" alt="{{tx.k93}}" style="width: 100%; height: 190px; object-fit: cover; border-radius: 18px; display: block"></sc-if>
 <div style="display: flex; flex-direction: column; gap: 8px">
 <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap">
 <h2 style="margin: 0; font-size: 22px; font-weight: 800">{{sp.name}}</h2>
@@ -684,8 +696,8 @@ button{font-family:inherit}
 </sc-for>
 </div>
 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
-<button type="button" onClick="{{prevSpot}}" style="min-height: 50px; border-radius: 14px; border: 1.5px solid #14213D; background: #FFFFFF; color: #14213D; font-size: 15px; font-weight: 700; cursor: pointer">Oldingi</button>
-<button type="button" onClick="{{nextSpot}}" style="min-height: 50px; border-radius: 14px; border: none; background: {{accent}}; color: #14213D; font-size: 15px; font-weight: 700; cursor: pointer">Keyingi detal</button>
+<button type="button" onClick="{{prevSpot}}" style="min-height: 50px; border-radius: 14px; border: 1.5px solid #14213D; background: #FFFFFF; color: #14213D; font-size: 15px; font-weight: 700; cursor: pointer">{{tx.k94}}</button>
+<button type="button" onClick="{{nextSpot}}" style="min-height: 50px; border-radius: 14px; border: none; background: {{accent}}; color: #14213D; font-size: 15px; font-weight: 700; cursor: pointer">{{tx.k95}}</button>
 </div>
 </div>
 </div>
@@ -864,6 +876,34 @@ button{font-family:inherit}
 </script>
 <script>
 
+var LANG = 'uz';
+var RU = {"Qoida yoki vaziyatni qidiring": "Найти правило или ситуацию", "Yopiq": "Закрыто", "Smena boshida": "В начале смены", "Ishni boshlash": "Начало работы", "Vaqtida kelish va Verifix": "Приход вовремя и Verifix", "Ishni tartibli boshlash kun davomida vaqtni tejaydi. Harakatlar ketma-ket bajariladi, vaqt behuda sarflanmaydi.": "Организованное начало работы экономит время в течение дня. Действия выполняются последовательно, время не тратится впустую.", "Belgilangan vaqtda ish joyiga kelish": "Приходить на работу в установленное время", "Kelganini Verifix’da qayd etish": "Отметить приход в Verifix", "Ishni tartibli boshlash": "Начинать работу организованно", "Harakatlarni ketma-ket bajarish": "Выполнять действия последовательно", "Verifix: ishga kelish vaqti": "Verifix: время прихода", "1-smena: 09:00": "1-я смена: 09:00", "2-smena: 12:00": "2-я смена: 12:00", "3-smena: 21:00": "3-я смена: 21:00", "Kunni rejaga qarab boshlang": "Начинайте день по плану", "Vaqtni behuda sarflash": "Тратить время впустую", "Verifix’da qayd etmaslik": "Не отмечаться в Verifix", "Ishdan oldin": "Перед работой", "Xizmat formasi": "Служебная форма", "Belgilangan forma va tartibli koʻrinish": "Установленная форма и опрятный вид", "Xodim filialda kompaniyaning yuzi. Belgilangan forma va tartibli koʻrinish majburiy.": "Сотрудник в филиале — лицо компании. Установленная форма и опрятный вид обязательны.", "Belgilangan xizmat formasini kiyish": "Носить установленную служебную форму", "Tashqi koʻrinishni tartibga keltirish": "Привести внешний вид в порядок", "Forma toza va butun": "Форма чистая и целая", "Rasmdagi nuqtalarni bosib, har bir detalni oʻrganing": "Нажимайте на точки на фото и изучите каждую деталь", "Formasiz yoki tartibsiz koʻrinishda ishlash": "Работать без формы или в неопрятном виде", "Yoʻlga chiqishdan oldin": "Перед выездом", "Transportni tekshirish": "Проверка транспорта", "Texnik holat, tozalik, hujjatlar": "Техсостояние, чистота, документы", "Yoʻlga chiqishdan oldin barcha kamchiliklar bartaraf etiladi. Hujjatlar toʻgʻri va amal qilish muddati oʻtmagan boʻlishi shart.": "Перед выездом устраняются все недостатки. Документы должны быть правильными и действующими.", "Xizmat transportining texnik holatini tekshirish": "Проверить техническое состояние служебного транспорта", "Transport tozaligini nazorat qilish": "Следить за чистотой транспорта", "Kamchiliklarni yoʻlga chiqishdan oldin bartaraf etish": "Устранять недостатки до выезда", "Transport hujjatlari borligini tekshirish": "Проверить наличие документов на транспорт", "Shaxsiy va xizmat hujjatlarini tekshirish": "Проверить личные и служебные документы", "Hujjatlarning amal qilish muddatini nazorat qilish": "Следить за сроком действия документов", "Kamchilikni darhol tuzating yoki xabar bering": "Сразу устраните недостаток или сообщите о нём", "Nosoz transportda yoʻlga chiqish": "Выезжать на неисправном транспорте", "Muddati oʻtgan hujjat bilan yurish": "Ездить с просроченными документами", "Kamchilik topilsa": "Если найден недостаток", "Kamchilik holatida": "При недостатке", "Dispetcherga xabar, koʻrsatmasiz boshlamaslik": "Сообщить диспетчеру, не начинать без указания", "Hujjatlardagi kamchilik bilan ishlash xodimni ham, kompaniyani ham xavf ostiga qoʻyadi.": "Работа с недостатками в документах ставит под угрозу и сотрудника, и компанию.", "Hujjatda kamchilik boʻlsa, darhol dispetcherga xabar berish": "При недостатке в документах сразу сообщить диспетчеру", "Rahbar koʻrsatmasisiz xizmatni boshlamaslik": "Не начинать работу без указания руководителя", "Rahbar koʻrsatmasini kuting": "Дождитесь указания руководителя", "Kamchilikni yashirish": "Скрывать недостаток", "Oʻzboshimchalik bilan ishni boshlash": "Самовольно начинать работу", "Ariza kelganda": "При поступлении заявки", "Tayyorgarlik": "Подготовка", "Arizadan yoʻlga chiqishgacha": "От заявки до выезда", "Toʻgʻri tayyorgarlik filialga bir marta borib, muammoni bir martada hal qilish imkonini beradi.": "Правильная подготовка позволяет решить проблему за один выезд в филиал.", "Telefon orqali tushgan arizalarni tekshirish": "Проверять заявки, поступившие по телефону", "Har bir ariza bilan tanishish": "Ознакомиться с каждой заявкой", "Muammo turini aniqlash": "Определить тип проблемы", "Arizaga mos asbob-uskunani tanlash": "Подобрать инструменты под заявку", "Uskunalar toʻliq va sozligini tekshirish": "Проверить комплектность и исправность оборудования", "Yetishmayotgan materiallarni yuk-xati (nakladnoy) asosida toʻldirish": "Пополнять недостающие материалы по накладной", "Arizaga asosan filialga yoʻlga chiqish": "Выезжать в филиал согласно заявке", "Har bir arizani oxirigacha oʻqing": "Читайте каждую заявку до конца", "Arizani oʻqimay yoʻlga chiqish": "Выезжать, не прочитав заявку", "Nakladnoysiz material olish": "Брать материалы без накладной", "Yoʻlda": "В пути", "Haydovchilik madaniyati": "Культура вождения", "Xavfsiz va namunali haydash": "Безопасное и образцовое вождение", "Safia logotipli avtomobil — kompaniya reklamasi. Yoʻldagi har bir harakatingizni mijozlar koʻradi.": "Автомобиль с логотипом Safia — реклама компании. Каждое ваше действие на дороге видят клиенты.", "Haydovchi va yoʻlovchilar xavfsizlik kamarini taqqan": "Водитель и пассажиры пристёгнуты", "Yoʻl harakati qoidalari va tezlik chegarasiga rioya qilish": "Соблюдать ПДД и скоростной режим", "Haydash paytida telefondan foydalanmaslik": "Не пользоваться телефоном за рулём", "Yoʻlda boshqa haydovchilarga hurmat bilan munosabat": "Уважительно относиться к другим водителям", "Filial oldida toʻgʻri va xavfsiz joyga toʻxtash": "Парковаться у филиала правильно и безопасно", "Marshrutni oldindan rejalashtiring": "Планируйте маршрут заранее", "Shoshilmang: xavfsizlik birinchi": "Не спешите: безопасность прежде всего", "Keskin manevr va tezlikni oshirish": "Резкие манёвры и превышение скорости", "Signal chalish, janjallashish": "Сигналить, конфликтовать", "Avtomobilni shaxsiy ishlarda ishlatish": "Использовать автомобиль в личных целях", "Filialda": "В филиале", "Filialda ishlash tartibi": "Порядок работы в филиале", "Salomlashuvdan video tasdiqgacha": "От приветствия до видеоподтверждения", "Filialda xodim faqat xizmat vazifasi doirasida ishlaydi va natijani masʼul shaxsga tasdiqlatadi.": "В филиале сотрудник работает только в рамках служебных обязанностей и подтверждает результат у ответственного лица.", "Salomlashib, masʼul shaxsga oʻzini tanishtirish": "Поздороваться и представиться ответственному лицу", "Tashrif maqsadini aniq va qisqa aytish": "Чётко и кратко назвать цель визита", "Ichki tartib-qoidalarga rioya qilish": "Соблюдать внутренний распорядок", "Ish jarayonida tartib va tozalikni saqlash": "Соблюдать порядок и чистоту во время работы", "Filial mulkiga ehtiyotkor boʻlish": "Бережно относиться к имуществу филиала", "Natija haqida masʼul shaxsga maʼlumot berish": "Сообщить ответственному лицу о результате", "Ish joyini tartibga keltirish": "Привести рабочее место в порядок", "Masʼul xodimdan ish yakunini tasdiqlovchi video olish": "Получить от ответственного видео, подтверждающее завершение работы", "Filial xodimlariga xushmuomala boʻling": "Будьте вежливы с сотрудниками филиала", "Faqat xizmat vazifasi doirasida harakat qiling": "Действуйте только в рамках служебных обязанностей", "Video tasdiqsiz ishni yopish": "Закрывать работу без видеоподтверждения", "Fors-major: taqiqlar": "Форс-мажор: запреты", "Filialda nima qilish mumkin emas": "Что нельзя делать в филиале", "Har bir soʻz va harakat kompaniya obroʻsiga taʼsir qiladi. Quyidagilar qatʼiyan taqiqlanadi.": "Каждое слово и действие влияет на репутацию компании. Следующее строго запрещено.", "Hurmat bilan, sokin ovozda gapirish": "Говорить уважительно и спокойно", "Suhbatdoshni oxirigacha tinglash, bahslashmaslik": "Выслушивать собеседника до конца, не спорить", "Telefonni faqat ish uchun ishlatish": "Пользоваться телефоном только по работе", "Filial jihozlarida oʻtirmaslik, suyanmaslik": "Не сидеть и не опираться на оборудование филиала", "Asbob-uskunani nazoratda saqlash": "Держать инструменты под контролем", "Odobli soʻzlardan foydalaning": "Используйте вежливые слова", "Qoʻpol, asabiy yoki baland ovozda gapirish": "Говорить грубо, нервно или на повышенных тонах", "Soʻzni boʻlish, bahslashish, nomaqbul soʻzlar": "Перебивать, спорить, неуместные слова", "Jihozlarni qoʻpol surish yoki shikastlash": "Грубо двигать или повреждать оборудование", "Telefonda shaxsiy yumushlar": "Личные дела по телефону", "Ish yakunini aytmasdan ketish": "Уходить, не сообщив о завершении работы", "Smena oxirida": "В конце смены", "Ish kunini yakunlash": "Завершение рабочего дня", "Mashina, hisobot, ruxsat, Verifix": "Машина, отчёт, разрешение, Verifix", "Keyingi smena mashina va asboblarni tayyor holda qabul qilishi kerak. Ish joyi faqat ruxsat bilan tark etiladi.": "Следующая смена должна принять машину и инструменты в готовом виде. Рабочее место покидают только с разрешения.", "Mashinani tartibga keltirish va tozalash": "Привести машину в порядок и почистить", "Asbob-uskunalar holatini tekshirish": "Проверить состояние инструментов", "Bajarilgan ishlar boʻyicha hisobot berish": "Отчитаться о выполненной работе", "Dispetcherni ish yakuni haqida xabardor qilish": "Сообщить диспетчеру о завершении работы", "Ish joyini ruxsat bilan tark etish": "Покидать рабочее место с разрешения", "Ish tugaganini Verifix’da qayd etish": "Отметить уход в Verifix", "Verifix: ishdan ketish vaqti": "Verifix: время ухода", "1-smena: 18:00": "1-я смена: 18:00", "2-smena: 21:00": "2-я смена: 21:00", "3-smena: 06:00": "3-я смена: 06:00", "Hisobotni aniq va qisqa bering": "Отчитывайтесь чётко и кратко", "Ruxsatsiz ketish": "Уходить без разрешения", "Mashinani iflos qoldirish": "Оставлять машину грязной", "2-smenada ishlaysiz. Verifix’da kelishni qachon qayd etasiz?": "Вы работаете во 2-й смене. Когда отмечаете приход в Verifix?", "1-smena 09:00, 2-smena 12:00, 3-smena 21:00.": "1-я смена 09:00, 2-я смена 12:00, 3-я смена 21:00.", "Hujjatlarda kamchilik aniqlandi. Nima qilasiz?": "В документах обнаружен недостаток. Что вы сделаете?", "Ishni boshlab, keyin aytaman": "Начну работу, потом скажу", "Darhol dispetcherga xabar beraman, koʻrsatmasiz boshlamayman": "Сразу сообщу диспетчеру и без указания не начну", "Eʼtibor bermayman": "Не обращу внимания", "Darhol dispetcherga xabar beriladi va rahbar koʻrsatmasisiz xizmat boshlanmaydi.": "Нужно сразу сообщить диспетчеру; без указания руководителя работа не начинается.", "Yetishmayotgan materiallar qanday toʻldiriladi?": "Как пополняются недостающие материалы?", "Ogʻzaki soʻrab olinadi": "Берутся по устной просьбе", "Yuk-xati (nakladnoy) asosida": "По накладной", "Filialdan olinadi": "Берутся в филиале", "Yetishmayotgan jihoz va materiallar faqat yuk-xati (nakladnoy) asosida toʻldiriladi.": "Недостающее оборудование и материалы пополняются только по накладной.", "Filialda ish tugadi. Ishni qanday tasdiqlaysiz?": "Работа в филиале завершена. Как вы её подтвердите?", "Indamay ketaman": "Молча уйду", "Masʼul xodimdan ish yakunini tasdiqlovchi video olaman": "Получу видео от ответственного, подтверждающее завершение", "Ertaga qoʻngʻiroq qilaman": "Позвоню завтра", "Natija masʼul shaxsga aytiladi va undan tasdiqlovchi video rolik olinadi.": "Результат сообщается ответственному лицу, и от него берётся подтверждающий видеоролик.", "Filial xodimi norozi boʻlib gapiryapti. Qanday harakat qilasiz?": "Сотрудник филиала говорит с недовольством. Как вы поступите?", "Bahslashib, haqligimni isbotlayman": "Буду спорить и доказывать свою правоту", "Sokin tinglayman, soʻzini boʻlmayman": "Спокойно выслушаю, не перебивая", "Baland ovozda tushuntiraman": "Объясню на повышенных тонах", "Soʻzni boʻlish, bahslashish va baland ovozda gapirish taqiqlanadi.": "Перебивать, спорить и говорить на повышенных тонах запрещено.", "3-smena ishini qachon Verifix’da yakunlaysiz?": "Когда вы отмечаете уход в Verifix в 3-й смене?", "Ketish: 1-smena 18:00, 2-smena 21:00, 3-smena 06:00.": "Уход: 1-я смена 18:00, 2-я смена 21:00, 3-я смена 06:00.", "Ishga keldingiz. Verifix planshetida qaysi tugmani bosasiz?": "Вы пришли на работу. Какую кнопку нажмёте на планшете Verifix?", "Hech qaysini": "Никакую", "Kelganda ПРИХОД bosiladi. УХОД bossangiz, kelgan kuningiz ish vaqti hisoblanmaydi.": "При приходе нажимают ПРИХОД. Если нажать УХОД, рабочее время за этот день не засчитается.", "1-smena ishi soat nechada boshlanadi?": "Во сколько начинается 1-я смена?", "1-smena 09:00 da boshlanadi.": "1-я смена начинается в 09:00.", "3-smena ishi soat nechada boshlanadi?": "Во сколько начинается 3-я смена?", "3-smena 21:00 da boshlanadi.": "3-я смена начинается в 21:00.", "Verifix planshetida birinchi nima qilinadi?": "Что делают на планшете Verifix в первую очередь?", "ПРИХОД tugmasi bosiladi": "Нажимают кнопку ПРИХОД", "Ekran pastdan tepaga suriladi": "Проводят по экрану снизу вверх", "Planshet oʻchiriladi": "Выключают планшет", "Avval ekran tepaga suriladi, keyin yuz aniqlanadi, soʻng ПРИХОД bosiladi.": "Сначала проводят по экрану вверх, затем распознаётся лицо, после этого нажимают ПРИХОД.", "Filialga qanday koʻrinishda borasiz?": "В каком виде вы едете в филиал?", "Belgilangan xizmat formasida, toza va tartibli": "В установленной служебной форме, чисто и опрятно", "Oʻzimga qulay kiyimda": "В удобной для себя одежде", "Faqat kurtkada, shim farqi yoʻq": "Только в куртке, брюки неважны", "Belgilangan forma va tartibli koʻrinish majburiy.": "Установленная форма и опрятный вид обязательны.", "Formadagi kulrang nur qaytaruvchi chiziq nima uchun kerak?": "Зачем нужна серая светоотражающая полоса на форме?", "Faqat bezak uchun": "Только для украшения", "Qorongʻida va yoʻlda xodimni uzoqdan koʻrinadigan qiladi": "Делает сотрудника заметным издалека в темноте и на дороге", "Hech qanday vazifasi yoʻq": "Никакой функции нет", "Nur qaytaruvchi chiziq xodimni qorongʻida va transport yonida koʻrinadigan qiladi.": "Светоотражающая полоса делает сотрудника заметным в темноте и рядом с транспортом.", "Kurtka ostidan qanday futbolka kiyiladi?": "Какую футболку надевают под куртку?", "Istalgan rangli futbolka": "Футболку любого цвета", "Kulrang, yozuvsiz futbolka": "Серую футболку без надписей", "Futbolka shart emas": "Футболка не обязательна", "Kurtka ostidan faqat kulrang, yozuvsiz futbolka kiyiladi.": "Под куртку надевается только серая футболка без надписей.", "Avtomobilda qaysi hujjatlar boʻlishi shart?": "Какие документы обязательно должны быть в автомобиле?", "Faqat haydovchilik guvohnomasi": "Только водительское удостоверение", "Guvohnoma, tex. pasport, ishonchnoma va sugʻurta": "Удостоверение, техпаспорт, доверенность и страховка", "Hujjat shart emas": "Документы не нужны", "Haydovchilik guvohnomasi, texnik pasport, ishonchnoma va sugʻurta boʻlishi shart.": "Обязательны водительское удостоверение, техпаспорт, доверенность и страховка.", "Avtomobilda nosozlik topdingiz. Nima qilasiz?": "Вы нашли неисправность в автомобиле. Что вы сделаете?", "Yoʻlga chiqaveraman": "Всё равно выеду", "Yoʻlga chiqishdan oldin bartaraf etaman yoki xabar beraman": "Устраню до выезда или сообщу", "Ertaga tuzataman": "Исправлю завтра", "Barcha kamchiliklar yoʻlga chiqishdan oldin bartaraf etiladi.": "Все недостатки устраняются до выезда.", "Sugʻurta muddati oʻtgan. Yoʻlga chiqish mumkinmi?": "Страховка просрочена. Можно ли выезжать?", "Ha, yaqin masofaga": "Да, если недалеко", "Yoʻq, avval dispetcherga xabar beraman": "Нет, сначала сообщу диспетчеру", "Ha, hech kim tekshirmaydi": "Да, никто не проверит", "Hujjatlarning amal qilish muddati oʻtmagan boʻlishi shart.": "Документы должны быть действующими.", "Rahbar koʻrsatmasi hali kelmadi. Ishni boshlaysizmi?": "Указания руководителя ещё нет. Начнёте работу?", "Ha, vaqt ketmasin": "Да, чтобы не терять время", "Yoʻq, koʻrsatmani kutaman": "Нет, дождусь указания", "Hamkasbdan soʻrab boshlayman": "Спрошу коллегу и начну", "Rahbar koʻrsatmasisiz xizmat faoliyati boshlanmaydi.": "Без указания руководителя работа не начинается.", "Kamchilik haqida kimga birinchi xabar berasiz?": "Кому вы первым сообщите о недостатке?", "Dispetcherga": "Диспетчеру", "Filial xodimiga": "Сотруднику филиала", "Hech kimga": "Никому", "Kamchilik aniqlansa, darhol dispetcherga xabar beriladi.": "При обнаружении недостатка сразу сообщают диспетчеру.", "Yetishmayotgan materiallar faqat yuk-xati (nakladnoy) asosida toʻldiriladi.": "Недостающие материалы пополняются только по накладной.", "Telefon orqali ariza tushdi. Birinchi nima qilasiz?": "Поступила заявка по телефону. Что вы сделаете первым делом?", "Darhol filialga yoʻlga chiqaman": "Сразу выеду в филиал", "Ariza bilan tanishib, muammo turini aniqlayman": "Ознакомлюсь с заявкой и определю тип проблемы", "Keyingi arizani kutaman": "Подожду следующую заявку", "Avval ariza va muammo turi, keyin mos asbob-uskuna, shundan soʻng yoʻlga chiqish.": "Сначала заявка и тип проблемы, затем подходящие инструменты, и только потом выезд.", "Asbob-uskuna sozligi qachon tekshiriladi?": "Когда проверяется исправность инструментов?", "Filialga borgach": "По приезде в филиал", "Tekshirilmaydi": "Не проверяется", "Uskunalar toʻliq va sozligi yoʻlga chiqishdan oldin tekshiriladi.": "Комплектность и исправность оборудования проверяются до выезда.", "Haydash paytida telefon jiringladi. Nima qilasiz?": "Во время движения зазвонил телефон. Что вы сделаете?", "Gaplashib ketaveraman": "Поговорю на ходу", "Xavfsiz joyda toʻxtab, keyin javob beraman": "Остановлюсь в безопасном месте и отвечу", "Yurib ketayotib SMS yozaman": "Напишу SMS на ходу", "Haydash paytida telefondan foydalanilmaydi.": "Во время вождения телефоном не пользуются.", "Nega yoʻlda namunali haydash muhim?": "Почему важно образцовое вождение?", "Safia logotipli avtomobilni mijozlar koʻradi": "Клиенты видят автомобиль с логотипом Safia", "Muhim emas": "Это неважно", "Faqat jarimadan qochish uchun": "Только чтобы избежать штрафа", "Logotipli avtomobil kompaniya reklamasi, har bir harakatingiz koʻrinadi.": "Автомобиль с логотипом — реклама компании, каждое ваше действие на виду.", "Natija masʼul shaxsga aytiladi va undan tasdiqlovchi video olinadi.": "Результат сообщается ответственному лицу, и от него берётся подтверждающее видео.", "Filialga kirganda birinchi nima qilasiz?": "Что вы делаете первым делом, входя в филиал?", "Darhol ishni boshlayman": "Сразу начинаю работу", "Salomlashib, masʼul shaxsga oʻzimni tanishtiraman": "Здороваюсь и представляюсь ответственному лицу", "Telefonimga qarayman": "Смотрю в телефон", "Avval salomlashib, masʼul shaxsga oʻzingizni tanishtirasiz va tashrif maqsadini aytasiz.": "Сначала поздоровайтесь, представьтесь ответственному лицу и назовите цель визита.", "Filialda charchadingiz. Mijozlar stuliga oʻtirsa boʻladimi?": "Вы устали в филиале. Можно сесть на стул для клиентов?", "Ha, bir oz dam olaman": "Да, немного отдохну", "Yoʻq, filial jihozlarida oʻtirish taqiqlanadi": "Нет, сидеть на оборудовании филиала запрещено", "Faqat hech kim koʻrmasa": "Только если никто не видит", "Filial stuli va jihozlarida oʻtirish, suyanish taqiqlanadi.": "Сидеть и опираться на стулья и оборудование филиала запрещено.", "Ish tugadi. Verifix planshetida qaysi tugmani bosasiz?": "Работа закончена. Какую кнопку нажмёте на планшете Verifix?", "Ketishda УХОД bosiladi. ПРИХОД bossangiz, ketishingiz qayd etilmaydi.": "При уходе нажимают УХОД. Если нажать ПРИХОД, уход не будет отмечен.", "Ish joyini qanday tark etasiz?": "Как вы покидаете рабочее место?", "Dispetcherni xabardor qilib, ruxsat bilan": "Сообщив диспетчеру и с разрешения", "Hamkasbga aytib qoʻyaman": "Скажу коллеге", "Ish joyi faqat ruxsat bilan, dispetcherni xabardor qilib tark etiladi.": "Рабочее место покидают только с разрешения, предупредив диспетчера.", "1-smena ishi soat nechada tugaydi?": "Во сколько заканчивается 1-я смена?", "1-smena 09:00–18:00.": "1-я смена: 09:00–18:00.", "Vaqtli keluvchi": "Пунктуальный", "Namunali forma": "Образцовая форма", "Transport nazoratchisi": "Контролёр транспорта", "Tayyor brigada": "Готовая бригада", "Test ustasi": "Мастер тестов", "Oy xodimi": "Сотрудник месяца", "Vazifa": "Задачи", "Yuklatilgan vazifalarni aniq va oʻz vaqtida bajarish.": "Точно и своевременно выполнять поставленные задачи.", "Xavfsizlik": "Безопасность", "Xavfsizlik talablariga rioya qilish.": "Соблюдать требования безопасности.", "Mulk": "Имущество", "Biriktirilgan asbob-uskuna, texnika va mulkning sozligi va saqlanishi.": "Исправность и сохранность закреплённых инструментов, техники и имущества.", "Holat": "Ситуации", "Tinchlik va favqulodda holatlarda birdek javobgar.": "Одинаково отвечает в обычных и чрезвычайных ситуациях.", "Boʻysunish": "Подчинение", "Bevosita boʻlim boshligʻi va dispetcherga.": "Непосредственно начальнику отдела и диспетчеру.", "Smenalar": "Смены", "1-smena 09:00–18:00, 2-smena 12:00–21:00, 3-smena 21:00–06:00 (Verifix).": "1-я смена 09:00–18:00, 2-я смена 12:00–21:00, 3-я смена 21:00–06:00 (Verifix).", "Kepka": "Кепка", "Safia logotipli korporativ kepka. Bino tashqarisida va ishlab chiqarish hududida doim kiyiladi.": "Корпоративная кепка с логотипом Safia. Носится всегда вне здания и на производственной территории.", "Kozirek oldinga qaragan": "Козырёк смотрит вперёд", "Logotip peshona markazida": "Логотип по центру лба", "Toza, dogʻsiz, shakli buzilmagan": "Чистая, без пятен, форма не нарушена", "Kozirekni orqaga yoki yonga burish": "Поворачивать козырёк назад или вбок", "Boshqa kepka yoki bosh kiyim": "Другая кепка или головной убор", "Kepkani choʻntakda olib yurish": "Носить кепку в кармане", "Yoqa va futbolka": "Воротник и футболка", "Kurtka ostidan faqat kulrang, yozuvsiz futbolka kiyiladi. Yoqa ikki tomonda tekis yotadi.": "Под куртку надевается только серая футболка без надписей. Воротник лежит ровно с обеих сторон.", "Kulrang, bir rangli futbolka": "Серая однотонная футболка", "Yoqa tekis, qayrilmagan": "Воротник ровный, не загнут", "Rangli yoki yozuvli futbolka": "Цветная футболка или с надписями", "Yoqa ichkariga qayrilgan": "Воротник загнут внутрь", "Sharf yoki taqinchoq osilib turishi": "Свисающий шарф или украшения", "Nur qaytaruvchi chiziq": "Светоотражающая полоса", "Koʻkrak va orqadagi kulrang nur qaytaruvchi tasma qorongʻida va transport yonida xodimni uzoqdan koʻrinadigan qiladi.": "Серая светоотражающая лента на груди и спине делает сотрудника заметным издалека в темноте и рядом с транспортом.", "Toza, kulrang rangi aniq koʻrinadi": "Чистая, серый цвет хорошо виден", "Ustidan hech narsa yopilmagan": "Ничем не закрыта", "Ustidan sumka tasmasi yoki boshqa kiyim yopish": "Закрывать ремнём сумки или другой одеждой", "Yirtilgan yoki koʻchgan chiziq": "Порванная или отклеившаяся полоса", "Logotipli choʻntak": "Карман с логотипом", "Chap koʻkrak choʻntagida Safia logotipi tikilgan. Logotip doim toza va ochiq koʻrinib turishi kerak.": "На левом нагрудном кармане вышит логотип Safia. Логотип всегда должен быть чистым и на виду.", "Qopqogʻi yopiq, logotip koʻrinadi": "Клапан закрыт, логотип виден", "Choʻntak tekis, boʻrtmagan": "Карман ровный, не оттопырен", "Choʻntakni telefon, ruchka bilan boʻrttirish": "Оттопыривать карман телефоном, ручкой", "Logotip ustiga boshqa nishon taqish": "Крепить другие значки поверх логотипа", "Zamok": "Молния", "Ish vaqtida kurtka zamogi yopiq boʻladi: ozoda koʻrinish va uskunaga ilinib qolmaslik uchun.": "В рабочее время молния куртки застёгнута: для опрятного вида и чтобы не зацепиться за оборудование.", "Zamok koʻkrakkacha yoki yuqorigacha yopiq": "Молния застёгнута до груди или доверху", "Zamok soz, tishlari butun": "Молния исправна, зубцы целые", "Kurtkani ochiq, hilpiratib yurish": "Ходить в расстёгнутой куртке", "Buzilgan zamok bilan kiyish": "Носить со сломанной молнией", "Yon choʻntaklar": "Боковые карманы", "Shimning yon choʻntaklari kichik ish buyumlari uchun. Ortiqcha yuk bilan toʻldirilmaydi.": "Боковые карманы брюк — для мелких рабочих предметов. Не перегружаются.", "Qopqogʻi yopiq": "Клапан закрыт", "Faqat yengil, kerakli buyumlar": "Только лёгкие, нужные предметы", "Boʻrtib turgan, toʻldirilgan choʻntak": "Оттопыренный, набитый карман", "Choʻntakdan narsalar chiqib turishi": "Вещи торчат из кармана", "Tashqi koʻrinish": "Внешний вид", "Yoʻlga chiqishdan oldin avtomobilni aylanib chiqib, kuzov, oynalar, chiroqlar va koʻzgularni koʻzdan kechiring.": "Перед выездом обойдите автомобиль и осмотрите кузов, стёкла, фары и зеркала.", "Kuzov va oynalar toza": "Кузов и стёкла чистые", "Chiroqlar va koʻzgular butun, ishlaydi": "Фары и зеркала целые, работают", "Yangi shikast yoʻq": "Новых повреждений нет", "Iflos avtomobilda filialga borish": "Ехать в филиал на грязном автомобиле", "Shikastni yashirish, xabar bermaslik": "Скрывать повреждение, не сообщать", "Balonlar bosimi": "Давление в шинах", "Toʻrttala balon bosimini tekshiring. Bosim avtomobil meʼyoriga mos boʻlishi kerak.": "Проверьте давление во всех четырёх шинах. Оно должно соответствовать норме автомобиля.", "Bosim meʼyorda, balonlar bir xil": "Давление в норме, шины одинаковые", "Zaxira balon joyida": "Запасное колесо на месте", "Yumshoq balon bilan yoʻlga chiqish": "Выезжать со спущенной шиной", "Yoqilgʻi": "Топливо", "Yoqilgʻi kunlik marshrut uchun yetarli ekanini tekshiring.": "Убедитесь, что топлива хватит на дневной маршрут.", "Yoqilgʻi yetarli": "Топлива достаточно", "Bak qopqogʻi mahkam yopiq": "Крышка бака плотно закрыта", "Yoqilgʻi tugay deb turganda yoʻlga chiqish": "Выезжать почти без топлива", "Motor moyi": "Моторное масло", "Moy darajasini dvigatel sovuq holatda shchup bilan tekshiring.": "Проверяйте уровень масла щупом на холодном двигателе.", "Moy MIN va MAX belgilari orasida": "Масло между отметками MIN и MAX", "Moy oqishi yoʻq": "Подтёков масла нет", "Moy kam holda yoʻlga chiqish": "Выезжать с низким уровнем масла", "Qizigan dvigatelda tekshirish": "Проверять на горячем двигателе", "Hujjatlar": "Документы", "Quyidagi 4 hujjat yoningizda va amal qilish muddati oʻtmagan boʻlishi shart.": "Эти 4 документа должны быть при вас и действующими.", "a) Haydovchilik guvohnomasi": "a) Водительское удостоверение", "b) Texnik pasport": "b) Технический паспорт", "c) Ishonchnoma": "c) Доверенность", "d) Sugʻurta polisi": "d) Страховой полис", "Kamchilikni dispetcherga aytmaslik": "Не сообщать диспетчеру о недостатке", "Xayrli tong!": "Доброе утро!", "Dushanba, 9-noyabr": "Понедельник, 9 ноября", "ball": "баллов", "5 kun ketma-ket": "5 дней подряд", "bosqich": "этапов", "Bugungi standart": "Стандарт на сегодня", "% bajarildi": "% выполнено", "Keyingi:": "Далее:", "Barakalla!": "Отлично!", "Bugungi kun namunali oʻtdi.": "Сегодняшний день прошёл образцово.", "Mening ish kunim": "Мой рабочий день", "Bosqichni bosing": "Нажмите на этап", "Bajarildi": "Выполнено", "Hozir": "Сейчас", "Kutilmoqda": "Ожидает", "Orqaga": "Назад", "Bosqich": "Этап", "Korporativ forma": "Корпоративная форма", "Nuqtani bosing: har bir detal haqida": "Нажмите на точку: о каждой детали", "koʻrildi": "просмотрено", "Koʻrilmagan": "Не просмотрено", "Koʻrildi": "Просмотрено", "Xizmat avtomobili": "Служебный автомобиль", "Nuqtani bosing: nimani tekshirish kerak": "Нажмите на точку: что нужно проверить", "Planshetda oʻzingiz mashq qiling": "Потренируйтесь на планшете", "Safia korporativ formasidagi xodim, old tomondan": "Сотрудник в корпоративной форме Safia, вид спереди", "Safia xizmat avtomobili Damas": "Служебный автомобиль Safia Damas", "Verifix planshet, qulflangan ekran": "Планшет Verifix, экран блокировки", "Ekranni tepaga suring": "Проведите по экрану вверх", "Tepaga suring": "Проведите вверх", "3 · bosing": "3 · нажмите", "Verifix planshet, yuzni aniqlash ekrani": "Планшет Verifix, экран распознавания лица", "Yuzni aniqlash": "Распознавание лица", "Verifix planshet, ПРИХОД va УХОД tugmalari": "Планшет Verifix, кнопки ПРИХОД и УХОД", "ПРИХОД (kelish)": "ПРИХОД", "УХОД (ketish)": "УХОД", "Verifix planshet": "Планшет Verifix", "Bosish emas: barmoqni ekranda pastdan tepaga suring.": "Не нажимайте: проведите пальцем по экрану снизу вверх.", "Qaytadan mashq qilish": "Потренироваться ещё раз", "Namuna": "Образец", "Nega muhim?": "Почему это важно?", "Tekshiruv roʻyxati": "Чек-лист", "Toʻgʻri": "Правильно", "Notoʻgʻri": "Неправильно", "Testni topshirish · 5 ta savol": "Пройти тест · 5 вопросов", "Avval barcha bandlarni belgilang": "Сначала отметьте все пункты", "Bu bosqich bajarildi": "Этап выполнен", "Qoidalar": "Правила", "Xodimning xizmat standarti: avariya taʼmirlash brigadasi": "Стандарт работы сотрудника: аварийно-ремонтная бригада", "Qoidalarni qidirish": "Поиск по правилам", "Tezkor eslatmalar": "Быстрые напоминания", "Verifix": "Verifix", "09:00 · 12:00 · 21:00 smena boshida qayd eting": "09:00 · 12:00 · 21:00 — отмечайтесь в начале смены", "6 nazorat": "6 проверок", "yoʻlga chiqishdan oldin transport va hujjatlar": "транспорт и документы перед выездом", "Video": "Видео", "ish yakunini masʼul xodimdan tasdiqlating": "подтвердите завершение работы у ответственного", "Dispetcher": "Диспетчер", "kamchilik va ish yakuni haqida xabar bering": "сообщайте о недостатках и завершении работы", "Kun tartibi boʻyicha": "По распорядку дня", "Xodim majburiyati": "Обязанности сотрудника", "Bilimingizni sinang": "Проверьте свои знания", "Har bir toʻgʻri javob uchun +10 ball": "+10 баллов за каждый правильный ответ", "Savol": "Вопрос", "VAZIYAT": "СИТУАЦИЯ", "Qaytadan boshlash": "Начать заново", "Bosqichga qaytish": "Вернуться к этапу", "SAVOL": "ВОПРОС", "Keyingi bosqichga oʻtish": "Перейти к следующему этапу", "Bosh sahifaga": "На главную", "Bosqichni qaytadan oʻtish": "Пройти этап заново", "XI": "СИ", "[Xodim ismi]": "[Имя сотрудника]", "[Lavozim] · [Filial nomi]": "[Должность] · [Филиал]", "Daraja 3": "Уровень 3", "Standart ustasi": "Мастер стандарта", "/ 300 ball": "/ 300 баллов", "Keyingi daraja: “Oltin standart”": "Следующий уровень: «Золотой стандарт»", "Bugun": "Сегодня", "Kun ketma-ket": "Дней подряд", "Shu hafta": "На этой неделе", "Nishonlar": "Значки", "Asosiy menyu": "Главное меню", "Test": "Тест", "Profil": "Профиль", "Detal": "Деталь", "Yopish": "Закрыть", "Kepka yaqindan": "Кепка крупным планом", "Yoqa, futbolka va zamok yaqindan": "Воротник, футболка и молния крупным планом", "Logotipli choʻntak yaqindan": "Карман с логотипом крупным планом", "Yoqa va kulrang futbolka yaqindan": "Воротник и серая футболка крупным планом", "Nur qaytaruvchi kulrang chiziq yaqindan": "Серая светоотражающая полоса крупным планом", "Rezinkali manjet yaqindan": "Манжета на резинке крупным планом", "Oldingi": "Предыдущая", "Keyingi detal": "Следующая деталь", " ta qoida · ": " п. · ", " ta savolga toʻgʻri javob berish kerak. Bosqichdagi belgilar tozalandi: bosqichni boshidan qayta oʻting.": " вопросов. Отметки этапа сброшены: пройдите этап заново с начала.", " toʻgʻri javob": " правильных ответов", "-bosqich testi": "-й этап: тест", "-bosqich “": "-й этап “", "1-qadam. Planshet ekranini barmoq bilan pastdan tepaga suring.": "Шаг 1. Проведите пальцем по экрану планшета снизу вверх.", "2-qadam. Kameraga yuzingizni qarating va kepka ustidagi nuqtani bosing.": "Шаг 2. Посмотрите в камеру и нажмите на точку над кепкой.", "3-qadam. “ПРИХОД” (kelish) tugmasini bosing. Diqqat: “УХОД” ni bossangiz, kelgan kuningiz ish vaqti hisoblanmaydi!": "Шаг 3. Нажмите «ПРИХОД». Внимание: если нажать «УХОД», рабочее время за этот день не засчитается!", "3-qadam. “УХОД” (ketish) tugmasini bosing. Diqqat: “ПРИХОД” ni bossangiz, ketishingiz qayd etilmaydi!": "Шаг 3. Нажмите «УХОД». Внимание: если нажать «ПРИХОД», ваш уход не будет отмечен!", "Avval ": "Сначала завершите ", "Aʼlo! Siz standartlarni mukammal bilasiz.": "Отлично! Вы прекрасно знаете стандарты.", "Barakalla! Kelishingiz qayd etildi. Smena boshlanishi: 09:00 · 12:00 · 21:00.": "Отлично! Приход отмечен. Начало смены: 09:00 · 12:00 · 21:00.", "Barakalla! Ketishingiz qayd etildi. Smena yakuni: 18:00 · 21:00 · 06:00.": "Отлично! Уход отмечен. Конец смены: 18:00 · 21:00 · 06:00.", "Barcha bosqichlar yakunlandi!": "Все этапы завершены!", "Ch": "Ср", "Du": "Пн", "Ish kuningiz yakunlandi": "Рабочий день завершён", "Ish vaqtingiz hisoblanmoqda": "Рабочее время учитывается", "Ju": "Пт", "Keyingi bosqich ochildi: “": "Открыт следующий этап: “", "Keyingi savol": "Следующий вопрос", "Majburiy": "Обязательно", "Natijani koʻrish": "Посмотреть результат", "Notoʻgʻri kiyish": "Неправильно", "Oʻtish uchun barcha ": "Чтобы пройти, нужно правильно ответить на все ", "Oʻtish uchun: ": "Для прохождения: ", "Pa": "Чт", "Qadam ": "Шаг ", "Se": "Вт", "Sh": "Сб", "Tabriklaymiz! Test topshirildi": "Поздравляем! Тест пройден", "Tavsiya": "Рекомендуется", "Test topshirilmadi": "Тест не пройден", "Toʻgʻri javob: “": "Правильный ответ: “", "Toʻgʻri kiyish": "Правильно", "Toʻgʻri!": "Верно!", "Toʻgʻri! +10 ball": "Верно! +10 баллов", "Unchalik emas": "Не совсем", "Verifix’da kelishni qayd etish": "Отметка прихода в Verifix", "Verifix’da ketishni qayd etish": "Отметка ухода в Verifix", "Xato! Siz ПРИХОД ni bosdingiz": "Ошибка! Вы нажали ПРИХОД", "Xato! Siz УХОД ni bosdingiz": "Ошибка! Вы нажали УХОД", "Yaxshi! Qoidalar boʻlimini yana bir bor koʻrib chiqing.": "Хорошо! Просмотрите раздел «Правила» ещё раз.", "ПРИХОД qayd etildi": "ПРИХОД отмечен", "ПРИХОД — ishga kelish. Ish oxirida uni bossangiz, ketishingiz qayd etilmaydi va ish kuningiz yopilmaydi. УХОД tugmasini bosing.": "ПРИХОД — это приход на работу. Если нажать его в конце дня, уход не будет отмечен и рабочий день не закроется. Нажмите УХОД.", "УХОД qayd etildi": "УХОД отмечен", "УХОД — ishdan ketish. Ishga kelganda uni bossangiz, kelgan kuningiz ish vaqti hisoblanmaydi. ПРИХОД tugmasini bosing.": "УХОД — это уход с работы. Если нажать его при приходе, рабочее время за этот день не засчитается. Нажмите ПРИХОД.", "” bosqichida quyidagilardan qaysi biri NOTOʻGʻRI (taqiqlanadi)?": "”: что из перечисленного НЕПРАВИЛЬНО (запрещено)?", "” bosqichida quyidagilardan qaysi biri TOʻGʻRI?": "”: что из перечисленного ПРАВИЛЬНО?", "” boʻyicha qaysi biri toʻgʻri?": "”: что из этого правильно?", "” notoʻgʻri. Qolgan ikkitasi standart talabi.": "” — неправильно. Остальные два — требования стандарта.", "”. Qolganlari standartga zid.": "”. Остальные противоречат стандарту.", "”ni yakunlang.": "”.", "Ilova tili": "Язык приложения"};
+var CYR1 = { a: 'а', b: 'б', c: 'с', d: 'д', e: 'е', f: 'ф', g: 'г', h: 'ҳ', i: 'и', j: 'ж', k: 'к', l: 'л', m: 'м', n: 'н', o: 'о', p: 'п', q: 'қ', r: 'р', s: 'с', t: 'т', u: 'у', v: 'в', w: 'в', x: 'х', y: 'й', z: 'з', 'ŏ': 'ў', 'ğ': 'ғ', 'ʼ': 'ъ' };
+var cyrLow = function (w) {
+  w = w.replace(/o[ʻ‘`']/g, 'ŏ').replace(/g[ʻ‘`']/g, 'ğ').replace(/[’ʼ]/g, 'ʼ');
+  var out = '', i = 0;
+  while (i < w.length) {
+    var two = w.substr(i, 2), ch = w[i];
+    var dbl = { sh: 'ш', ch: 'ч', yo: 'ё', yu: 'ю', ya: 'я', ye: 'е' }[two];
+    if (dbl) { out += dbl; i += 2; continue; }
+    if (ch === 'e') { out += i === 0 ? 'э' : 'е'; i++; continue; }
+    out += CYR1[ch] !== undefined ? CYR1[ch] : ch; i++;
+  }
+  return out;
+};
+var cyrWord = function (w) {
+  var m = /^(Verifix|Safia|Damas|SMS|MIN|MAX)/.exec(w);
+  if (m) { var rest = w.slice(m[1].length); return m[1] + (rest ? rest[0] + cyrWord(rest.slice(1)) : ''); }
+  if (!w) return w;
+  var low = cyrLow(w.toLowerCase());
+  var letters = w.replace(/[^A-Za-z]/g, '');
+  if (letters.length > 1 && letters === letters.toUpperCase()) return low.toUpperCase();
+  if (/^[A-Z]/.test(w)) return low.charAt(0).toUpperCase() + low.slice(1);
+  return low;
+};
+var cyr = function (s) { return String(s).replace(/[A-Za-zʻʼ’‘`]+/g, cyrWord); };
+var _t = function (s) { if (LANG === 'ru') return Object.prototype.hasOwnProperty.call(RU, s) ? RU[s] : s; if (LANG === 'kr') return cyr(s); return s; };
+var TXS = {"search": "Qoida yoki vaziyatni qidiring", "yopiq": "Yopiq", "k0": "Xayrli tong!", "k1": "Dushanba, 9-noyabr", "k2": "ball", "k3": "5 kun ketma-ket", "k4": "bosqich", "k5": "Bugungi standart", "k6": "% bajarildi", "k7": "Keyingi:", "k8": "Barakalla!", "k9": "Bugungi kun namunali oʻtdi.", "k10": "Mening ish kunim", "k11": "Bosqichni bosing", "k12": "Bajarildi", "k13": "Hozir", "k14": "Kutilmoqda", "k15": "Orqaga", "k16": "Bosqich", "k17": "Korporativ forma", "k18": "Nuqtani bosing: har bir detal haqida", "k19": "koʻrildi", "k20": "Koʻrilmagan", "k21": "Koʻrildi", "k22": "Xizmat avtomobili", "k23": "Nuqtani bosing: nimani tekshirish kerak", "k24": "Planshetda oʻzingiz mashq qiling", "k25": "Safia korporativ formasidagi xodim, old tomondan", "k26": "Safia xizmat avtomobili Damas", "k27": "Verifix planshet, qulflangan ekran", "k28": "Ekranni tepaga suring", "k29": "Tepaga suring", "k30": "3 · bosing", "k31": "Verifix planshet, yuzni aniqlash ekrani", "k32": "Yuzni aniqlash", "k33": "Verifix planshet, ПРИХОД va УХОД tugmalari", "k34": "ПРИХОД (kelish)", "k35": "УХОД (ketish)", "k36": "Verifix planshet", "k37": "Bosish emas: barmoqni ekranda pastdan tepaga suring.", "k38": "Qaytadan mashq qilish", "k39": "Namuna", "k40": "Nega muhim?", "k41": "Tekshiruv roʻyxati", "k42": "Toʻgʻri", "k43": "Notoʻgʻri", "k44": "Testni topshirish · 5 ta savol", "k45": "Avval barcha bandlarni belgilang", "k46": "Bu bosqich bajarildi", "k47": "Qoidalar", "k48": "Xodimning xizmat standarti: avariya taʼmirlash brigadasi", "k49": "Qoidalarni qidirish", "k50": "Tezkor eslatmalar", "k51": "Verifix", "k52": "09:00 · 12:00 · 21:00 smena boshida qayd eting", "k53": "6 nazorat", "k54": "yoʻlga chiqishdan oldin transport va hujjatlar", "k55": "Video", "k56": "ish yakunini masʼul xodimdan tasdiqlating", "k57": "Dispetcher", "k58": "kamchilik va ish yakuni haqida xabar bering", "k59": "Kun tartibi boʻyicha", "k60": "Xodim majburiyati", "k61": "Bilimingizni sinang", "k62": "Har bir toʻgʻri javob uchun +10 ball", "k63": "Savol", "k64": "VAZIYAT", "k65": "Qaytadan boshlash", "k66": "Bosqichga qaytish", "k67": "SAVOL", "k68": "Keyingi bosqichga oʻtish", "k69": "Bosh sahifaga", "k70": "Bosqichni qaytadan oʻtish", "k71": "XI", "k72": "[Xodim ismi]", "k73": "[Lavozim] · [Filial nomi]", "k74": "Daraja 3", "k75": "Standart ustasi", "k76": "/ 300 ball", "k77": "Keyingi daraja: “Oltin standart”", "k78": "Bugun", "k79": "Kun ketma-ket", "k80": "Filialda", "k81": "Shu hafta", "k82": "Nishonlar", "k83": "Asosiy menyu", "k84": "Test", "k85": "Profil", "k86": "Detal", "k87": "Yopish", "k88": "Kepka yaqindan", "k89": "Yoqa, futbolka va zamok yaqindan", "k90": "Logotipli choʻntak yaqindan", "k91": "Yoqa va kulrang futbolka yaqindan", "k92": "Nur qaytaruvchi kulrang chiziq yaqindan", "k93": "Rezinkali manjet yaqindan", "k94": "Oldingi", "k95": "Keyingi detal", "lang": "Ilova tili"};
 var STAGES = [
   { id: 'kelish', time: 'Smena boshida', icon: 'clock', title: 'Ishni boshlash', sub: 'Vaqtida kelish va Verifix',
     why: 'Ishni tartibli boshlash kun davomida vaqtni tejaydi. Harakatlar ketma-ket bajariladi, vaqt behuda sarflanmaydi.',
@@ -986,14 +1026,14 @@ var buildStageTest = function (sid) {
   var bads = s.donts.length >= 2 ? s.donts : s.donts.concat(shuffle(ALL_DONTS.filter(function (d) { return s.donts.indexOf(d) < 0; })));
   var spots = sid === 'kiyim' ? SPOTS : (sid === 'transport' ? CAR_SPOTS : []);
   shuffle(spots).slice(0, 3).forEach(function (sp) {
-    spec.push(mkQ('“' + sp.name + '” boʻyicha qaysi biri toʻgʻri?', pickOne(sp.ok), shuffle(sp.bad).concat(shuffle([].concat.apply([], spots.map(function (o) { return o === sp ? [] : o.bad; })))).slice(0, 2), sp.desc));
+    spec.push(mkQ('“' + sp.name + _t('” boʻyicha qaysi biri toʻgʻri?'), pickOne(sp.ok), shuffle(sp.bad).concat(shuffle([].concat.apply([], spots.map(function (o) { return o === sp ? [] : o.bad; })))).slice(0, 2), sp.desc));
   });
   var gen = [];
   shuffle(goods).slice(0, 2).forEach(function (g) {
-    gen.push(mkQ('“' + s.title + '” bosqichida quyidagilardan qaysi biri TOʻGʻRI?', g, shuffle(bads).slice(0, 2), 'Toʻgʻri javob: “' + g + '”. Qolganlari standartga zid.'));
+    gen.push(mkQ('“' + s.title + _t('” bosqichida quyidagilardan qaysi biri TOʻGʻRI?'), g, shuffle(bads).slice(0, 2), _t('Toʻgʻri javob: “') + g + _t('”. Qolganlari standartga zid.')));
   });
   shuffle(s.donts).slice(0, 2).forEach(function (d) {
-    gen.push(mkQ('“' + s.title + '” bosqichida quyidagilardan qaysi biri NOTOʻGʻRI (taqiqlanadi)?', d, shuffle(goods).slice(0, 2), '“' + d + '” notoʻgʻri. Qolgan ikkitasi standart talabi.'));
+    gen.push(mkQ('“' + s.title + _t('” bosqichida quyidagilardan qaysi biri NOTOʻGʻRI (taqiqlanadi)?'), d, shuffle(goods).slice(0, 2), '“' + d + _t('” notoʻgʻri. Qolgan ikkitasi standart talabi.')));
   });
   spec = shuffle(spec);
   var order = spec.slice(0, 3).concat([gen[0], gen[gen.length - 1]], spec.slice(3), gen);
@@ -1063,6 +1103,20 @@ var CAR_SPOTS = [
     bad: ['Muddati oʻtgan hujjat bilan yurish', 'Kamchilikni dispetcherga aytmaslik'] }
 ];
 var DEFAULT_DONE = {};
+var SRC = { STAGES: STAGES, QUIZ: QUIZ, SQ: SQ, BADGES: BADGES, HR: HR, SPOTS: SPOTS, CAR_SPOTS: CAR_SPOTS };
+var TR_SKIP = { id: 1, icon: 1, im: 1 };
+var trDeep = function (o, k) {
+  if (typeof o === 'string') return TR_SKIP[k] ? o : _t(o);
+  if (Array.isArray(o)) return o.map(function (x) { return trDeep(x, k); });
+  if (o && typeof o === 'object') { var r = {}; Object.keys(o).forEach(function (kk) { r[kk] = trDeep(o[kk], kk); }); return r; }
+  return o;
+};
+var applyLang = function (lang) {
+  LANG = lang;
+  STAGES = trDeep(SRC.STAGES); QUIZ = trDeep(SRC.QUIZ); SQ = trDeep(SRC.SQ); BADGES = trDeep(SRC.BADGES);
+  HR = trDeep(SRC.HR); SPOTS = trDeep(SRC.SPOTS); CAR_SPOTS = trDeep(SRC.CAR_SPOTS); ALL_DONTS = [];
+};
+var LANGS = [{ k: 'uz', name: 'Oʻzbekcha', short: 'OʻZ' }, { k: 'kr', name: 'Ўзбекча', short: 'ЎЗ' }, { k: 'ru', name: 'Русский', short: 'РУ' }];
 var ICONS = ['shirt', 'car', 'clock', 'desk', 'chat', 'pin', 'cup', 'flag'];
 function iconFlags(name) {
   return { icShirt: name === 'shirt', icCar: name === 'car', icClock: name === 'clock', icDesk: name === 'desk',
@@ -1072,6 +1126,8 @@ function iconFlags(name) {
 
 class Component extends DCLogic {
   renderVals() {
+    var _lang = (this.state && this.state.lang) || 'uz';
+    if (_lang !== LANG) applyLang(_lang);
     var self = this;
     var accent = this.props.accent ?? '#F2A33A';
     var st = Object.assign({ screen: 'home', stage: 'kelish', checks: {}, done: DEFAULT_DONE, qi: 0, picked: null, score: 0, quizEnd: false }, this.state || {});
@@ -1091,7 +1147,7 @@ class Component extends DCLogic {
       var cnt = s.checks.filter(function (c, i) { return isOn(s.id, i); }).length;
       return Object.assign({}, iconFlags(s.icon), {
         n: idx + 1, time: s.time, title: s.title, sub: s.sub,
-        done: done, current: current, todo: !done && !current && !locked, locked: locked, showLock: locked && st.lockAt === idx, lockMsg: nextIdx >= 0 ? 'Avval ' + (nextIdx + 1) + '-bosqich “' + STAGES[nextIdx].title + '”ni yakunlang.' : '', cardOpacity: locked ? 0.62 : 1,
+        done: done, current: current, todo: !done && !current && !locked, locked: locked, showLock: locked && st.lockAt === idx, lockMsg: nextIdx >= 0 ? _t('Avval ') + (nextIdx + 1) + _t('-bosqich “') + STAGES[nextIdx].title + _t('”ni yakunlang.') : '', cardOpacity: locked ? 0.62 : 1,
         nodeBg: done ? '#14213D' : (current ? accent : '#FFFFFF'),
         nodeFg: done ? '#FFFFFF' : (current ? '#14213D' : '#8A93A6'),
         nodeBorder: done ? '#14213D' : (current ? accent : '#D5DAE3'),
@@ -1101,7 +1157,7 @@ class Component extends DCLogic {
         barPct: Math.round(cnt / s.checks.length * 100),
         barColor: done ? '#14213D' : accent,
         count: cnt + '/' + s.checks.length,
-        rulesLabel: s.checks.length + ' ta qoida · ' + s.time,
+        rulesLabel: s.checks.length + _t(' ta qoida · ') + s.time,
         open: function () { if (locked) self.setState({ lockAt: idx }); else self.setState({ screen: 'stage', stage: s.id, lockAt: null }); }
       });
     });
@@ -1183,8 +1239,8 @@ class Component extends DCLogic {
     };
 
     var weekH = [92, 100, 78, 100, 64];
-    var week = ['Du', 'Se', 'Ch', 'Pa', 'Ju'].map(function (d, i) { return { d: d, h: weekH[i], color: '#C9D3EA' }; });
-    week.push({ d: 'Sh', h: Math.max(8, Math.round(doneCount / STAGES.length * 100)), color: accent });
+    var week = [_t('Du'), _t('Se'), _t('Ch'), _t('Pa'), _t('Ju')].map(function (d, i) { return { d: d, h: weekH[i], color: '#C9D3EA' }; });
+    week.push({ d: _t('Sh'), h: Math.max(8, Math.round(doneCount / STAGES.length * 100)), color: accent });
 
     var pct = Math.round(doneCount / STAGES.length * 100);
     var seen = st.seen || {};
@@ -1206,8 +1262,8 @@ class Component extends DCLogic {
     var sd = SETS[curSet][spi >= 0 ? spi : 0];
     var sp = {
       n: (spi >= 0 ? spi : 0) + 1, name: sd.name, desc: sd.desc, ok: sd.ok, bad: sd.bad,
-      okLabel: curSet === 'car' ? 'Toʻgʻri' : 'Toʻgʻri kiyish', badLabel: curSet === 'car' ? 'Notoʻgʻri' : 'Notoʻgʻri kiyish',
-      chip: sd.req ? 'Majburiy' : 'Tavsiya', chipBg: sd.req ? '#14213D' : '#EEF0F4', chipFg: sd.req ? '#FFFFFF' : '#3D465A',
+      okLabel: curSet === 'car' ? _t('Toʻgʻri') : _t('Toʻgʻri kiyish'), badLabel: curSet === 'car' ? _t('Notoʻgʻri') : _t('Notoʻgʻri kiyish'),
+      chip: sd.req ? _t('Majburiy') : _t('Tavsiya'), chipBg: sd.req ? '#14213D' : '#EEF0F4', chipFg: sd.req ? '#FFFFFF' : '#3D465A',
       imCap: sd.im === 'cap', imCollar: sd.im === 'collar', imPocket: sd.im === 'pocket', imCuff: sd.im === 'cuff', imStripe: sd.im === 'stripe', imTshirt: sd.im === 'tshirt'
     };
     var vOut = st.stage === 'yakun';
@@ -1215,21 +1271,25 @@ class Component extends DCLogic {
     var vs = st[VK] || 0;
     var vset = function (o) { var r = {}; Object.keys(o).forEach(function (k) { r[VK + k] = o[k]; }); return r; };
     var vfxNext = function () { self.setState(function (p) { var r = vset({ W: false, N: false }); r[VK] = Math.min(3, ((p && p[VK]) || 0) + 1); return r; }); };
-    var VTIPS = vOut ? ['1-qadam. Planshet ekranini barmoq bilan pastdan tepaga suring.',
-      '2-qadam. Kameraga yuzingizni qarating va kepka ustidagi nuqtani bosing.',
-      '3-qadam. “УХОД” (ketish) tugmasini bosing. Diqqat: “ПРИХОД” ni bossangiz, ketishingiz qayd etilmaydi!',
-      'Barakalla! Ketishingiz qayd etildi. Smena yakuni: 18:00 · 21:00 · 06:00.']
-      : ['1-qadam. Planshet ekranini barmoq bilan pastdan tepaga suring.',
-      '2-qadam. Kameraga yuzingizni qarating va kepka ustidagi nuqtani bosing.',
-      '3-qadam. “ПРИХОД” (kelish) tugmasini bosing. Diqqat: “УХОД” ni bossangiz, kelgan kuningiz ish vaqti hisoblanmaydi!',
-      'Barakalla! Kelishingiz qayd etildi. Smena boshlanishi: 09:00 · 12:00 · 21:00.'];
+    var VTIPS = vOut ? [_t('1-qadam. Planshet ekranini barmoq bilan pastdan tepaga suring.'),
+      _t('2-qadam. Kameraga yuzingizni qarating va kepka ustidagi nuqtani bosing.'),
+      _t('3-qadam. “УХОД” (ketish) tugmasini bosing. Diqqat: “ПРИХОД” ni bossangiz, ketishingiz qayd etilmaydi!'),
+      _t('Barakalla! Ketishingiz qayd etildi. Smena yakuni: 18:00 · 21:00 · 06:00.')]
+      : [_t('1-qadam. Planshet ekranini barmoq bilan pastdan tepaga suring.'),
+      _t('2-qadam. Kameraga yuzingizni qarating va kepka ustidagi nuqtani bosing.'),
+      _t('3-qadam. “ПРИХОД” (kelish) tugmasini bosing. Diqqat: “УХОД” ni bossangiz, kelgan kuningiz ish vaqti hisoblanmaydi!'),
+      _t('Barakalla! Kelishingiz qayd etildi. Smena boshlanishi: 09:00 · 12:00 · 21:00.')];
     var vWarn = function () { self.setState(vset({ W: true })); };
     return {
+      tx: (function () { var o = {}; Object.keys(TXS).forEach(function (k) { o[k] = _t(TXS[k]); }); return o; })(),
+      langShort: LANGS.filter(function (l) { return l.k === LANG; })[0].short,
+      cycleLang: function () { var i = LANGS.findIndex(function (l) { return l.k === LANG; }); self.setState({ lang: LANGS[(i + 1) % LANGS.length].k }); },
+      langs: LANGS.map(function (l) { var on = l.k === LANG; return { name: l.name, bg: on ? '#14213D' : '#FFFFFF', fg: on ? '#FFFFFF' : '#14213D', border: on ? '#14213D' : '#E3E7EE', pick: function () { self.setState({ lang: l.k }); } }; }),
       isStest: st.screen === 'stest', tRunning: !st.tEnd, tEndView: !!st.tEnd,
-      tTitle: (ci + 1) + '-bosqich testi', tStage: cs.title,
+      tTitle: (ci + 1) + _t('-bosqich testi'), tStage: cs.title,
       tNum: (st.ti || 0) + 1, tTotal: tq.length, tPct: Math.round(((st.ti || 0) + (tAns ? 1 : 0)) / Math.max(1, tq.length) * 100),
       tText: tcur.q, tAns: tAns, tWhy: tcur.why,
-      tFbTitle: tRight ? 'Toʻgʻri!' : 'Notoʻgʻri', tFbBg: tRight ? '#E6EEFB' : '#FDECE0', tFbColor: tRight ? '#1D4AAE' : '#9A3F06',
+      tFbTitle: tRight ? _t('Toʻgʻri!') : _t('Notoʻgʻri'), tFbBg: tRight ? '#E6EEFB' : '#FDECE0', tFbColor: tRight ? '#1D4AAE' : '#9A3F06',
       tOpts: tcur.a.map(function (t, i) {
         var correct = i === tcur.c, picked = st.tpicked === i;
         return { letter: 'ABC'[i], text: t,
@@ -1238,7 +1298,7 @@ class Component extends DCLogic {
           showOk: tAns && correct, showBad: tAns && picked && !correct,
           pick: function () { if (tAns) return; self.setState({ tpicked: i, tscore: (st.tscore || 0) + (correct ? 1 : 0), tWrong: !!st.tWrong || !correct }); } };
       }),
-      tNextLabel: tLast ? 'Natijani koʻrish' : 'Keyingi savol',
+      tNextLabel: tLast ? _t('Natijani koʻrish') : _t('Keyingi savol'),
       tNext: function () {
         if (!tLast) { self.setState({ ti: (st.ti || 0) + 1, tpicked: null }); return; }
         if (tPass) { self.setState(function (p) { var d = Object.assign({}, (p && p.done) || DEFAULT_DONE); d[cs.id] = true; return { tEnd: true, done: d }; }); }
@@ -1247,16 +1307,16 @@ class Component extends DCLogic {
       tBack: function () { if (st.tWrong && !st.tEnd) self.setState(function (p) { var r = resetStage(p); r.screen = 'stage'; return r; }); else self.setState({ screen: 'stage' }); },
       tScore: (st.tscore || 0) + ' / ' + tq.length,
       tPass: tPass, tFail: !tPass,
-      tResTitle: tPass ? 'Tabriklaymiz! Test topshirildi' : 'Test topshirilmadi',
-      tResText: tPass ? (tNextIdx >= 0 ? 'Keyingi bosqich ochildi: “' + STAGES[tNextIdx].title + '”.' : 'Barcha bosqichlar yakunlandi!') : 'Oʻtish uchun barcha ' + TEST_N + ' ta savolga toʻgʻri javob berish kerak. Bosqichdagi belgilar tozalandi: bosqichni boshidan qayta oʻting.',
+      tResTitle: tPass ? _t('Tabriklaymiz! Test topshirildi') : _t('Test topshirilmadi'),
+      tResText: tPass ? (tNextIdx >= 0 ? _t('Keyingi bosqich ochildi: “') + STAGES[tNextIdx].title + '”.' : _t('Barcha bosqichlar yakunlandi!')) : _t('Oʻtish uchun barcha ') + TEST_N + _t(' ta savolga toʻgʻri javob berish kerak. Bosqichdagi belgilar tozalandi: bosqichni boshidan qayta oʻting.'),
       tResBg: tPass ? accent : '#FDECE0', tResFg: tPass ? '#14213D' : '#9A3F06',
       tRetry: function () { self.setState({ tq: buildStageTest(cs.id), ti: 0, tpicked: null, tscore: 0, tEnd: false }); },
       tReview: function () { self.setState({ screen: 'stage', tEnd: false }); },
       tGoNext: function () { if (tNextIdx >= 0) self.setState({ screen: 'stage', stage: STAGES[tNextIdx].id, tEnd: false }); else self.setState({ screen: 'home', tEnd: false }); },
       tHome: function () { self.setState({ screen: 'home', tEnd: false }); },
-      tPassRule: 'Oʻtish uchun: ' + TEST_N + ' / ' + TEST_N + ' toʻgʻri javob',
+      tPassRule: _t('Oʻtish uchun: ') + TEST_N + ' / ' + TEST_N + _t(' toʻgʻri javob'),
       vfx0: vs === 0, vfx1: vs === 1, vfx2: vs === 2, vfx3: vs === 3,
-      vfxStep: vs < 3 ? 'Qadam ' + (vs + 1) + '/3' : 'Bajarildi',
+      vfxStep: vs < 3 ? _t('Qadam ') + (vs + 1) + '/3' : _t('Bajarildi'),
       vfxChipBg: vs < 3 ? '#FDEBD0' : '#E3F1EA', vfxChipFg: vs < 3 ? '#7A4A00' : '#1E5C42',
       vfxTip: VTIPS[vs], vfxTipBg: vs === 3 ? '#E3F1EA' : (vs === 2 ? '#FDEBD0' : '#EEF2FA'),
       vfxNext: vfxNext,
@@ -1266,11 +1326,11 @@ class Component extends DCLogic {
       vfxNudge: !!st[VK + 'N'] && vs === 0,
       vfxUhod: vOut ? vfxNext : vWarn, vfxPrihod: vOut ? vWarn : vfxNext,
       vfxIn: !vOut, vfxOut: vOut, vfxLabelX: vOut ? 61.7 : 38.35,
-      vfxTitle: vOut ? 'Verifix’da ketishni qayd etish' : 'Verifix’da kelishni qayd etish',
-      vfxWarnTitle: vOut ? 'Xato! Siz ПРИХОД ni bosdingiz' : 'Xato! Siz УХОД ni bosdingiz',
-      vfxWarnText: vOut ? 'ПРИХОД — ishga kelish. Ish oxirida uni bossangiz, ketishingiz qayd etilmaydi va ish kuningiz yopilmaydi. УХОД tugmasini bosing.' : 'УХОД — ishdan ketish. Ishga kelganda uni bossangiz, kelgan kuningiz ish vaqti hisoblanmaydi. ПРИХОД tugmasini bosing.',
-      vfxDoneTitle: vOut ? 'УХОД qayd etildi' : 'ПРИХОД qayd etildi',
-      vfxDoneSub: vOut ? 'Ish kuningiz yakunlandi' : 'Ish vaqtingiz hisoblanmoqda',
+      vfxTitle: vOut ? _t('Verifix’da ketishni qayd etish') : _t('Verifix’da kelishni qayd etish'),
+      vfxWarnTitle: vOut ? _t('Xato! Siz ПРИХОД ni bosdingiz') : _t('Xato! Siz УХОД ni bosdingiz'),
+      vfxWarnText: vOut ? _t('ПРИХОД — ishga kelish. Ish oxirida uni bossangiz, ketishingiz qayd etilmaydi va ish kuningiz yopilmaydi. УХОД tugmasini bosing.') : _t('УХОД — ishdan ketish. Ishga kelganda uni bossangiz, kelgan kuningiz ish vaqti hisoblanmaydi. ПРИХОД tugmasini bosing.'),
+      vfxDoneTitle: vOut ? _t('УХОД qayd etildi') : _t('ПРИХОД qayd etildi'),
+      vfxDoneSub: vOut ? _t('Ish kuningiz yakunlandi') : _t('Ish vaqtingiz hisoblanmoqda'),
       vfxWarn: !!st[VK + 'W'] && vs === 2,
       vfxReset: function () { var r = vset({ W: false, N: false }); r[VK] = 0; self.setState(r); },
       spots: spots, sp: sp, spotTotal: SPOTS.length, hrRules: HR.map(function (h, i) { return { k: h[0], v: h[1], line: i ? '#EEF0F4' : 'transparent' }; }),
@@ -1292,11 +1352,11 @@ class Component extends DCLogic {
       quizRunning: !st.quizEnd, quizEnd: st.quizEnd,
       qNum: st.qi + 1, qTotal: QUIZ.length, qPct: Math.round((st.qi + (answered ? 1 : 0)) / QUIZ.length * 100),
       qText: q.q, qWhy: q.why, options: options, answered: answered,
-      fbTitle: wasRight ? 'Toʻgʻri! +10 ball' : 'Unchalik emas', fbColor: wasRight ? '#1D4AAE' : '#9A3F06', fbBg: wasRight ? '#E6EEFB' : '#FDECE0',
-      nextLabel: last ? 'Natijani koʻrish' : 'Keyingi savol',
+      fbTitle: wasRight ? _t('Toʻgʻri! +10 ball') : _t('Unchalik emas'), fbColor: wasRight ? '#1D4AAE' : '#9A3F06', fbBg: wasRight ? '#E6EEFB' : '#FDECE0',
+      nextLabel: last ? _t('Natijani koʻrish') : _t('Keyingi savol'),
       nextQ: function () { if (last) self.setState({ quizEnd: true }); else self.setState({ qi: st.qi + 1, picked: null }); },
       score: st.score,
-      scoreText: st.score === QUIZ.length ? 'Aʼlo! Siz standartlarni mukammal bilasiz.' : 'Yaxshi! Qoidalar boʻlimini yana bir bor koʻrib chiqing.',
+      scoreText: st.score === QUIZ.length ? _t('Aʼlo! Siz standartlarni mukammal bilasiz.') : _t('Yaxshi! Qoidalar boʻlimini yana bir bor koʻrib chiqing.'),
       restartQuiz: function () { self.setState({ qi: 0, picked: null, score: 0, quizEnd: false }); },
       levelPct: Math.min(100, Math.round(points / 300 * 100)),
       week: week,
@@ -1305,9 +1365,28 @@ class Component extends DCLogic {
   }
 }
 
-/* Real-device additions: date, streak, week, badges, profile name, reset. */
+/* Real-device additions: date, streak, week, badges, profile name, reset.
+   All texts go through tt(): Latin Uzbek source, Cyrillic Uzbek via cyr(), Russian via APP_RU / RU. */
+var APP_RU = {
+  'Xayrli tun!': 'Доброй ночи!', 'Xayrli tong!': 'Доброе утро!', 'Xayrli kun!': 'Добрый день!', 'Xayrli kech!': 'Добрый вечер!',
+  'kun ketma-ket': 'дн. подряд', 'Eng yaxshi test': 'Лучший тест', 'Daraja': 'Уровень',
+  'Yangi xodim': 'Новый сотрудник', 'Oʻrganuvchi': 'Ученик', 'Standart ustasi': 'Мастер стандарта', 'Oltin standart': 'Золотой стандарт',
+  'Keyingi daraja': 'Следующий уровень', 'ball': 'баллов', 'Eng yuqori daraja!': 'Высший уровень!',
+  'Ismingizni kiriting': 'Введите ваше имя', 'Avariya taʼmirlash brigadasi': 'Аварийно-ремонтная бригада',
+  'Ismni oʻzgartirish': 'Изменить имя', 'Natijalarni nolga tushirish': 'Сбросить результаты', 'internetsiz ishlaydi': 'работает без интернета',
+  'Ism va familiyangiz:': 'Ваше имя и фамилия:', 'Lavozim va filial (masalan: Elektrik · Chilonzor):': 'Должность и филиал (например: Электрик · Чиланзар):',
+  'Barcha belgilangan bosqichlar va test natijalari oʻchiriladi. Davom etasizmi?': 'Все отмеченные этапы и результаты тестов будут удалены. Продолжить?'
+};
 var UZ_DAYS = ['Yakshanba', 'Dushanba', 'Seshanba', 'Chorshanba', 'Payshanba', 'Juma', 'Shanba'];
 var UZ_MONTHS = ['yanvar', 'fevral', 'mart', 'aprel', 'may', 'iyun', 'iyul', 'avgust', 'sentabr', 'oktabr', 'noyabr', 'dekabr'];
+var RU_DAYS = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+var RU_MONTHS = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+var UZ_WEEK = ['Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh'], RU_WEEK = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+function tt(s) {
+  if (LANG === 'ru') return APP_RU[s] || (Object.prototype.hasOwnProperty.call(RU, s) ? RU[s] : s);
+  if (LANG === 'kr') return cyr(s);
+  return s;
+}
 function dayKey(d) { return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); }
 
 class App extends Component {
@@ -1322,36 +1401,38 @@ class App extends Component {
     var self = this;
     var v = super.renderVals();
     var st = this.state || {};
+    var tx = v.tx = Object.assign({}, v.tx);
     var now = new Date();
     var h = now.getHours();
-    v.greet = h < 5 ? 'Xayrli tun!' : h < 12 ? 'Xayrli tong!' : h < 18 ? 'Xayrli kun!' : 'Xayrli kech!';
-    v.today = UZ_DAYS[now.getDay()] + ', ' + now.getDate() + '-' + UZ_MONTHS[now.getMonth()];
+    tx.k0 = tt(h < 5 ? 'Xayrli tun!' : h < 12 ? 'Xayrli tong!' : h < 18 ? 'Xayrli kun!' : 'Xayrli kech!');
+    tx.k1 = LANG === 'ru' ? RU_DAYS[now.getDay()] + ', ' + now.getDate() + ' ' + RU_MONTHS[now.getMonth()]
+      : tt(UZ_DAYS[now.getDay()] + ', ' + now.getDate() + '-' + UZ_MONTHS[now.getMonth()]);
 
     var days = st.days || {};
     var streak = 0, d = new Date(now);
     while (days[dayKey(d)]) { streak++; d.setDate(d.getDate() - 1); }
     v.streak = streak;
+    tx.k3 = streak + ' ' + tt('kun ketma-ket');
 
     // week bars: Monday..Saturday of this week, filled on days the app was used
     var monday = new Date(now); monday.setDate(now.getDate() - ((now.getDay() + 6) % 7));
-    v.week = ['Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh'].map(function (name, i) {
+    var wk = LANG === 'ru' ? RU_WEEK : UZ_WEEK;
+    v.week = wk.map(function (name, i) {
       var day = new Date(monday); day.setDate(monday.getDate() + i);
       var isToday = dayKey(day) === dayKey(now);
       var used = !!days[dayKey(day)];
-      return { d: name, h: isToday ? Math.max(8, v.percent) : (used ? 100 : 8), color: isToday ? v.accent : (used ? '#C9D3EA' : '#EEF0F4') };
+      return { d: LANG === 'kr' ? cyr(name) : name, h: isToday ? Math.max(8, v.percent) : (used ? 100 : 8), color: isToday ? v.accent : (used ? '#C9D3EA' : '#EEF0F4') };
     });
 
-    // best quiz result
+    // best result of the general quiz
     var best = st.best || 0;
     if (st.quizEnd && st.score > best) { best = st.score; this.state.best = best; try { localStorage.setItem('ars-standart-state-v1', JSON.stringify(this.state)); } catch (e) {} }
     v.bestQuiz = best + '/' + QUIZ.length;
+    tx.k80 = tt('Eng yaxshi test');
 
     var done = st.done || {};
-    var earned = [
-      !!done.kelish, !!done.kiyim, !!done.transport,
-      v.allDone, best === QUIZ.length, streak >= 20
-    ];
-    v.badges = BADGES.map(function (b, i) {
+    var earned = [!!done.kelish, !!done.kiyim, !!done.transport, v.allDone, best === QUIZ.length, streak >= 20];
+    v.badges = (v.badges || []).map(function (b, i) {
       var on = !!earned[i];
       return { name: b.name, bg: on ? v.accent : '#EEF0F4', fg: on ? '#14213D' : '#9AA2B2', text: on ? '#14213D' : '#5B6475' };
     });
@@ -1359,25 +1440,28 @@ class App extends Component {
     var p = v.points;
     var levels = [[0, 'Yangi xodim'], [60, 'Oʻrganuvchi'], [140, 'Standart ustasi'], [220, 'Oltin standart']];
     var li = 0; for (var i = 0; i < levels.length; i++) if (p >= levels[i][0]) li = i;
-    v.levelNum = li + 1; v.levelName = levels[li][1];
-    v.levelNext = li < levels.length - 1 ? 'Keyingi daraja: “' + levels[li + 1][1] + '” · ' + levels[li + 1][0] + ' ball' : 'Eng yuqori daraja!';
+    tx.k74 = tt('Daraja') + ' ' + (li + 1);
+    tx.k75 = tt(levels[li][1]);
+    tx.k77 = li < levels.length - 1 ? tt('Keyingi daraja') + ': “' + tt(levels[li + 1][1]) + '” · ' + levels[li + 1][0] + ' ' + tt('ball') : tt('Eng yuqori daraja!');
 
-    v.userName = st.userName || 'Ismingizni kiriting';
-    v.userRole = st.userRole || 'Avariya taʼmirlash brigadasi';
+    tx.k72 = st.userName || tt('Ismingizni kiriting');
+    tx.k73 = st.userRole || tt('Avariya taʼmirlash brigadasi');
     var nm = (st.userName || 'АРС').trim().split(/\s+/);
-    v.initials = ((nm[0] || '').charAt(0) + (nm[1] || '').charAt(0)).toUpperCase() || 'А';
+    tx.k71 = ((nm[0] || '').charAt(0) + (nm[1] || '').charAt(0)).toUpperCase() || 'А';
+    v.app = { edit: tt('Ismni oʻzgartirish'), reset: tt('Natijalarni nolga tushirish'), offline: tt('internetsiz ishlaydi') };
     v.editProfile = function () {
-      var n = window.prompt('Ism va familiyangiz:', st.userName || '');
+      var n = window.prompt(tt('Ism va familiyangiz:'), st.userName || '');
       if (n === null) return;
-      var r = window.prompt('Lavozim va filial (masalan: Elektrik · Chilonzor):', st.userRole || '');
+      var r = window.prompt(tt('Lavozim va filial (masalan: Elektrik · Chilonzor):'), st.userRole || '');
       self.setState({ userName: n.trim(), userRole: r === null ? st.userRole : r.trim() });
     };
     v.resetAll = function () {
-      if (!window.confirm('Barcha belgilangan bosqichlar va test natijalari oʻchiriladi. Davom etasizmi?')) return;
-      var keep = { userName: st.userName, userRole: st.userRole, days: st.days };
+      if (!window.confirm(tt('Barcha belgilangan bosqichlar va test natijalari oʻchiriladi. Davom etasizmi?'))) return;
+      var keep = { userName: st.userName, userRole: st.userRole, days: st.days, lang: st.lang };
       self.state = {};
       self.setState(Object.assign(keep, { screen: 'home' }));
     };
+    try { document.documentElement.lang = LANG === 'ru' ? 'ru' : 'uz'; } catch (e) {}
     return v;
   }
 }
