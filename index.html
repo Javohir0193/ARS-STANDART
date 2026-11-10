@@ -353,7 +353,7 @@ button{font-family:inherit}
 </div>
 
 <sc-if value="{{cur.canFinish}}" hint-placeholder-val="{{false}}">
-<button type="button" onClick="{{cur.finish}}" style="min-height: 54px; border-radius: 16px; border: none; background: {{accent}}; color: #14213D; font-size: 16px; font-weight: 700; cursor: pointer">Bosqichni yakunlash · +20 ball</button>
+<button type="button" onClick="{{cur.startTest}}" style="min-height: 54px; border-radius: 16px; border: none; background: {{accent}}; color: #14213D; font-size: 16px; font-weight: 700; cursor: pointer">Testni topshirish · 5 ta savol</button>
 </sc-if>
 <sc-if value="{{cur.notReady}}" hint-placeholder-val="{{true}}">
 <button type="button" disabled="{{true}}" style="min-height: 54px; border-radius: 16px; border: none; background: #E3E7EE; color: #5B6475; font-size: 15px; font-weight: 600">Avval barcha bandlarni belgilang</button>
@@ -480,6 +480,69 @@ button{font-family:inherit}
 </div>
 </sc-if>
 
+<!-- ============ BOSQICH TESTI ============ -->
+<sc-if value="{{isStest}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 16px; padding: 18px 20px 28px">
+<div style="display: flex; align-items: center; gap: 12px">
+<button type="button" onClick="{{tBack}}" aria-label="Bosqichga qaytish" style="width: 44px; height: 44px; flex: none; border-radius: 14px; border: 1px solid #E3E7EE; background: #FFFFFF; color: #14213D; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg class="ic" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button>
+<div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+<h1 style="margin: 0; font-size: 20px; font-weight: 800">{{tTitle}}</h1>
+<span style="font-size: 13px; color: #5B6475">{{tStage}} · {{tPassRule}}</span>
+</div>
+</div>
+
+<sc-if value="{{tRunning}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; gap: 10px">
+<span style="font-size: 13px; font-weight: 700; color: #14213D">Savol {{tNum}} / {{tTotal}}</span>
+<div style="flex: 1 1 auto; height: 6px; background: #E3E7EE; border-radius: 999px; overflow: hidden"><div style="height: 6px; width: {{tPct}}%; background: #14213D; border-radius: 999px"></div></div>
+</div>
+<div style="background: #14213D; color: #FFFFFF; border-radius: 22px; padding: 20px; display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: {{accent}}">SAVOL</span>
+<p style="margin: 0; font-size: 17px; line-height: 1.45; font-weight: 600">{{tText}}</p>
+</div>
+<sc-for list="{{tOpts}}" as="o" hint-placeholder-count="3">
+<button type="button" onClick="{{o.pick}}" style="display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 12px 14px; border-radius: 16px; border: 2px solid {{o.border}}; background: {{o.bg}}; text-align: left; cursor: pointer; color: #14213D">
+<span style="width: 30px; height: 30px; border-radius: 10px; background: #EEF0F4; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex: none">{{o.letter}}</span>
+<span style="flex: 1 1 auto; font-size: 14px; line-height: 1.4; font-weight: 500">{{o.text}}</span>
+<sc-if value="{{o.showOk}}"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="color: #1D4AAE; stroke-width: 2.5"><path d="M5 12l4 4 10-10"></path></svg></sc-if>
+<sc-if value="{{o.showBad}}"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style="color: #9A3F06; stroke-width: 2.5"><path d="M6 6l12 12M18 6 6 18"></path></svg></sc-if>
+</button>
+</sc-for>
+<sc-if value="{{tAns}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="border-radius: 16px; padding: 14px; background: {{tFbBg}}; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 15px; font-weight: 700; color: {{tFbColor}}">{{tFbTitle}}</span>
+<span style="font-size: 14px; line-height: 1.45; color: #14213D">{{tWhy}}</span>
+</div>
+<button type="button" onClick="{{tNext}}" style="min-height: 52px; border-radius: 16px; border: none; background: {{accent}}; color: #14213D; font-size: 16px; font-weight: 700; cursor: pointer">{{tNextLabel}}</button>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{tEndView}}" hint-placeholder-val="{{false}}">
+<div style="background: #FFFFFF; border: 1px solid #E3E7EE; border-radius: 24px; padding: 28px 20px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center">
+<div style="width: 84px; height: 84px; border-radius: 50%; background: {{tResBg}}; color: {{tResFg}}; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{tPass}}"><svg class="ic" width="40" height="40" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l4 4 10-10"></path></svg></sc-if>
+<sc-if value="{{tFail}}"><svg class="ic" width="40" height="40" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.3-5.6"></path><path d="M4 4v4h4"></path></svg></sc-if>
+</div>
+<span style="font-size: 30px; font-weight: 800">{{tScore}}</span>
+<span style="font-size: 17px; font-weight: 700; color: #14213D">{{tResTitle}}</span>
+<span style="font-size: 14px; line-height: 1.45; color: #3D465A">{{tResText}}</span>
+<sc-if value="{{tPass}}">
+<button type="button" onClick="{{tGoNext}}" style="width: 100%; min-height: 52px; border-radius: 16px; border: none; background: {{accent}}; color: #14213D; font-size: 16px; font-weight: 700; cursor: pointer">Keyingi bosqichga oʻtish</button>
+<button type="button" onClick="{{tHome}}" style="width: 100%; min-height: 48px; border-radius: 14px; border: 1.5px solid #14213D; background: #FFFFFF; color: #14213D; font-size: 15px; font-weight: 700; cursor: pointer">Bosh sahifaga</button>
+</sc-if>
+<sc-if value="{{tFail}}">
+<button type="button" onClick="{{tRetry}}" style="width: 100%; min-height: 52px; border-radius: 16px; border: none; background: {{accent}}; color: #14213D; font-size: 16px; font-weight: 700; cursor: pointer">Testni qayta topshirish</button>
+<button type="button" onClick="{{tReview}}" style="width: 100%; min-height: 48px; border-radius: 14px; border: 1.5px solid #14213D; background: #FFFFFF; color: #14213D; font-size: 15px; font-weight: 700; cursor: pointer">Bosqichni qayta oʻqish</button>
+</sc-if>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
 <!-- ============ PROFIL ============ -->
 <sc-if value="{{isProfile}}" hint-placeholder-val="{{false}}">
 <div style="display: flex; flex-direction: column; gap: 16px; padding: 22px 20px 28px">
@@ -545,7 +608,7 @@ button{font-family:inherit}
 </div>
 </div>
 <button type="button" onClick="{{resetAll}}" style="min-height: 48px; border-radius: 14px; border: 1px solid #E3E7EE; background: #FFFFFF; color: #9A3F06; font-size: 14px; font-weight: 600; cursor: pointer">Natijalarni nolga tushirish</button>
-<span style="font-size: 12px; color: #8A93A6; text-align: center">АРС Стандарты · versiya 1.2 · internetsiz ishlaydi</span>
+<span style="font-size: 12px; color: #8A93A6; text-align: center">АРС Стандарты · versiya 1.3 · internetsiz ishlaydi</span>
 </div>
 </sc-if>
 
@@ -861,6 +924,85 @@ var QUIZ = [
   { q: '3-smena ishini qachon Verifix’da yakunlaysiz?', a: ['18:00', '21:00', '06:00'], c: 2,
     why: 'Ketish: 1-smena 18:00, 2-smena 21:00, 3-smena 06:00.' }
 ];
+var PASS_MIN = 4, TEST_N = 5;
+var SQ = {
+  kelish: [
+    { q: '2-smenada ishlaysiz. Verifix’da kelishni qachon qayd etasiz?', a: ['09:00', '12:00', '21:00'], c: 1, why: '1-smena 09:00, 2-smena 12:00, 3-smena 21:00.' },
+    { q: 'Ishga keldingiz. Verifix planshetida qaysi tugmani bosasiz?', a: ['УХОД', 'ПРИХОД', 'Hech qaysini'], c: 1, why: 'Kelganda ПРИХОД bosiladi. УХОД bossangiz, kelgan kuningiz ish vaqti hisoblanmaydi.' },
+    { q: '1-smena ishi soat nechada boshlanadi?', a: ['08:00', '09:00', '12:00'], c: 1, why: '1-smena 09:00 da boshlanadi.' },
+    { q: '3-smena ishi soat nechada boshlanadi?', a: ['18:00', '21:00', '06:00'], c: 1, why: '3-smena 21:00 da boshlanadi.' },
+    { q: 'Verifix planshetida birinchi nima qilinadi?', a: ['ПРИХОД tugmasi bosiladi', 'Ekran pastdan tepaga suriladi', 'Planshet oʻchiriladi'], c: 1, why: 'Avval ekran tepaga suriladi, keyin yuz aniqlanadi, soʻng ПРИХОД bosiladi.' }
+  ],
+  kiyim: [
+    { q: 'Filialga qanday koʻrinishda borasiz?', a: ['Belgilangan xizmat formasida, toza va tartibli', 'Oʻzimga qulay kiyimda', 'Faqat kurtkada, shim farqi yoʻq'], c: 0, why: 'Belgilangan forma va tartibli koʻrinish majburiy.' },
+    { q: 'Formadagi kulrang nur qaytaruvchi chiziq nima uchun kerak?', a: ['Faqat bezak uchun', 'Qorongʻida va yoʻlda xodimni uzoqdan koʻrinadigan qiladi', 'Hech qanday vazifasi yoʻq'], c: 1, why: 'Nur qaytaruvchi chiziq xodimni qorongʻida va transport yonida koʻrinadigan qiladi.' },
+    { q: 'Kurtka ostidan qanday futbolka kiyiladi?', a: ['Istalgan rangli futbolka', 'Kulrang, yozuvsiz futbolka', 'Futbolka shart emas'], c: 1, why: 'Kurtka ostidan faqat kulrang, yozuvsiz futbolka kiyiladi.' }
+  ],
+  transport: [
+    { q: 'Avtomobilda qaysi hujjatlar boʻlishi shart?', a: ['Faqat haydovchilik guvohnomasi', 'Guvohnoma, tex. pasport, ishonchnoma va sugʻurta', 'Hujjat shart emas'], c: 1, why: 'Haydovchilik guvohnomasi, texnik pasport, ishonchnoma va sugʻurta boʻlishi shart.' },
+    { q: 'Avtomobilda nosozlik topdingiz. Nima qilasiz?', a: ['Yoʻlga chiqaveraman', 'Yoʻlga chiqishdan oldin bartaraf etaman yoki xabar beraman', 'Ertaga tuzataman'], c: 1, why: 'Barcha kamchiliklar yoʻlga chiqishdan oldin bartaraf etiladi.' },
+    { q: 'Sugʻurta muddati oʻtgan. Yoʻlga chiqish mumkinmi?', a: ['Ha, yaqin masofaga', 'Yoʻq, avval dispetcherga xabar beraman', 'Ha, hech kim tekshirmaydi'], c: 1, why: 'Hujjatlarning amal qilish muddati oʻtmagan boʻlishi shart.' }
+  ],
+  kamchilik: [
+    { q: 'Hujjatlarda kamchilik aniqlandi. Nima qilasiz?', a: ['Ishni boshlab, keyin aytaman', 'Darhol dispetcherga xabar beraman, koʻrsatmasiz boshlamayman', 'Eʼtibor bermayman'], c: 1, why: 'Darhol dispetcherga xabar beriladi va rahbar koʻrsatmasisiz xizmat boshlanmaydi.' },
+    { q: 'Rahbar koʻrsatmasi hali kelmadi. Ishni boshlaysizmi?', a: ['Ha, vaqt ketmasin', 'Yoʻq, koʻrsatmani kutaman', 'Hamkasbdan soʻrab boshlayman'], c: 1, why: 'Rahbar koʻrsatmasisiz xizmat faoliyati boshlanmaydi.' },
+    { q: 'Kamchilik haqida kimga birinchi xabar berasiz?', a: ['Dispetcherga', 'Filial xodimiga', 'Hech kimga'], c: 0, why: 'Kamchilik aniqlansa, darhol dispetcherga xabar beriladi.' }
+  ],
+  tayyor: [
+    { q: 'Yetishmayotgan materiallar qanday toʻldiriladi?', a: ['Ogʻzaki soʻrab olinadi', 'Yuk-xati (nakladnoy) asosida', 'Filialdan olinadi'], c: 1, why: 'Yetishmayotgan materiallar faqat yuk-xati (nakladnoy) asosida toʻldiriladi.' },
+    { q: 'Telefon orqali ariza tushdi. Birinchi nima qilasiz?', a: ['Darhol filialga yoʻlga chiqaman', 'Ariza bilan tanishib, muammo turini aniqlayman', 'Keyingi arizani kutaman'], c: 1, why: 'Avval ariza va muammo turi, keyin mos asbob-uskuna, shundan soʻng yoʻlga chiqish.' },
+    { q: 'Asbob-uskuna sozligi qachon tekshiriladi?', a: ['Filialga borgach', 'Yoʻlga chiqishdan oldin', 'Tekshirilmaydi'], c: 1, why: 'Uskunalar toʻliq va sozligi yoʻlga chiqishdan oldin tekshiriladi.' }
+  ],
+  yol: [
+    { q: 'Haydash paytida telefon jiringladi. Nima qilasiz?', a: ['Gaplashib ketaveraman', 'Xavfsiz joyda toʻxtab, keyin javob beraman', 'Yurib ketayotib SMS yozaman'], c: 1, why: 'Haydash paytida telefondan foydalanilmaydi.' },
+    { q: 'Nega yoʻlda namunali haydash muhim?', a: ['Safia logotipli avtomobilni mijozlar koʻradi', 'Muhim emas', 'Faqat jarimadan qochish uchun'], c: 0, why: 'Logotipli avtomobil kompaniya reklamasi, har bir harakatingiz koʻrinadi.' }
+  ],
+  filial: [
+    { q: 'Filialda ish tugadi. Ishni qanday tasdiqlaysiz?', a: ['Indamay ketaman', 'Masʼul xodimdan ish yakunini tasdiqlovchi video olaman', 'Ertaga qoʻngʻiroq qilaman'], c: 1, why: 'Natija masʼul shaxsga aytiladi va undan tasdiqlovchi video olinadi.' },
+    { q: 'Filialga kirganda birinchi nima qilasiz?', a: ['Darhol ishni boshlayman', 'Salomlashib, masʼul shaxsga oʻzimni tanishtiraman', 'Telefonimga qarayman'], c: 1, why: 'Avval salomlashib, masʼul shaxsga oʻzingizni tanishtirasiz va tashrif maqsadini aytasiz.' }
+  ],
+  muomala: [
+    { q: 'Filial xodimi norozi boʻlib gapiryapti. Qanday harakat qilasiz?', a: ['Bahslashib, haqligimni isbotlayman', 'Sokin tinglayman, soʻzini boʻlmayman', 'Baland ovozda tushuntiraman'], c: 1, why: 'Soʻzni boʻlish, bahslashish va baland ovozda gapirish taqiqlanadi.' },
+    { q: 'Filialda charchadingiz. Mijozlar stuliga oʻtirsa boʻladimi?', a: ['Ha, bir oz dam olaman', 'Yoʻq, filial jihozlarida oʻtirish taqiqlanadi', 'Faqat hech kim koʻrmasa'], c: 1, why: 'Filial stuli va jihozlarida oʻtirish, suyanish taqiqlanadi.' }
+  ],
+  yakun: [
+    { q: '3-smena ishini qachon Verifix’da yakunlaysiz?', a: ['18:00', '21:00', '06:00'], c: 2, why: 'Ketish: 1-smena 18:00, 2-smena 21:00, 3-smena 06:00.' },
+    { q: 'Ish tugadi. Verifix planshetida qaysi tugmani bosasiz?', a: ['ПРИХОД', 'УХОД', 'Hech qaysini'], c: 1, why: 'Ketishda УХОД bosiladi. ПРИХОД bossangiz, ketishingiz qayd etilmaydi.' },
+    { q: 'Ish joyini qanday tark etasiz?', a: ['Indamay ketaman', 'Dispetcherni xabardor qilib, ruxsat bilan', 'Hamkasbga aytib qoʻyaman'], c: 1, why: 'Ish joyi faqat ruxsat bilan, dispetcherni xabardor qilib tark etiladi.' },
+    { q: '1-smena ishi soat nechada tugaydi?', a: ['18:00', '21:00', '06:00'], c: 0, why: '1-smena 09:00–18:00.' }
+  ]
+};
+var shuffle = function (arr) { var a = arr.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; };
+var pickOne = function (arr) { return arr[Math.floor(Math.random() * arr.length)]; };
+var ALL_DONTS = [];
+var mkQ = function (q, right, wrongs, why) {
+  var opts = shuffle([right].concat(wrongs.slice(0, 2)));
+  return { q: q, a: opts, c: opts.indexOf(right), why: why };
+};
+var buildStageTest = function (sid) {
+  if (!ALL_DONTS.length) STAGES.forEach(function (x) { ALL_DONTS = ALL_DONTS.concat(x.donts); });
+  var s = STAGES.filter(function (x) { return x.id === sid; })[0];
+  var spec = (SQ[sid] || []).map(function (o) { var r = o.a[o.c]; return mkQ(o.q, r, o.a.filter(function (t, i) { return i !== o.c; }), o.why); });
+  var goods = s.checks;
+  var bads = s.donts.length >= 2 ? s.donts : s.donts.concat(shuffle(ALL_DONTS.filter(function (d) { return s.donts.indexOf(d) < 0; })));
+  var spots = sid === 'kiyim' ? SPOTS : (sid === 'transport' ? CAR_SPOTS : []);
+  shuffle(spots).slice(0, 3).forEach(function (sp) {
+    spec.push(mkQ('“' + sp.name + '” boʻyicha qaysi biri toʻgʻri?', pickOne(sp.ok), shuffle(sp.bad).concat(shuffle([].concat.apply([], spots.map(function (o) { return o === sp ? [] : o.bad; })))).slice(0, 2), sp.desc));
+  });
+  var gen = [];
+  shuffle(goods).slice(0, 2).forEach(function (g) {
+    gen.push(mkQ('“' + s.title + '” bosqichida quyidagilardan qaysi biri TOʻGʻRI?', g, shuffle(bads).slice(0, 2), 'Toʻgʻri javob: “' + g + '”. Qolganlari standartga zid.'));
+  });
+  shuffle(s.donts).slice(0, 2).forEach(function (d) {
+    gen.push(mkQ('“' + s.title + '” bosqichida quyidagilardan qaysi biri NOTOʻGʻRI (taqiqlanadi)?', d, shuffle(goods).slice(0, 2), '“' + d + '” notoʻgʻri. Qolgan ikkitasi standart talabi.'));
+  });
+  spec = shuffle(spec);
+  var order = spec.slice(0, 3).concat([gen[0], gen[gen.length - 1]], spec.slice(3), gen);
+  var seen = {}, out = [];
+  order.forEach(function (q) { if (q && out.length < TEST_N && !seen[q.q + q.a[q.c]]) { seen[q.q + q.a[q.c]] = 1; out.push(q); } });
+  out = shuffle(out);
+  return out;
+};
 var BADGES = [
   { name: 'Vaqtli keluvchi', on: true }, { name: 'Namunali forma', on: true }, { name: 'Transport nazoratchisi', on: true },
   { name: 'Tayyor brigada', on: false }, { name: 'Test ustasi', on: false }, { name: 'Oy xodimi', on: false }
@@ -994,6 +1136,7 @@ class Component extends DCLogic {
           }
         };
       }),
+      startTest: function () { self.setState({ screen: 'stest', tq: buildStageTest(cs.id), ti: 0, tpicked: null, tscore: 0, tEnd: false }); },
       finish: function () {
         self.setState(function (p) {
           var d = Object.assign({}, (p && p.done) || DEFAULT_DONE);
@@ -1018,8 +1161,15 @@ class Component extends DCLogic {
     });
     var last = st.qi === QUIZ.length - 1;
 
+    var tq = st.tq || [];
+    var tcur = tq[st.ti || 0] || { q: '', a: [], c: 0, why: '' };
+    var tAns = st.tpicked !== null && st.tpicked !== undefined;
+    var tRight = tAns && st.tpicked === tcur.c;
+    var tLast = (st.ti || 0) >= tq.length - 1;
+    var tPass = (st.tscore || 0) >= PASS_MIN;
+    var tNextIdx = ci + 1 < STAGES.length ? ci + 1 : -1;
     var nav = function (k) {
-      var active = st.screen === k || (k === 'home' && st.screen === 'stage');
+      var active = st.screen === k || (k === 'home' && (st.screen === 'stage' || st.screen === 'stest'));
       return { c: active ? '#14213D' : '#5B6475', bg: active ? '#FDEBD0' : 'transparent' };
     };
 
@@ -1066,6 +1216,36 @@ class Component extends DCLogic {
       'Barakalla! Kelishingiz qayd etildi. Smena boshlanishi: 09:00 · 12:00 · 21:00.'];
     var vWarn = function () { self.setState(vset({ W: true })); };
     return {
+      isStest: st.screen === 'stest', tRunning: !st.tEnd, tEndView: !!st.tEnd,
+      tTitle: (ci + 1) + '-bosqich testi', tStage: cs.title,
+      tNum: (st.ti || 0) + 1, tTotal: tq.length, tPct: Math.round(((st.ti || 0) + (tAns ? 1 : 0)) / Math.max(1, tq.length) * 100),
+      tText: tcur.q, tAns: tAns, tWhy: tcur.why,
+      tFbTitle: tRight ? 'Toʻgʻri!' : 'Notoʻgʻri', tFbBg: tRight ? '#E6EEFB' : '#FDECE0', tFbColor: tRight ? '#1D4AAE' : '#9A3F06',
+      tOpts: tcur.a.map(function (t, i) {
+        var correct = i === tcur.c, picked = st.tpicked === i;
+        return { letter: 'ABC'[i], text: t,
+          bg: tAns && correct ? '#E6EEFB' : (tAns && picked ? '#FDECE0' : '#FFFFFF'),
+          border: tAns && correct ? '#2457C5' : (tAns && picked ? '#C2570C' : '#E3E7EE'),
+          showOk: tAns && correct, showBad: tAns && picked && !correct,
+          pick: function () { if (tAns) return; self.setState({ tpicked: i, tscore: (st.tscore || 0) + (correct ? 1 : 0) }); } };
+      }),
+      tNextLabel: tLast ? 'Natijani koʻrish' : 'Keyingi savol',
+      tNext: function () {
+        if (!tLast) { self.setState({ ti: (st.ti || 0) + 1, tpicked: null }); return; }
+        if (tPass) { self.setState(function (p) { var d = Object.assign({}, (p && p.done) || DEFAULT_DONE); d[cs.id] = true; return { tEnd: true, done: d }; }); }
+        else self.setState({ tEnd: true });
+      },
+      tScore: (st.tscore || 0) + ' / ' + tq.length,
+      tPass: tPass, tFail: !tPass,
+      tResTitle: tPass ? 'Tabriklaymiz! Test topshirildi' : 'Test topshirilmadi',
+      tResText: tPass ? (tNextIdx >= 0 ? 'Keyingi bosqich ochildi: “' + STAGES[tNextIdx].title + '”.' : 'Barcha bosqichlar yakunlandi!') : 'Oʻtish uchun kamida ' + PASS_MIN + ' ta toʻgʻri javob kerak. Bosqichni qayta oʻqib, yana urinib koʻring.',
+      tResBg: tPass ? accent : '#FDECE0', tResFg: tPass ? '#14213D' : '#9A3F06',
+      tRetry: function () { self.setState({ tq: buildStageTest(cs.id), ti: 0, tpicked: null, tscore: 0, tEnd: false }); },
+      tReview: function () { self.setState({ screen: 'stage', tEnd: false }); },
+      tGoNext: function () { if (tNextIdx >= 0) self.setState({ screen: 'stage', stage: STAGES[tNextIdx].id, tEnd: false }); else self.setState({ screen: 'home', tEnd: false }); },
+      tHome: function () { self.setState({ screen: 'home', tEnd: false }); },
+      tBack: function () { self.setState({ screen: 'stage' }); },
+      tPassRule: 'Oʻtish uchun: ' + PASS_MIN + ' / ' + TEST_N + ' toʻgʻri javob',
       vfx0: vs === 0, vfx1: vs === 1, vfx2: vs === 2, vfx3: vs === 3,
       vfxStep: vs < 3 ? 'Qadam ' + (vs + 1) + '/3' : 'Bajarildi',
       vfxChipBg: vs < 3 ? '#FDEBD0' : '#E3F1EA', vfxChipFg: vs < 3 ? '#7A4A00' : '#1E5C42',
