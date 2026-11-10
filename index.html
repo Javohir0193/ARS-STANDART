@@ -535,8 +535,7 @@ button{font-family:inherit}
 <button type="button" onClick="{{tHome}}" style="width: 100%; min-height: 48px; border-radius: 14px; border: 1.5px solid #14213D; background: #FFFFFF; color: #14213D; font-size: 15px; font-weight: 700; cursor: pointer">Bosh sahifaga</button>
 </sc-if>
 <sc-if value="{{tFail}}">
-<button type="button" onClick="{{tRetry}}" style="width: 100%; min-height: 52px; border-radius: 16px; border: none; background: {{accent}}; color: #14213D; font-size: 16px; font-weight: 700; cursor: pointer">Testni qayta topshirish</button>
-<button type="button" onClick="{{tReview}}" style="width: 100%; min-height: 48px; border-radius: 14px; border: 1.5px solid #14213D; background: #FFFFFF; color: #14213D; font-size: 15px; font-weight: 700; cursor: pointer">Bosqichni qayta oʻqish</button>
+<button type="button" onClick="{{tReview}}" style="width: 100%; min-height: 52px; border-radius: 16px; border: none; background: {{accent}}; color: #14213D; font-size: 16px; font-weight: 700; cursor: pointer">Bosqichni qaytadan oʻtish</button>
 </sc-if>
 </div>
 </sc-if>
@@ -608,7 +607,7 @@ button{font-family:inherit}
 </div>
 </div>
 <button type="button" onClick="{{resetAll}}" style="min-height: 48px; border-radius: 14px; border: 1px solid #E3E7EE; background: #FFFFFF; color: #9A3F06; font-size: 14px; font-weight: 600; cursor: pointer">Natijalarni nolga tushirish</button>
-<span style="font-size: 12px; color: #8A93A6; text-align: center">АРС Стандарты · versiya 1.3 · internetsiz ishlaydi</span>
+<span style="font-size: 12px; color: #8A93A6; text-align: center">АРС Стандарты · versiya 1.4 · internetsiz ishlaydi</span>
 </div>
 </sc-if>
 
@@ -924,7 +923,7 @@ var QUIZ = [
   { q: '3-smena ishini qachon Verifix’da yakunlaysiz?', a: ['18:00', '21:00', '06:00'], c: 2,
     why: 'Ketish: 1-smena 18:00, 2-smena 21:00, 3-smena 06:00.' }
 ];
-var PASS_MIN = 4, TEST_N = 5;
+var PASS_MIN = 5, TEST_N = 5;
 var SQ = {
   kelish: [
     { q: '2-smenada ishlaysiz. Verifix’da kelishni qachon qayd etasiz?', a: ['09:00', '12:00', '21:00'], c: 1, why: '1-smena 09:00, 2-smena 12:00, 3-smena 21:00.' },
@@ -1136,7 +1135,7 @@ class Component extends DCLogic {
           }
         };
       }),
-      startTest: function () { self.setState({ screen: 'stest', tq: buildStageTest(cs.id), ti: 0, tpicked: null, tscore: 0, tEnd: false }); },
+      startTest: function () { self.setState({ screen: 'stest', tq: buildStageTest(cs.id), ti: 0, tpicked: null, tscore: 0, tEnd: false, tWrong: false }); },
       finish: function () {
         self.setState(function (p) {
           var d = Object.assign({}, (p && p.done) || DEFAULT_DONE);
@@ -1161,6 +1160,16 @@ class Component extends DCLogic {
     });
     var last = st.qi === QUIZ.length - 1;
 
+    var resetStage = function (p) {
+      var pre = cs.id + ':';
+      var c = {}; Object.keys((p && p.checks) || {}).forEach(function (k) { if (k.indexOf(pre) !== 0) c[k] = p.checks[k]; });
+      var set = cs.id === 'kiyim' ? 'forma:' : (cs.id === 'transport' ? 'car:' : null);
+      var sn = {}; Object.keys((p && p.seen) || {}).forEach(function (k) { if (!set || k.indexOf(set) !== 0) sn[k] = p.seen[k]; });
+      var r = { checks: c, seen: sn, spot: -1, tWrong: false };
+      var vk = cs.id === 'kelish' ? 'vfxI' : (cs.id === 'yakun' ? 'vfxO' : null);
+      if (vk) { r[vk] = 0; r[vk + 'W'] = false; r[vk + 'N'] = false; }
+      return r;
+    };
     var tq = st.tq || [];
     var tcur = tq[st.ti || 0] || { q: '', a: [], c: 0, why: '' };
     var tAns = st.tpicked !== null && st.tpicked !== undefined;
@@ -1227,25 +1236,25 @@ class Component extends DCLogic {
           bg: tAns && correct ? '#E6EEFB' : (tAns && picked ? '#FDECE0' : '#FFFFFF'),
           border: tAns && correct ? '#2457C5' : (tAns && picked ? '#C2570C' : '#E3E7EE'),
           showOk: tAns && correct, showBad: tAns && picked && !correct,
-          pick: function () { if (tAns) return; self.setState({ tpicked: i, tscore: (st.tscore || 0) + (correct ? 1 : 0) }); } };
+          pick: function () { if (tAns) return; self.setState({ tpicked: i, tscore: (st.tscore || 0) + (correct ? 1 : 0), tWrong: !!st.tWrong || !correct }); } };
       }),
       tNextLabel: tLast ? 'Natijani koʻrish' : 'Keyingi savol',
       tNext: function () {
         if (!tLast) { self.setState({ ti: (st.ti || 0) + 1, tpicked: null }); return; }
         if (tPass) { self.setState(function (p) { var d = Object.assign({}, (p && p.done) || DEFAULT_DONE); d[cs.id] = true; return { tEnd: true, done: d }; }); }
-        else self.setState({ tEnd: true });
+        else self.setState(function (p) { var r = resetStage(p); r.tEnd = true; return r; });
       },
+      tBack: function () { if (st.tWrong && !st.tEnd) self.setState(function (p) { var r = resetStage(p); r.screen = 'stage'; return r; }); else self.setState({ screen: 'stage' }); },
       tScore: (st.tscore || 0) + ' / ' + tq.length,
       tPass: tPass, tFail: !tPass,
       tResTitle: tPass ? 'Tabriklaymiz! Test topshirildi' : 'Test topshirilmadi',
-      tResText: tPass ? (tNextIdx >= 0 ? 'Keyingi bosqich ochildi: “' + STAGES[tNextIdx].title + '”.' : 'Barcha bosqichlar yakunlandi!') : 'Oʻtish uchun kamida ' + PASS_MIN + ' ta toʻgʻri javob kerak. Bosqichni qayta oʻqib, yana urinib koʻring.',
+      tResText: tPass ? (tNextIdx >= 0 ? 'Keyingi bosqich ochildi: “' + STAGES[tNextIdx].title + '”.' : 'Barcha bosqichlar yakunlandi!') : 'Oʻtish uchun barcha ' + TEST_N + ' ta savolga toʻgʻri javob berish kerak. Bosqichdagi belgilar tozalandi: bosqichni boshidan qayta oʻting.',
       tResBg: tPass ? accent : '#FDECE0', tResFg: tPass ? '#14213D' : '#9A3F06',
       tRetry: function () { self.setState({ tq: buildStageTest(cs.id), ti: 0, tpicked: null, tscore: 0, tEnd: false }); },
       tReview: function () { self.setState({ screen: 'stage', tEnd: false }); },
       tGoNext: function () { if (tNextIdx >= 0) self.setState({ screen: 'stage', stage: STAGES[tNextIdx].id, tEnd: false }); else self.setState({ screen: 'home', tEnd: false }); },
       tHome: function () { self.setState({ screen: 'home', tEnd: false }); },
-      tBack: function () { self.setState({ screen: 'stage' }); },
-      tPassRule: 'Oʻtish uchun: ' + PASS_MIN + ' / ' + TEST_N + ' toʻgʻri javob',
+      tPassRule: 'Oʻtish uchun: ' + TEST_N + ' / ' + TEST_N + ' toʻgʻri javob',
       vfx0: vs === 0, vfx1: vs === 1, vfx2: vs === 2, vfx3: vs === 3,
       vfxStep: vs < 3 ? 'Qadam ' + (vs + 1) + '/3' : 'Bajarildi',
       vfxChipBg: vs < 3 ? '#FDEBD0' : '#E3F1EA', vfxChipFg: vs < 3 ? '#7A4A00' : '#1E5C42',
